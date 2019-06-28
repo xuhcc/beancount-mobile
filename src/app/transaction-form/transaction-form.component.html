@@ -1,0 +1,31 @@
+<ActionBar class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
+  <Label class="action-bar-title" text="New transaction"></Label>
+</ActionBar>
+
+<StackLayout [formGroup]="form" class="form">
+
+  <Label text="Account 1 (from)"></Label>
+  <TextField formControlName="accountFrom" (tap)="showAccountPicker('accountFrom')"></TextField>
+
+  <Label text="Account 2 (to)"></Label>
+  <TextField formControlName="accountTo" (tap)="showAccountPicker('accountTo')"></TextField>
+
+  <Label text="Amount"></Label>
+  <TextField formControlName="amount" keyboardType="number"></TextField>
+
+  <Label text="Currency"></Label>
+  <TextField formControlName="commodity" (tap)="showCommodityPicker()"></TextField>
+
+  <Label text="Date"></Label>
+  <TextField formControlName="date" keyboardType="datetime"></TextField>
+
+  <Label text="Payee"></Label>
+  <TextField formControlName="payee" (tap)="showPayeeModal()"></TextField>
+
+  <Label text="Description"></Label>
+  <TextField formControlName="narration"></TextField>
+
+  <Button text="add" (tap)="onSubmit()" [isEnabled]="form.valid"></Button>
+
+</StackLayout>

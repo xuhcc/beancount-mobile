@@ -1,0 +1,24 @@
+<ActionBar class="action-bar">
+  <Label class="action-bar-title" text="Welcome to Beancount Mobile"></Label>
+</ActionBar>
+
+<StackLayout class="page">
+  <Label id="welcome-text" textWrap="true">
+    <FormattedString>
+      <Span [text]="'Beancount is a plain-text accounting system.\nYou can read more about it at the\n'"></Span>
+    </FormattedString>
+  </Label>
+  <Label id="website-link" text="beancount website" (tap)="openBeancountWebsite()"></Label>
+
+  <TextField
+    [(ngModel)]="filePath"
+    hint="Path to beancount file"
+  ></TextField>
+  <Button text="Browse" (tap)="openFilePicker()"></Button>
+
+  <Button
+    text="continue"
+    (tap)="onContinueTap()"
+    [isEnabled]="isValidPath()"
+  ></Button>
+</StackLayout>

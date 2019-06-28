@@ -1,0 +1,13 @@
+#welcome-text {
+    font-size: 16;
+    margin-top: 5%;
+    text-align: center;
+}
+
+#website-link {
+    color: blue;
+    font-size: 16;
+    margin-bottom: 5%;
+    text-align: center;
+    text-decoration: underline;
+}

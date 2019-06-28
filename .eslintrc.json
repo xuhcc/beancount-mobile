@@ -1,0 +1,40 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "jasmine"
+    ],
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jasmine": true
+    },
+    "extends": [
+        "standard"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "semi": "off",
+        "no-unused-vars": "off",
+        "no-useless-constructor": "off",
+        "space-before-function-paren": [
+            "error",
+            {
+                "named": "never"
+            }
+        ],
+        "padded-blocks": "off",
+        "object-curly-spacing": "off"
+    }
+}

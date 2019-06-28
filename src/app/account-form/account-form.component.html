@@ -1,0 +1,16 @@
+<ActionBar class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
+  <Label class="action-bar-title" text="New account"></Label>
+</ActionBar>
+
+<StackLayout class="form" [formGroup]="form">
+
+  <Label text="Name"></Label>
+  <TextField formControlName="name"></TextField>
+
+  <Label text="Date"></Label>
+  <TextField formControlName="date" keyboardType="datetime"></TextField>
+
+  <Button text="add" (tap)="onSubmit()" [isEnabled]="form.valid"></Button>
+
+</StackLayout>

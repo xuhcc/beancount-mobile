@@ -1,0 +1,8 @@
+<GridLayout columns="*,*" rows="auto,auto,*,auto" width="300">
+  <Label row="0" colSpan="2" text="Select account" class="modal-header"></Label>
+  <TextField #accountField row="1" colSpan="2" hint="Start typing..." [(ngModel)]="search" (ngModelChange)="filterAccounts()"></TextField>
+  <ListPicker *ngIf="accounts.length > 0" row="2" colSpan="2" [items]="accounts" [(ngModel)]="selectedIndex"></ListPicker>
+  <Label *ngIf="accounts.length == 0" text="No accounts found" row="2" colSpan="2" class="empty-picker"></Label>
+  <Button col="0" row="3" text="Cancel" (tap)="onCancel()"></Button>
+  <Button col="1" row="3" text="Select" (tap)="onSelect()"></Button>
+</GridLayout>

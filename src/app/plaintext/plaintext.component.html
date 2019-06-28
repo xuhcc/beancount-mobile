@@ -1,0 +1,20 @@
+<ActionBar class="action-bar">
+  <NavigationButton icon="res://baseline_menu_black_24" (tap)="openDrawer()"></NavigationButton>
+  <Label class="action-bar-title" [text]="title"></Label>
+</ActionBar>
+
+<PullToRefresh (refresh)="reloadFile($event)">
+  <DockLayout>
+    <!--
+    Use
+    https://github.com/bradmartin/nativescript-floatingactionbutton
+    -->
+    <Button id="add-transaction" text="add transaction" (tap)="addTransaction()" dock="bottom"></Button>
+    <Button id="add-account" text="add account" (tap)="addAccount()" dock="bottom"></Button>
+
+    <ScrollView id="file-content">
+      <Label textWrap="true" text="{{ fileContent }}"></Label>
+    </ScrollView>
+
+  </DockLayout>
+</PullToRefresh>

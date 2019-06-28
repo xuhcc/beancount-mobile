@@ -1,0 +1,70 @@
+{
+    "name": "beancount-mobile",
+    "version": "0.0.3",
+    "description": "Beancount Mobile App",
+    "license": "GPL-3.0-or-later",
+    "repository": "https://github.com/xuhcc/beancount-mobile",
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "~8.0.0",
+        "@angular/common": "~8.0.0",
+        "@angular/compiler": "~8.0.0",
+        "@angular/core": "~8.0.0",
+        "@angular/forms": "~8.0.0",
+        "@angular/http": "~8.0.0-beta.10",
+        "@angular/platform-browser": "~8.0.0",
+        "@angular/platform-browser-dynamic": "~8.0.0",
+        "@angular/router": "~8.0.0",
+        "@nativescript/schematics": "^0.6.0",
+        "nativescript-angular": "~8.0.0",
+        "nativescript-foss-sidedrawer": "file:./plugins/nativescript-foss-sidedrawer-1.0.2.tgz",
+        "nativescript-imagepicker": "file:./plugins/nativescript-imagepicker-6.2.0.tgz",
+        "nativescript-permissions": "^1.3.6",
+        "nativescript-pulltorefresh": "^2.3.0",
+        "nativescript-theme-core": "~1.0.4",
+        "nativescript-unit-test-runner": "^0.6.4",
+        "reflect-metadata": "~0.1.12",
+        "rxjs": "~6.5.0",
+        "tns-core-modules": "~5.4.0",
+        "zone.js": "~0.9.1"
+    },
+    "devDependencies": {
+        "@angular/compiler-cli": "~8.0.0",
+        "@ngtools/webpack": "~8.0.0",
+        "@types/jasmine": "^3.3.13",
+        "@typescript-eslint/eslint-plugin": "^1.11.0",
+        "@typescript-eslint/parser": "^1.11.0",
+        "eslint": "^6.0.1",
+        "eslint-config-standard": "^12.0.0",
+        "eslint-plugin-import": "^2.18.0",
+        "eslint-plugin-jasmine": "^2.10.1",
+        "eslint-plugin-node": "^9.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "karma": "4.1.0",
+        "karma-jasmine": "2.0.1",
+        "karma-nativescript-launcher": "0.4.0",
+        "karma-webpack": "4.0.2",
+        "nativescript-dev-typescript": "~0.10.0",
+        "nativescript-dev-webpack": "~0.24.0",
+        "tns-platform-declarations": "^5.4.3"
+    },
+    "scripts": {
+        "build-icons": "tns resources generate icons images/logo.png",
+        "build-splashes": "tns resources generate splashes images/logo.png --background \"#205081\"",
+        "build": "tns build android",
+        "test": "tns test android --no-watch",
+        "lint": "npx eslint \"src/**/*.ts\"",
+        "clean": "rm -rf platforms",
+        "version": "./scripts/check-changelog.js"
+    },
+    "nativescript": {
+        "id": "link.beancount.mobile",
+        "tns-android": {
+            "version": "5.4.0"
+        },
+        "tns-ios": {
+            "version": "5.4.2"
+        }
+    }
+}
