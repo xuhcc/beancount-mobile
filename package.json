@@ -1,6 +1,6 @@
 {
     "name": "beancount-mobile",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "Beancount Mobile App",
     "license": "GPL-3.0-or-later",
     "repository": "https://github.com/xuhcc/beancount-mobile",
