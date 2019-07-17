@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { registerElement } from 'nativescript-angular/element-registry';
 
@@ -18,6 +18,9 @@ export class PlainTextComponent implements OnInit {
 
     title: string;
     fileContent: string;
+
+    @ViewChild('fileContentView', {static: false})
+    fileContentView: ElementRef;
 
     constructor(
         private routerExtensions: RouterExtensions,
@@ -55,6 +58,11 @@ export class PlainTextComponent implements OnInit {
 
     addAccount() {
         this.routerExtensions.navigate(['/add-account']);
+    }
+
+    scrollToBottom() {
+        const element = this.fileContentView.nativeElement;
+        element.scrollToVerticalOffset(element.scrollableHeight);
     }
 
 }

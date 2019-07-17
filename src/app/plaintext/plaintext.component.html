@@ -10,9 +10,10 @@
   -->
   <Button id="add-transaction" text="add transaction" (tap)="addTransaction()" dock="bottom"></Button>
   <Button id="add-account" text="add account" (tap)="addAccount()" dock="bottom"></Button>
+  <Button text="scroll to bottom" (tap)="scrollToBottom()" dock="bottom"></Button>
 
   <PullToRefresh (refresh)="reloadFile($event)">
-    <ScrollView id="file-content">
+    <ScrollView #fileContentView id="file-content">
       <Label textWrap="true" text="{{ fileContent }}"></Label>
     </ScrollView>
   </PullToRefresh>
