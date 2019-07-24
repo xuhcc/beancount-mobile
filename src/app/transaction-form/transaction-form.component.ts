@@ -31,13 +31,13 @@ export class TransactionFormComponent implements OnInit {
         private routerExtensions: RouterExtensions,
         private beancountFile: BeancountFileService,
     ) {
-        this.accounts = this.beancountFile.getAccounts();
-        this.commodities = this.beancountFile.getCommodities();
-        this.payees = this.beancountFile.getPayees();
+        this.accounts = this.beancountFile.content.getAccounts();
+        this.commodities = this.beancountFile.content.getCommodities();
+        this.payees = this.beancountFile.content.getPayees();
     }
 
     ngOnInit() {
-        const defaultCurrency = this.beancountFile.getOperatingCurrency();
+        const defaultCurrency = this.beancountFile.content.getOperatingCurrency();
         this.form = this.formBuilder.group({
             accountFrom: [
                 '',

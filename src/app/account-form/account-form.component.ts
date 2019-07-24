@@ -34,7 +34,7 @@ export class AccountFormComponent implements OnInit {
         private routerExtensions: RouterExtensions,
         private beancountFile: BeancountFileService,
     ) {
-        this.accounts = this.beancountFile.getAccounts();
+        this.accounts = this.beancountFile.content.getAccounts();
     }
 
     ngOnInit() {

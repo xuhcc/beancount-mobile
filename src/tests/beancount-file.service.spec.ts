@@ -4,6 +4,7 @@ import * as appSettings from 'tns-core-modules/application-settings';
 import { File } from 'tns-core-modules/file-system';
 
 import { BeancountFileService } from '../app/shared/beancount-file.service';
+import { BeancountFileContent } from '../app/shared/beancount-file-content';
 
 describe('beancount file service', () => {
     const fileMock = <any>{
@@ -28,25 +29,26 @@ describe('beancount file service', () => {
 
     it('should save file', () => {
         spyOn(fileMock, 'writeText').and.callThrough();
-        service.content = 'test-content';
+        const fileText = 'test-content';
+        service.content = new BeancountFileContent(fileText);
         service.save();
-        expect(fileMock.writeText).toHaveBeenCalledWith(service.content);
+        expect(fileMock.writeText).toHaveBeenCalledWith(fileText);
     });
 
     it('should append to file', () => {
         spyOn(service, 'save');
-        service.content = '2019-01-01 txn "test1"\n';
+        service.content = new BeancountFileContent('2019-01-01 txn "test1"\n');
         service.append('2019-01-02 txn "test2"');
-        expect(service.content).toBe(
+        expect(service.content.text).toBe(
             '2019-01-01 txn "test1"\n\n' +
             '2019-01-02 txn "test2"')
         expect(service.save).toHaveBeenCalled();
     });
 
     it('should append to file with no linebreak at the end', () => {
-        service.content = '2019-01-01 txn "test1"';
+        service.content = new BeancountFileContent('2019-01-01 txn "test1"');
         service.append('2019-01-02 txn "test2"');
-        expect(service.content).toBe(
+        expect(service.content.text).toBe(
             '2019-01-01 txn "test1"\n\n' +
             '2019-01-02 txn "test2"')
     });

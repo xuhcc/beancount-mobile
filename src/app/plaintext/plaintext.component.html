@@ -1,6 +1,6 @@
 <ActionBar class="action-bar">
   <NavigationButton icon="res://baseline_menu_black_24" (tap)="openDrawer()"></NavigationButton>
-  <Label class="action-bar-title" [text]="title"></Label>
+  <Label class="action-bar-title" [text]="fileTitle"></Label>
 </ActionBar>
 
 <DockLayout>
@@ -13,8 +13,8 @@
   <Button text="scroll to bottom" (tap)="scrollToBottom()" dock="bottom"></Button>
 
   <PullToRefresh (refresh)="reloadFile($event)">
-    <ScrollView #fileContentView id="file-content">
-      <Label textWrap="true" text="{{ fileContent }}"></Label>
+    <ScrollView #fileTextView id="file-content">
+      <Label textWrap="true" text="{{ fileText }}"></Label>
     </ScrollView>
   </PullToRefresh>
 </DockLayout>

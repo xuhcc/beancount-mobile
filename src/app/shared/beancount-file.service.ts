@@ -8,13 +8,7 @@ import { isAndroid } from 'tns-core-modules/platform';
 import * as permissions from 'nativescript-permissions';
 
 import { BEANCOUNT_PATH_SETTING } from './constants';
-import {
-    TITLE_REGEXP,
-    OPERATING_CURRENCY_REGEXP,
-    ACCOUNT_REGEXP,
-    COMMODITY_REGEXP,
-    PAYEE_REGEXP,
-} from './beancount-file-content';
+import { BeancountFileContent } from './beancount-file-content';
 
 @Injectable({
     providedIn: 'root',
@@ -22,7 +16,7 @@ import {
 export class BeancountFileService {
 
     path: string;
-    content: string;
+    content: BeancountFileContent;
 
     constructor() {
         this.path = appSettings.getString(BEANCOUNT_PATH_SETTING);
@@ -70,30 +64,30 @@ export class BeancountFileService {
         delete this.content;
     }
 
-    async read(): Promise<string> {
+    async read(): Promise<BeancountFileContent> {
         if (this.content !== undefined) {
             return this.content;
         }
         let hasPermission = await this.checkPermission();
         if (hasPermission) {
             const file = File.fromPath(this.path);
-            this.content = await file.readText();
+            const fileText = await file.readText();
+            this.content = new BeancountFileContent(fileText);
         } else {
             // No permission; create empty file
-            this.content = '';
+            this.content = new BeancountFileContent('');
         }
         return this.content;
     }
 
     append(text: string) {
-        const numLineBreaks = this.content.endsWith('\n') ? 1 : 2;
-        this.content += `${'\n'.repeat(numLineBreaks)}${text}`;
+        this.content.append(text);
         this.save();
     }
 
     save() {
         const file = File.fromPath(this.path);
-        file.writeText(this.content).catch((error) => { // eslint-disable-line handle-callback-err
+        file.writeText(this.content.text).catch((error) => { // eslint-disable-line handle-callback-err
             console.warn('file not saved');
         });
     }
@@ -102,52 +96,6 @@ export class BeancountFileService {
         appSettings.remove(BEANCOUNT_PATH_SETTING);
         delete this.path;
         this.clearCache();
-    }
-
-    getTitle(): string {
-        const match = this.content.match(TITLE_REGEXP);
-        if (match) {
-            return match[1];
-        } else {
-            return 'Untitled';
-        }
-    }
-
-    getOperatingCurrency(): string {
-        const match = this.content.match(OPERATING_CURRENCY_REGEXP);
-        if (match) {
-            return match[1];
-        } else {
-            return '';
-        }
-    }
-
-    getAccounts(): string[] {
-        // No support for matchAll in TypeScript
-        // https://stackoverflow.com/questions/55499555/
-        const matches = this.content['matchAll'](ACCOUNT_REGEXP);
-        const accounts = Array.from(matches).map((match) => {
-            return match[1];
-        }).sort();
-        return accounts;
-    }
-
-    getCommodities(): string[] {
-        const matches = this.content['matchAll'](COMMODITY_REGEXP);
-        const commodities = Array.from(matches).map((match) => {
-            return match[1];
-        }).sort();
-        return commodities;
-    }
-
-    getPayees(): string[] {
-        const matches = this.content['matchAll'](PAYEE_REGEXP);
-        const payees = Array.from(matches)
-            .map((match) => match[2])
-            // Remove duplicates
-            .filter((payee, index, self) => self.indexOf(payee) === index)
-            .sort(); // TODO: Sort by frequency
-        return payees;
     }
 
 }

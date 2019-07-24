@@ -5,6 +5,7 @@ import { registerElement } from 'nativescript-angular/element-registry';
 import { PullToRefresh } from 'nativescript-pulltorefresh';
 
 import { BeancountFileService } from '../shared/beancount-file.service';
+import { BeancountFileContent } from '../shared/beancount-file-content';
 import { SideDrawerService } from '../shared/sidedrawer.service';
 
 registerElement('PullToRefresh', () => PullToRefresh);
@@ -16,11 +17,11 @@ registerElement('PullToRefresh', () => PullToRefresh);
 })
 export class PlainTextComponent implements OnInit {
 
-    title: string;
-    fileContent: string;
+    fileTitle: string;
+    fileText: string;
 
-    @ViewChild('fileContentView', {static: false})
-    fileContentView: ElementRef;
+    @ViewChild('fileTextView', {static: false})
+    fileTextView: ElementRef;
 
     constructor(
         private routerExtensions: RouterExtensions,
@@ -33,9 +34,9 @@ export class PlainTextComponent implements OnInit {
     }
 
     loadFile() {
-        this.beancountFile.read().then((fileContent: string) => {
-            this.fileContent = fileContent;
-            this.title = this.beancountFile.getTitle();
+        this.beancountFile.read().then((fileContent: BeancountFileContent) => {
+            this.fileText = fileContent.text;
+            this.fileTitle = fileContent.getTitle();
         });
     }
 
@@ -61,7 +62,7 @@ export class PlainTextComponent implements OnInit {
     }
 
     scrollToBottom() {
-        const element = this.fileContentView.nativeElement;
+        const element = this.fileTextView.nativeElement;
         element.scrollToVerticalOffset(element.scrollableHeight);
     }
 
