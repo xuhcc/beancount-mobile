@@ -2,6 +2,7 @@ import { ElementRef } from '@angular/core';
 
 import { getNativeApplication } from 'tns-core-modules/application';
 import { Color } from 'tns-core-modules/color';
+import { ad } from 'tns-core-modules/utils/utils';
 
 export function getTodayStr(): string {
     return new Date().toISOString().split('T')[0];
@@ -23,4 +24,11 @@ export function getColor(name: string): Color {
     const colorId = resources.getIdentifier(name, 'color', app.getPackageName());
     const color = new Color(resources.getColor(colorId));
     return color;
+}
+
+export function getAppVersion(): string {
+    // https://github.com/EddyVerbruggen/nativescript-appversion
+    const context = ad.getApplicationContext();
+    const packageManager = context.getPackageManager();
+    return packageManager.getPackageInfo(context.getPackageName(), 0).versionName;
 }

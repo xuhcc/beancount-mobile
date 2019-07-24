@@ -4,7 +4,8 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { fromResource as imageFromResource } from 'tns-core-modules/image-source';
 import { TnsSideDrawer, TnsSideDrawerClass } from 'nativescript-foss-sidedrawer';
 
-import { getColor } from './misc';
+import { APP_NAME } from './constants';
+import { getColor, getAppVersion } from './misc';
 
 // https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html
 const LOCK_MODE_LOCKED_CLOSED = 1;
@@ -15,7 +16,6 @@ const LOCK_MODE_UNDEFINED = 3;
 })
 export class SideDrawerService {
 
-    title: string = 'Beancount Mobile';
     private navigationMenu = [
         {
             title: 'File content',
@@ -36,7 +36,7 @@ export class SideDrawerService {
 
         const config = {
             templates: this.navigationMenu,
-            title: this.title,
+            title: `${APP_NAME} v${getAppVersion()}`,
             logoImage: imageFromResource('icon'),
             headerBackgroundColor: getColor('ns_blue'),
             backgroundColor: getColor('ns_primary'),
