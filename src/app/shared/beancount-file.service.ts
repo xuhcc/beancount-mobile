@@ -7,11 +7,14 @@ import { isAndroid } from 'tns-core-modules/platform';
 
 import * as permissions from 'nativescript-permissions';
 
-import { BEANCOUNT_PATH_SETTING } from '../shared/constants';
-
-// Currently there is no support for \p{L}
-// https://github.com/microsoft/TypeScript/issues/32214
-export const ACCOUNT_NAME_REGEXP = /^[^\s:]+:[^\s]+$/;
+import { BEANCOUNT_PATH_SETTING } from './constants';
+import {
+    TITLE_REGEXP,
+    OPERATING_CURRENCY_REGEXP,
+    ACCOUNT_REGEXP,
+    COMMODITY_REGEXP,
+    PAYEE_REGEXP,
+} from './beancount-file-content';
 
 @Injectable({
     providedIn: 'root',
@@ -102,8 +105,7 @@ export class BeancountFileService {
     }
 
     getTitle(): string {
-        const regexp = /^option "title" "(.+)"/um;
-        const match = this.content.match(regexp);
+        const match = this.content.match(TITLE_REGEXP);
         if (match) {
             return match[1];
         } else {
@@ -112,8 +114,7 @@ export class BeancountFileService {
     }
 
     getOperatingCurrency(): string {
-        const regexp = /^option "operating_currency" "([^\s]+)"/um;
-        const match = this.content.match(regexp);
+        const match = this.content.match(OPERATING_CURRENCY_REGEXP);
         if (match) {
             return match[1];
         } else {
@@ -122,12 +123,9 @@ export class BeancountFileService {
     }
 
     getAccounts(): string[] {
-        // Currently there is no support for \p{L}
-        // https://github.com/microsoft/TypeScript/issues/32214
-        const regexp = /^[\d-]{10} open ([^\s]+)/umg;
-        // And poor support for matchAll
+        // No support for matchAll in TypeScript
         // https://stackoverflow.com/questions/55499555/
-        const matches = this.content['matchAll'](regexp);
+        const matches = this.content['matchAll'](ACCOUNT_REGEXP);
         const accounts = Array.from(matches).map((match) => {
             return match[1];
         }).sort();
@@ -135,8 +133,7 @@ export class BeancountFileService {
     }
 
     getCommodities(): string[] {
-        const regexp = /^[\d-]{10} commodity ([A-Z]+)$/umg;
-        const matches = this.content['matchAll'](regexp);
+        const matches = this.content['matchAll'](COMMODITY_REGEXP);
         const commodities = Array.from(matches).map((match) => {
             return match[1];
         }).sort();
@@ -144,10 +141,7 @@ export class BeancountFileService {
     }
 
     getPayees(): string[] {
-        // Currently there is no support for \p{L}
-        // https://github.com/microsoft/TypeScript/issues/32214
-        const regexp = /^[\d-]{10} (txn|\*) "([^"]+)" ".*/umg;
-        const matches = this.content['matchAll'](regexp);
+        const matches = this.content['matchAll'](PAYEE_REGEXP);
         const payees = Array.from(matches)
             .map((match) => match[2])
             // Remove duplicates

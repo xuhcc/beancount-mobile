@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from
 import { RouterExtensions } from 'nativescript-angular/router';
 
 import { Account } from '../shared/account.model';
-import { BeancountFileService, ACCOUNT_NAME_REGEXP } from '../shared/beancount-file.service';
+import { BeancountFileService } from '../shared/beancount-file.service';
+import { ACCOUNT_NAME_REGEXP } from '../shared/beancount-file-content';
 import { getTodayStr } from '../shared/misc';
 
 function UniqueValidator(uniqueList: any[]): ValidatorFn {
