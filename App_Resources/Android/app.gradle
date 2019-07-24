@@ -1,16 +1,16 @@
-// Add your native dependencies here:
-
-// Uncomment to add recyclerview-v7 dependency
-//dependencies {
-//	implementation 'com.android.support:recyclerview-v7:+'
-//}
-
-// If you want to add something to be applied before applying plugins' include.gradle files
-// e.g. project.ext.googlePlayServicesVersion = "15.0.1"
-// create a file named before-plugins.gradle in the current directory and place it there
+// https://stackoverflow.com/a/39040755/1868395
+def packageJsonFile = file("./../../../package.json")
+def packageJson = new groovy.json.JsonSlurper().parseText(packageJsonFile.text)
+def version = packageJson.version
+// https://blog.jayway.com/2015/03/11/automatic-versioncode-generation-in-android-gradle/
+def (major, minor, patch) = version.toLowerCase().replaceAll('-', '').tokenize('.')
+def versionInt = (major.toInteger() * 1000000) + (minor.toInteger() * 10000) + (patch.toInteger() * 100)
 
 android {
   defaultConfig {
+    versionCode versionInt
+    versionName "$version"
+
     minSdkVersion 17
     generatedDensities = []
   }

@@ -11,5 +11,8 @@ indent_size = 4
 [*.html]
 indent_size = 2
 
+[*.gradle]
+indent_size = 2
+
 [AndroidManifest.xml]
 indent_style = tab
