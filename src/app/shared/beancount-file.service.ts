@@ -5,6 +5,7 @@ import * as appSettings from 'tns-core-modules/application-settings';
 import { File, Folder } from 'tns-core-modules/file-system';
 import { isAndroid } from 'tns-core-modules/platform';
 
+import { Subject } from 'rxjs';
 import * as permissions from 'nativescript-permissions';
 
 import { BEANCOUNT_PATH_SETTING } from './constants';
@@ -16,10 +17,12 @@ import { BeancountFileContent } from './beancount-file-content';
 export class BeancountFileService {
 
     path: string;
-    content: BeancountFileContent;
+    content: BeancountFileContent; // Cached content
+    contentStream: Subject<BeancountFileContent>;
 
     constructor() {
         this.path = appSettings.getString(BEANCOUNT_PATH_SETTING);
+        this.contentStream = new Subject();
     }
 
     static isValidPath(path: string): boolean {
@@ -38,7 +41,7 @@ export class BeancountFileService {
         this.clearCache();
     }
 
-    async checkPermission(): Promise<boolean> {
+    private async checkPermission(): Promise<boolean> {
         let hasPermission = true;
         if (isAndroid) {
             // TODO: remove <uses-permission android:name="android.permission.INTERNET"/>
@@ -60,23 +63,32 @@ export class BeancountFileService {
         return hasPermission;
     }
 
-    clearCache() {
+    private clearCache(): void {
         delete this.content;
     }
 
-    async read(): Promise<BeancountFileContent> {
-        if (this.content !== undefined) {
-            return this.content;
-        }
+    private async read(): Promise<string> {
+        let fileText;
         let hasPermission = await this.checkPermission();
         if (hasPermission) {
             const file = File.fromPath(this.path);
-            const fileText = await file.readText();
-            this.content = new BeancountFileContent(fileText);
+            fileText = await file.readText();
         } else {
-            // No permission; create empty file
-            this.content = new BeancountFileContent('');
+            // No permission; return empty string
+            fileText = '';
         }
+        return fileText;
+    }
+
+    async load(force: boolean = false): Promise<BeancountFileContent> {
+        if (force || this.content === undefined) {
+            const fileText = await this.read();
+            this.content = new BeancountFileContent(fileText);
+            console.info('content loaded from file');
+        } else {
+            console.info('content loaded from cache');
+        }
+        this.contentStream.next(this.content);
         return this.content;
     }
 

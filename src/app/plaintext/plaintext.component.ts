@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { registerElement } from 'nativescript-angular/element-registry';
 
+import { Subscription } from 'rxjs';
+import { Page } from 'tns-core-modules/ui/page';
 import { PullToRefresh } from 'nativescript-pulltorefresh';
 
 import { BeancountFileService } from '../shared/beancount-file.service';
@@ -15,37 +17,43 @@ registerElement('PullToRefresh', () => PullToRefresh);
     templateUrl: './plaintext.component.html',
     styleUrls: ['./plaintext.component.css'],
 })
-export class PlainTextComponent implements OnInit {
+export class PlainTextComponent implements OnInit, OnDestroy {
 
     fileTitle: string;
     fileText: string;
+    fileSubscription: Subscription;
 
     @ViewChild('fileTextView', {static: false})
     fileTextView: ElementRef;
 
     constructor(
+        private page: Page,
         private routerExtensions: RouterExtensions,
         private beancountFile: BeancountFileService,
         private sideDrawer: SideDrawerService,
     ) { }
 
     ngOnInit() {
-        this.loadFile();
-    }
-
-    loadFile() {
-        this.beancountFile.read().then((fileContent: BeancountFileContent) => {
+        this.fileSubscription = this.beancountFile.contentStream.subscribe((fileContent: BeancountFileContent) => {
             this.fileText = fileContent.text;
             this.fileTitle = fileContent.getTitle();
+            console.info('text view updated');
+        });
+        this.beancountFile.load();
+        this.page.on('navigatingFrom', () => {
+            // ngOnDestroy is not called by default when leaving page
+            // https://github.com/NativeScript/nativescript-angular/issues/1049
+            this.ngOnDestroy();
         });
     }
 
     reloadFile(args) {
         const pullRefresh = <PullToRefresh>args.object;
         setTimeout(() => {
-            this.beancountFile.clearCache();
-            this.loadFile();
-            pullRefresh.refreshing = false;
+            // Force reload
+            this.beancountFile.load(true).then(() => {
+                pullRefresh.refreshing = false;
+            });
         }, 0);
     }
 
@@ -64,6 +72,10 @@ export class PlainTextComponent implements OnInit {
     scrollToBottom() {
         const element = this.fileTextView.nativeElement;
         element.scrollToVerticalOffset(element.scrollableHeight);
+    }
+
+    ngOnDestroy() {
+        this.fileSubscription.unsubscribe();
     }
 
 }
