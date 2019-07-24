@@ -1,28 +1,38 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 import * as appSettings from 'tns-core-modules/application-settings';
 import { File, Folder } from 'tns-core-modules/file-system';
 import { isAndroid } from 'tns-core-modules/platform';
 
-import { Subject } from 'rxjs';
+import { Subject, Subscription, interval } from 'rxjs';
 import * as permissions from 'nativescript-permissions';
 
 import { BEANCOUNT_PATH_SETTING } from './constants';
 import { BeancountFileContent } from './beancount-file-content';
 
+const BEANCOUNT_FILE_WATCH_INTERVAL = 60 * 1000;
+
 @Injectable({
     providedIn: 'root',
 })
-export class BeancountFileService {
+export class BeancountFileService implements OnDestroy {
 
     path: string;
     content: BeancountFileContent; // Cached content
     contentStream: Subject<BeancountFileContent>;
+    watcher: Subscription;
 
     constructor() {
         this.path = appSettings.getString(BEANCOUNT_PATH_SETTING);
         this.contentStream = new Subject();
+        this.watcher = interval(BEANCOUNT_FILE_WATCH_INTERVAL).subscribe(() => {
+            if (!this.path) {
+                // No path to watch
+                return;
+            }
+            this.watcherLoad();
+        });
     }
 
     static isValidPath(path: string): boolean {
@@ -92,6 +102,15 @@ export class BeancountFileService {
         return this.content;
     }
 
+    private async watcherLoad() {
+        const fileText = await this.read();
+        if (!this.content || this.content.text !== fileText) {
+            // Content changed; update cache and send to stream
+            this.content = new BeancountFileContent(fileText);
+            this.contentStream.next(this.content);
+        }
+    }
+
     append(text: string) {
         this.content.append(text);
         this.save();
@@ -108,6 +127,11 @@ export class BeancountFileService {
         appSettings.remove(BEANCOUNT_PATH_SETTING);
         delete this.path;
         this.clearCache();
+    }
+
+    ngOnDestroy(): void {
+        // Stop file watcher when service is destroyed
+        this.watcher.unsubscribe();
     }
 
 }
