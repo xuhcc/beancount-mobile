@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+- Autoreload the beancount file on changes.
+- Added app version to app title in side drawer.
+- Fixed wrong version in APK file.
+
 ## 0.2.0
 
 - Added "scroll to bottom" button to file content page.
