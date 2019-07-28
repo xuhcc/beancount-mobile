@@ -83,6 +83,11 @@ export class BeancountFileService implements OnDestroy {
         if (hasPermission) {
             const file = File.fromPath(this.path);
             fileText = await file.readText();
+            if (fileText.charCodeAt(fileText.length - 1) !== 10) {
+                // File.writeText may strip newline at the and of file
+                // Add it on every read to avoid unnecessary reloading by watcher
+                fileText += '\n';
+            }
         } else {
             // No permission; return empty string
             fileText = '';

@@ -5,6 +5,7 @@
 - Show toast on file reload.
 - Added "save" action bar button to all forms.
 - Improved account and payee selection UI.
+- Prevent unnecessary reloading after saving.
 
 ## 0.3.0
 
