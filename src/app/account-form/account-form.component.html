@@ -1,6 +1,7 @@
 <ActionBar class="action-bar">
   <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
   <Label class="action-bar-title" text="New account"></Label>
+  <ActionItem *ngIf="form.valid" android.systemIcon="ic_menu_save" text="Save" (tap)="save()"></ActionItem>
 </ActionBar>
 
 <StackLayout class="form" [formGroup]="form">
@@ -11,6 +12,6 @@
   <Label text="Date"></Label>
   <TextField formControlName="date" keyboardType="datetime"></TextField>
 
-  <Button text="add" (tap)="onSubmit()" [isEnabled]="form.valid"></Button>
+  <Button text="add" (tap)="save()" [isEnabled]="form.valid"></Button>
 
 </StackLayout>

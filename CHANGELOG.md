@@ -3,6 +3,7 @@
 ## 0.4.0
 
 - Show toast on file reload.
+- Added "save" action bar button to all forms.
 
 ## 0.3.0
 

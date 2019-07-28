@@ -110,7 +110,7 @@ export class TransactionFormComponent implements OnInit {
         this.routerExtensions.backToPreviousPage();
     }
 
-    onSubmit() {
+    save() {
         const transaction = new Transaction(this.form.value);
         const beancountTxn = transaction.toBeancount();
         this.beancountFile.append(beancountTxn);

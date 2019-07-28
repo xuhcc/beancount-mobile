@@ -45,7 +45,7 @@ export class SettingsComponent implements OnInit {
         return this.form.valid && !this.form.pristine;
     }
 
-    onSave() {
+    save() {
         const filePath = this.form.value.filePath;
         this.beancountFile.setPath(filePath);
         this.routerExtensions.navigate(['/plaintext']);

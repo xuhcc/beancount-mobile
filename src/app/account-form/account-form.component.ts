@@ -58,7 +58,7 @@ export class AccountFormComponent implements OnInit {
         this.routerExtensions.backToPreviousPage();
     }
 
-    onSubmit() {
+    save() {
         const account = new Account(this.form.value);
         const beancountAccount = account.toBeancount();
         this.beancountFile.append(beancountAccount);

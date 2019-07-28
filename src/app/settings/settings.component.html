@@ -1,6 +1,7 @@
 <ActionBar class="action-bar">
   <NavigationButton icon="res://baseline_menu_black_24" (tap)="openDrawer()"></NavigationButton>
   <Label class="action-bar-title" text="Settings"></Label>
+  <ActionItem *ngIf="canSave()" android.systemIcon="ic_menu_save" text="Save" (tap)="save()"></ActionItem>
 </ActionBar>
 
 <StackLayout [formGroup]="form" class="form">
@@ -8,6 +9,6 @@
   <TextField formControlName="filePath"></TextField>
   <Button text="Browse" (tap)="openFilePicker()"></Button>
 
-  <Button text="save" (tap)="onSave()" [isEnabled]="canSave()"></Button>
+  <Button text="save" (tap)="save()" [isEnabled]="canSave()"></Button>
   <Button text="reset" (tap)="onReset()"></Button>
 </StackLayout>
