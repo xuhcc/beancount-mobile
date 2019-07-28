@@ -6,18 +6,7 @@ import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { ACCOUNT_NAME_REGEXP } from '../shared/beancount-file-content';
 import { getTodayStr } from '../shared/misc';
-
-function UniqueValidator(uniqueList: any[]): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
-        if (uniqueList.indexOf(control.value) !== -1) {
-            return {
-                nonUnique: {
-                    value: control.value,
-                },
-            };
-        }
-    };
-}
+import { UniqueValidator } from '../shared/validators';
 
 @Component({
     selector: 'bc-account-form',

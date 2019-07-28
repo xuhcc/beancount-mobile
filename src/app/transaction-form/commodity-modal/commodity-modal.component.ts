@@ -19,11 +19,11 @@ export class CommodityModalComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onCancel(): void {
+    cancel(): void {
         this.modalParams.closeCallback(null);
     }
 
-    onSelect(): void {
+    select(): void {
         const commodity = this.commodities[this.selectedIndex];
         this.modalParams.closeCallback(commodity);
     }

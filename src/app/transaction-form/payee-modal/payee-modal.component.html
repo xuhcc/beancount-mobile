@@ -1,8 +1,8 @@
 <GridLayout columns="*,*" rows="auto,auto,*,auto" width="300">
   <Label row="0" colSpan="2" text="Select payee" class="modal-header"></Label>
   <TextField #payeeField row="1" colSpan="2" hint="Start typing..." [formControl]="payee" (ngModelChange)="filterPayees()"></TextField>
-  <ListPicker *ngIf="payees.length > 0" row="2" colSpan="2" [items]="payees" (tap)="onPayeeSelected($event)"></ListPicker>
+  <ListPicker *ngIf="payees.length > 0" row="2" colSpan="2" [items]="payees" (tap)="onPayeeTap($event)"></ListPicker>
   <Label *ngIf="payees.length == 0" text="No payees found" row="2" colSpan="2" class="empty-picker"></Label>
-  <Button col="0" row="3" text="Cancel" (tap)="onCancel()"></Button>
-  <Button col="1" row="3" text="Select" (tap)="onSelect()"></Button>
+  <Button col="0" row="3" text="Cancel" (tap)="cancel()"></Button>
+  <Button col="1" row="3" text="Select" (tap)="select()" [isEnabled]="payee.valid"></Button>
 </GridLayout>
