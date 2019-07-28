@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- Show toast on file reload.
+
 ## 0.3.0
 
 - Autoreload the beancount file on changes.

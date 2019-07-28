@@ -5,6 +5,7 @@ import { registerElement } from 'nativescript-angular/element-registry';
 import { Subscription } from 'rxjs';
 import { Page } from 'tns-core-modules/ui/page';
 import { PullToRefresh } from 'nativescript-pulltorefresh';
+import { makeText as makeToast } from 'nativescript-toast';
 
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { BeancountFileContent } from '../shared/beancount-file-content';
@@ -35,6 +36,10 @@ export class PlainTextComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.fileSubscription = this.beancountFile.contentStream.subscribe((fileContent: BeancountFileContent) => {
+            if (this.fileText) {
+                const toast = makeToast('File reloaded', 'long');
+                toast.show();
+            }
             this.fileText = fileContent.text;
             this.fileTitle = fileContent.getTitle();
             console.info('text view updated');
