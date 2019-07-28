@@ -51,7 +51,7 @@ export class SettingsComponent implements OnInit {
         this.routerExtensions.navigate(['/plaintext']);
     }
 
-    onReset() {
+    reset() {
         this.beancountFile.reset();
         this.routerExtensions.navigate(['/welcome'], {
             clearHistory: true,

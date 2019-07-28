@@ -8,7 +8,8 @@
   <Label text="Path to beancount file"></Label>
   <TextField formControlName="filePath"></TextField>
   <Button text="Browse" (tap)="openFilePicker()"></Button>
-
   <Button text="save" (tap)="save()" [isEnabled]="canSave()"></Button>
-  <Button text="reset" (tap)="onReset()"></Button>
+  <StackLayout class="hr-light"></StackLayout>
+  <Label text="Reset app settings and go back to Welcome screen"></Label>
+  <Button text="reset" (tap)="reset()"></Button>
 </StackLayout>
