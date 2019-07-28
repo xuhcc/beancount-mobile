@@ -42,7 +42,6 @@ export class PlainTextComponent implements OnInit, OnDestroy {
             }
             this.fileText = fileContent.text;
             this.fileTitle = fileContent.getTitle();
-            console.info('text view updated');
         });
         this.beancountFile.load();
         this.page.on('navigatingFrom', () => {

@@ -94,9 +94,6 @@ export class BeancountFileService implements OnDestroy {
         if (force || this.content === undefined) {
             const fileText = await this.read();
             this.content = new BeancountFileContent(fileText);
-            console.info('content loaded from file');
-        } else {
-            console.info('content loaded from cache');
         }
         this.contentStream.next(this.content);
         return this.content;
