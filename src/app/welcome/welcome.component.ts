@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 
 import { openUrl } from 'tns-core-modules/utils/utils';
+import { Page } from 'tns-core-modules/ui/page';
 import { TextField } from 'tns-core-modules/ui/text-field';
 import * as appSettings from 'tns-core-modules/application-settings';
 import { File, Folder } from 'tns-core-modules/file-system';
@@ -22,10 +23,13 @@ export class WelcomeComponent implements OnInit {
 
     constructor(
         private ngZone: NgZone,
+        private page: Page,
         private routerExtensions: RouterExtensions,
         private sideDrawer: SideDrawerService,
         private beancountFile: BeancountFileService,
-    ) { }
+    ) {
+        page.actionBarHidden = true;
+    }
 
     ngOnInit() {
         this.sideDrawer.lock();
