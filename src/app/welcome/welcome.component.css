@@ -1,13 +1,56 @@
-#welcome-text {
-    font-size: 16;
-    margin-top: 5%;
-    text-align: center;
+.page {
+    background: linear-gradient(to bottom, #205081, #236E8C);
+    padding: 20;
 }
 
-#website-link {
-    color: blue;
+.welcome-label {
+    color: rgba(255, 255, 255, 0.6);
     font-size: 16;
-    margin-bottom: 5%;
-    text-align: center;
-    text-decoration: underline;
+    letter-spacing: 0.04;
+    margin-bottom: 0;
+}
+
+#welcome-title {
+    color: white;
+    font-size: 46;
+    font-weight: 300;
+    margin-bottom: 16;
+}
+
+#welcome-text {
+    margin-bottom: 16;
+}
+
+#file-path-input {
+    /*
+     * Cursor color can be changed only globally
+     * https://github.com/NativeScript/NativeScript/issues/3194
+     */
+    border-bottom-width: 1;
+    border-color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16;
+    margin-bottom: 8;
+    padding-bottom: 1;
+}
+
+.btn {
+    android-elevation: 3;
+    border-radius: 15;
+    background-color: #F7F4D3;
+    color: #507CA3;
+    font-size: 14;
+    font-weight: 500;
+    height: 48;
+    letter-spacing: 0.1;
+    margin: 8 0;
+}
+
+.btn-highlighted {
+    background-color: #F49D96;
+}
+
+.btn-disabled {
+    background-color: #F7F7F7;
+    color: #999999;
 }

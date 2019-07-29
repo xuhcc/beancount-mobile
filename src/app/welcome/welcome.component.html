@@ -1,21 +1,41 @@
-<StackLayout class="page">
-  <Label class="h1" text="Welcome to Beancount Mobile" textWrap="true"></Label>
-  <Label id="welcome-text" textWrap="true">
-    <FormattedString>
-      <Span [text]="'Beancount is a plain-text accounting system.\nYou can read more about it at the\n'"></Span>
-    </FormattedString>
-  </Label>
-  <Label id="website-link" text="beancount website" (tap)="openBeancountWebsite()"></Label>
+<DockLayout class="page" stretchLastChild="false">
+  <StackLayout dock="bottom">
 
-  <TextField
-    [(ngModel)]="filePath"
-    hint="Path to beancount file"
-  ></TextField>
-  <Button text="Browse" (tap)="openFilePicker()"></Button>
+    <Label
+      id="welcome-title"
+      text="Welcome to Beancount Mobile!"
+      textWrap="true"
+    ></Label>
+    <!--
+    Use HtmlView instead of FormattedString as a workaround for
+    https://github.com/NativeScript/NativeScript/issues/3671
+    -->
+    <HtmlView
+      class="welcome-label"
+      id="welcome-text"
+      #welcomeTextView
+      [html]="welcomeText"
+      (loaded)="onWelcomeTextLoaded()"
+    ></HtmlView>
 
-  <Button
-    text="continue"
-    (tap)="onContinueTap()"
-    [isEnabled]="isValidPath()"
-  ></Button>
-</StackLayout>
+    <Label
+      class="welcome-label"
+      text="Please select a Beancount file in order to proceed:"
+      textWrap="true"
+    ></Label>
+    <TextField
+      id="file-path-input"
+      [(ngModel)]="filePath"
+    ></TextField>
+
+    <Button class="btn btn-highlighted" text="Browse" (tap)="openFilePicker()"></Button>
+    <Button
+      class="btn"
+      [className]="isValidPath() ? 'btn' : 'btn btn-disabled'"
+      text="continue"
+      (tap)="onContinueTap()"
+      [isEnabled]="isValidPath()"
+    ></Button>
+
+  </StackLayout>
+</DockLayout>

@@ -2,6 +2,7 @@
 
 ## 0.4.0
 
+- New design for Welcome screen.
 - Show toast on file reload.
 - Added "save" action bar button to all forms.
 - Improved account and payee selection UI.
