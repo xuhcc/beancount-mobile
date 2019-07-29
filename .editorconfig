@@ -13,6 +13,3 @@ indent_size = 2
 
 [*.gradle]
 indent_size = 2
-
-[AndroidManifest.xml]
-indent_style = tab
