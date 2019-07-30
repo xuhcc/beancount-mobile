@@ -73,6 +73,11 @@ export class PlainTextComponent implements OnInit, OnDestroy {
         this.routerExtensions.navigate(['/add-account']);
     }
 
+    scrollToTop() {
+        const element = this.fileTextView.nativeElement;
+        element.scrollToVerticalOffset(0);
+    }
+
     scrollToBottom() {
         const element = this.fileTextView.nativeElement;
         element.scrollToVerticalOffset(element.scrollableHeight);
