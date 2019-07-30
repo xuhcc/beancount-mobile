@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Improved transaction form.
+
 ## 0.4.0
 
 - New design for Welcome screen.

@@ -7,22 +7,42 @@
 <StackLayout [formGroup]="form" class="form">
 
   <Label text="Account 1 (from)"></Label>
-  <TextField formControlName="accountFrom" (tap)="showAccountPicker('accountFrom')"></TextField>
+  <TextField
+    hint="Tap to select an account"
+    editable="false"
+    formControlName="accountFrom"
+    (tap)="showAccountPicker('accountFrom')"
+  ></TextField>
 
   <Label text="Account 2 (to)"></Label>
-  <TextField formControlName="accountTo" (tap)="showAccountPicker('accountTo')"></TextField>
+  <TextField
+    hint="Tap to select an account"
+    editable="false"
+    formControlName="accountTo"
+    (tap)="showAccountPicker('accountTo')"
+  ></TextField>
 
   <Label text="Amount"></Label>
   <TextField formControlName="amount" keyboardType="number"></TextField>
 
   <Label text="Currency"></Label>
-  <TextField formControlName="commodity" (tap)="showCommodityPicker()"></TextField>
+  <TextField
+    hint="Tap to select a currency"
+    editable="false"
+    formControlName="commodity"
+    (tap)="showCommodityPicker()"
+  ></TextField>
 
   <Label text="Date"></Label>
   <TextField formControlName="date" keyboardType="datetime"></TextField>
 
   <Label text="Payee"></Label>
-  <TextField formControlName="payee" (tap)="showPayeeModal()"></TextField>
+  <TextField
+    hint="Tap to select a payee"
+    editable="false"
+    formControlName="payee"
+    (tap)="showPayeeModal()"
+  ></TextField>
 
   <Label text="Description"></Label>
   <TextField formControlName="narration"></TextField>
