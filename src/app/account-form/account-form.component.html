@@ -1,7 +1,12 @@
 <ActionBar class="action-bar">
   <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
   <Label class="action-bar-title" text="New account"></Label>
-  <ActionItem *ngIf="form.valid" android.systemIcon="ic_menu_save" text="Save" (tap)="save()"></ActionItem>
+  <ActionItem
+    android.systemIcon="ic_menu_save"
+    text="Save"
+    (tap)="save()"
+    (loaded)="onSaveButtonLoaded($event)"
+  ></ActionItem>
 </ActionBar>
 
 <StackLayout class="form" [formGroup]="form">

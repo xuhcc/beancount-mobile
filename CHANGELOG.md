@@ -3,6 +3,7 @@
 ## 0.5.0
 
 - Improved transaction form.
+- Set 'save' buttons in action bar to 'disabled' state initially.
 
 ## 0.4.0
 

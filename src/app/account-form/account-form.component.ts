@@ -5,7 +5,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { ACCOUNT_NAME_REGEXP } from '../shared/beancount-file-content';
-import { getTodayStr } from '../shared/misc';
+import { getTodayStr, configureSaveButton } from '../shared/misc';
 import { UniqueValidator } from '../shared/validators';
 
 @Component({
@@ -43,11 +43,19 @@ export class AccountFormComponent implements OnInit {
         });
     }
 
+    onSaveButtonLoaded(args) {
+        const actionBar = args.object.actionBar;
+        configureSaveButton(actionBar, this.form.statusChanges);
+    }
+
     goBack() {
         this.routerExtensions.backToPreviousPage();
     }
 
     save() {
+        if (!this.form.valid) {
+            return;
+        }
         const account = new Account(this.form.value);
         const beancountAccount = account.toBeancount();
         this.beancountFile.append(beancountAccount);

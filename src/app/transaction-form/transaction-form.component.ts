@@ -10,7 +10,7 @@ import { BeancountFileService } from '../shared/beancount-file.service';
 import { AccountModalComponent } from './account-modal/account-modal.component';
 import { CommodityModalComponent } from './commodity-modal/commodity-modal.component';
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
-import { getTodayStr } from '../shared/misc';
+import { getTodayStr, configureSaveButton } from '../shared/misc';
 
 @Component({
     selector: 'bc-transaction-form',
@@ -70,6 +70,11 @@ export class TransactionFormComponent implements OnInit {
         });
     }
 
+    onSaveButtonLoaded(args) {
+        const actionBar = args.object.actionBar;
+        configureSaveButton(actionBar, this.form.statusChanges);
+    }
+
     showAccountPicker(field: string): void {
         const options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
@@ -111,6 +116,9 @@ export class TransactionFormComponent implements OnInit {
     }
 
     save() {
+        if (!this.form.valid) {
+            return;
+        }
         const transaction = new Transaction(this.form.value);
         const beancountTxn = transaction.toBeancount();
         this.beancountFile.append(beancountTxn);
