@@ -6,6 +6,7 @@
 - Set 'save' buttons in action bar to 'disabled' state initially.
 - Removed extra 'save' buttons from forms.
 - Moved 'scroll to bottom' button to action bar, added 'scroll to top' button.
+- Changed appearance of buttons on file content page.
 
 ## 0.4.0
 

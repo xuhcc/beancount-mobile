@@ -18,6 +18,7 @@
         "@nativescript/schematics": "^0.6.0",
         "nativescript-angular": "~8.0.0",
         "nativescript-foss-sidedrawer": "^2.0.0",
+        "nativescript-floatingactionbutton": "^5.1.0",
         "nativescript-imagepicker": "file:./plugins/nativescript-imagepicker-6.2.0.tgz",
         "nativescript-permissions": "^1.3.6",
         "nativescript-pulltorefresh": "^2.3.0",

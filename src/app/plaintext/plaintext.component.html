@@ -13,17 +13,22 @@
   ></ActionItem>
 </ActionBar>
 
-<DockLayout>
-  <!--
-  Use
-  https://github.com/bradmartin/nativescript-floatingactionbutton
-  -->
-  <Button id="add-transaction" text="add transaction" (tap)="addTransaction()" dock="bottom"></Button>
-  <Button id="add-account" text="add account" (tap)="addAccount()" dock="bottom"></Button>
-
+<GridLayout rows="*" height="100%">
   <PullToRefresh (refresh)="reloadFile($event)">
     <ScrollView #fileTextView id="file-content">
       <Label textWrap="true" text="{{ fileText }}"></Label>
     </ScrollView>
   </PullToRefresh>
-</DockLayout>
+  <Fab
+    icon="ic_input_add"
+    class="fab-button add-transaction"
+    (tap)="addTransaction()"
+    (loaded)="onAddButtonLoaded($event)"
+  ></Fab>
+  <Fab
+    icon="ic_menu_archive"
+    class="fab-button add-account"
+    (tap)="addAccount()"
+    (loaded)="onAddButtonLoaded($event)"
+  ></Fab>
+</GridLayout>

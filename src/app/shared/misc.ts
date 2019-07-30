@@ -36,8 +36,8 @@ export function getAppVersion(): string {
     return packageManager.getPackageInfo(context.getPackageName(), 0).versionName;
 }
 
-function setIconColor(
-    icon: android.graphics.drawable.BitmapDrawable,
+export function setIconColor(
+    icon: any,
     color: string | null,
 ) {
     if (color === null) {

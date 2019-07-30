@@ -4,14 +4,17 @@ import { registerElement } from 'nativescript-angular/element-registry';
 
 import { Subscription } from 'rxjs';
 import { Page } from 'tns-core-modules/ui/page';
+import { Fab } from 'nativescript-floatingactionbutton';
 import { PullToRefresh } from 'nativescript-pulltorefresh';
 import { makeText as makeToast } from 'nativescript-toast';
 
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { BeancountFileContent } from '../shared/beancount-file-content';
 import { SideDrawerService } from '../shared/sidedrawer.service';
+import { setIconColor } from '../shared/misc';
 
 registerElement('PullToRefresh', () => PullToRefresh);
+registerElement('Fab', () => Fab);
 
 @Component({
     selector: 'bc-plaintext',
@@ -49,6 +52,12 @@ export class PlainTextComponent implements OnInit, OnDestroy {
             // https://github.com/NativeScript/nativescript-angular/issues/1049
             this.ngOnDestroy();
         });
+    }
+
+    onAddButtonLoaded(args) {
+        // Change color of FAB icon
+        const fab = args.object.android;
+        setIconColor(fab, '#FFFFFF');
     }
 
     reloadFile(args) {

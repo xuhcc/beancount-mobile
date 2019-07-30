@@ -2,3 +2,20 @@
     font-family: monospace;
     font-size: 12;
 }
+
+.fab-button {
+    background-color: #205081;
+    height: 70;
+    horizontal-align: right;
+    ripple-color: white;
+    vertical-align: bottom;
+    width: 70;
+}
+
+.add-transaction {
+    margin: 0 20 20 0;
+}
+
+.add-account {
+    margin: 0 20 110 0;
+}
