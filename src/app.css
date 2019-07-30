@@ -11,6 +11,10 @@ refer to http://docs.nativescript.org/ui/theme.
 */
 @import '~nativescript-theme-core/css/core.light.css';
 
+.icon {
+    font-family: "Material Icons", "MaterialIcons-Regular";
+}
+
 .btn {
     android-elevation: 3;
     border-radius: 10;
