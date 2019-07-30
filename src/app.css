@@ -23,6 +23,10 @@ components that have the btn class name.
     margin: 5 5 0;
 }
 
+.action-bar-title {
+    horizontal-align: left;
+}
+
 .modal-header {
     margin: 5 0;
     font-size: 18;
