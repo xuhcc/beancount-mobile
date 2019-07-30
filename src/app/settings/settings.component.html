@@ -1,7 +1,6 @@
 <ActionBar class="action-bar">
   <NavigationButton icon="res://baseline_menu_black_24" (tap)="openDrawer()"></NavigationButton>
   <Label class="action-bar-title" text="Settings"></Label>
-  <ActionItem *ngIf="canSave()" android.systemIcon="ic_menu_save" text="Save" (tap)="save()"></ActionItem>
 </ActionBar>
 
 <StackLayout [formGroup]="form" class="form">
