@@ -11,6 +11,9 @@ Features:
 * View beancount file as plain text
 * Switch between files
 
+![File content page](images/screenshot_text.png)
+![Transaction form](images/screenshot_txn.png)
+
 ## Development
 
 Prerequisites:
