@@ -4,7 +4,7 @@ This is a companion mobile application for [Beancount](http://furius.ca/beancoun
 
 **Currently available only on Android.**
 
-Features:
+## Features
 
 * Add transactions
 * Open accounts
@@ -14,12 +14,16 @@ Features:
 ![File content page](images/screenshot_text.png)
 ![Transaction form](images/screenshot_txn.png)
 
+## Change log
+
+See [CHANGELOG](CHANGELOG.md).
+
 ## Development
 
 Prerequisites:
 
 * Node.js & NPM
-* [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli)
+* [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli) 5.4+
 
 Install required packages:
 
