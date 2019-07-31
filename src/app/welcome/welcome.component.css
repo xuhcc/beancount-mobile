@@ -35,14 +35,10 @@
 }
 
 .btn {
-    android-elevation: 3;
     border-radius: 15;
     background-color: #F7F4D3;
     color: #507CA3;
-    font-size: 14;
-    font-weight: 500;
     height: 48;
-    letter-spacing: 0.1;
     margin: 8 0;
 }
 

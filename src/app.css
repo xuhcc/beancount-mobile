@@ -11,12 +11,15 @@ refer to http://docs.nativescript.org/ui/theme.
 */
 @import '~nativescript-theme-core/css/core.light.css';
 
-/*
-For example, the following CSS rule changes the font size of all UI
-components that have the btn class name.
-*/
 .btn {
-    font-size: 18;
+    android-elevation: 3;
+    border-radius: 10;
+    background-color: #507CA3;
+    color: white;
+    font-size: 14;
+    font-weight: 500;
+    letter-spacing: 0.1;
+    margin: 5;
 }
 
 .form Label {

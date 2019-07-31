@@ -3,6 +3,17 @@
   <TextField #accountField row="1" colSpan="2" hint="Start typing..." [formControl]="account" (ngModelChange)="filterAccounts()"></TextField>
   <ListPicker *ngIf="accounts.length > 0" row="2" colSpan="2" [items]="accounts" (tap)="onAccountTap($event)"></ListPicker>
   <Label *ngIf="accounts.length == 0" text="No accounts found" row="2" colSpan="2" class="empty-picker"></Label>
-  <Button col="0" row="3" text="Cancel" (tap)="cancel()"></Button>
-  <Button col="1" row="3" text="Select" (tap)="select()" [isEnabled]="account.valid"></Button>
+  <Button
+    col="0" row="3"
+    class="btn"
+    text="Cancel"
+    (tap)="cancel()"
+  ></Button>
+  <Button
+    col="1" row="3"
+    class="btn"
+    text="Select"
+    (tap)="select()"
+    [isEnabled]="account.valid"
+  ></Button>
 </GridLayout>
