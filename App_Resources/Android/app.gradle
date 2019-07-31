@@ -3,8 +3,8 @@ def packageJsonFile = file("./../../../package.json")
 def packageJson = new groovy.json.JsonSlurper().parseText(packageJsonFile.text)
 def version = packageJson.version
 // https://blog.jayway.com/2015/03/11/automatic-versioncode-generation-in-android-gradle/
-def (major, minor, patch) = version.toLowerCase().replaceAll('-', '').tokenize('.')
-def versionInt = (major.toInteger() * 1000000) + (minor.toInteger() * 10000) + (patch.toInteger() * 100)
+def (major, minor, patch) = version.split(/\./).collect{it.toInteger()}
+def versionInt = (major * 1000000) + (minor * 10000) + (patch * 100)
 
 android {
   defaultConfig {
@@ -14,6 +14,17 @@ android {
     minSdkVersion 17
     generatedDensities = []
   }
+
+  // Enable building of unsigned release APK
+  // https://github.com/NativeScript/nativescript-cli/issues/3444
+  buildTypes {
+    release {
+      if (System.getenv("RELEASE_UNSIGNED") == "1") {
+        signingConfig null
+      }
+    }
+  }
+
   aaptOptions {
     additionalParameters "--no-version-vectors"
   }

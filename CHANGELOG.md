@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+- Enabled building of unsigned release APK.
+
 ## 0.5.0
 
 - Improved transaction form.
