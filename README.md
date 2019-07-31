@@ -1,5 +1,7 @@
 # Beancount Mobile App
 
+![License: GPL v3](https://img.shields.io/github/license/xuhcc/beancount-mobile)
+
 This is a companion mobile application for [Beancount](http://furius.ca/beancount/) plain-text accounting system.
 
 **Currently available only on Android.**
