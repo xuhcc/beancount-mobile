@@ -11,6 +11,16 @@
     text="Scroll to bottom"
     (tap)="scrollToBottom()"
   ></ActionItem>
+  <ActionItem
+    android.position="popup"
+    text="Add transaction"
+    (tap)="addTransaction()"
+  ></ActionItem>
+  <ActionItem
+    android.position="popup"
+    text="Add account"
+    (tap)="addAccount()"
+  ></ActionItem>
 </ActionBar>
 
 <GridLayout rows="*" height="100%">
@@ -23,12 +33,6 @@
     icon="ic_input_add"
     class="fab-button add-transaction"
     (tap)="addTransaction()"
-    (loaded)="onAddButtonLoaded($event)"
-  ></Fab>
-  <Fab
-    icon="ic_menu_archive"
-    class="fab-button add-account"
-    (tap)="addAccount()"
     (loaded)="onAddButtonLoaded($event)"
   ></Fab>
 </GridLayout>
