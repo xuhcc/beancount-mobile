@@ -1,6 +1,6 @@
 # Beancount Mobile App
 
-![License: GPL v3](https://img.shields.io/github/license/xuhcc/beancount-mobile)
+[![License: GPL v3](https://img.shields.io/github/license/xuhcc/beancount-mobile)](https://github.com/xuhcc/beancount-mobile/blob/HEAD/LICENSE)
 
 This is a companion mobile application for [Beancount](http://furius.ca/beancount/) plain-text accounting system.
 
@@ -53,3 +53,7 @@ tns build android
 npm run lint
 npm run test
 ```
+
+## Donate
+
+Bitcoin: 3GHkLq8jRgsfzaV8N6EjX7BaoMuLdEeu51
