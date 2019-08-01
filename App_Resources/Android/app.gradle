@@ -29,10 +29,3 @@ android {
     additionalParameters "--no-version-vectors"
   }
 }
-
-dependencies {
-  // Force version 6.0.9 for compatibility with NS 5.x
-  compile('com.mikepenz:materialdrawer:6.0.9@aar') {
-    force = true
-  }
-}

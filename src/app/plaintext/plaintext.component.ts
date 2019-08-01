@@ -4,8 +4,8 @@ import { registerElement } from 'nativescript-angular/element-registry';
 
 import { Subscription } from 'rxjs';
 import { Page } from 'tns-core-modules/ui/page';
-import { Fab } from 'nativescript-floatingactionbutton';
-import { PullToRefresh } from 'nativescript-pulltorefresh';
+import { Fab } from '@nstudio/nativescript-floatingactionbutton';
+import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh';
 import { makeText as makeToast } from 'nativescript-toast';
 
 import { BeancountFileService } from '../shared/beancount-file.service';
