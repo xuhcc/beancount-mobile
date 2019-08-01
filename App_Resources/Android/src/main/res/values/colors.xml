@@ -4,4 +4,9 @@
     <color name="ns_primaryDark">#163754</color>
     <color name="ns_accent">#33B5E5</color>
     <color name="ns_blue">#205081</color>
+    <!--
+    Set text color in sidedrawer header
+    https://gitlab.com/burke-software/nativescript-foss-sidedrawer/issues/6
+    -->
+    <color name="material_drawer_primary_text">#F5F5F5</color>
 </resources>
