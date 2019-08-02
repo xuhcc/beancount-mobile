@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0
+
+- Upgraded project to NativeScript 6.0.
+- Enabled auto-scrolling to bottom after adding transaction or account.
+
 ## 0.5.1
 
 - Enabled building of unsigned release APK.

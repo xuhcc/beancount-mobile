@@ -122,7 +122,7 @@ export class TransactionFormComponent implements OnInit {
         const transaction = new Transaction(this.form.value);
         const beancountTxn = transaction.toBeancount();
         this.beancountFile.append(beancountTxn);
-        this.routerExtensions.navigate(['/plaintext']);
+        this.routerExtensions.navigate(['/plaintext', {scroll: 'bottom'}]);
     }
 
 }

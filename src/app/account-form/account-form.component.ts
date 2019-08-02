@@ -59,7 +59,7 @@ export class AccountFormComponent implements OnInit {
         const account = new Account(this.form.value);
         const beancountAccount = account.toBeancount();
         this.beancountFile.append(beancountAccount);
-        this.routerExtensions.navigate(['/plaintext']);
+        this.routerExtensions.navigate(['/plaintext', {scroll: 'bottom'}]);
     }
 
 }
