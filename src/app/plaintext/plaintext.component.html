@@ -26,7 +26,11 @@
 <GridLayout rows="*" height="100%">
   <PullToRefresh (refresh)="reloadFile($event)">
     <ScrollView #fileTextView id="file-content">
-      <Label textWrap="true" text="{{ fileText }}"></Label>
+      <Label
+        text="{{ fileText }}"
+        textWrap="true"
+        (textChange)="onFileTextChanged($event)"
+      ></Label>
     </ScrollView>
   </PullToRefresh>
   <Fab

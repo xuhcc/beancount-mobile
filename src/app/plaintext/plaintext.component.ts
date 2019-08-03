@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { RouterExtensions, PageRoute } from 'nativescript-angular/router';
 import { registerElement } from 'nativescript-angular/element-registry';
 
@@ -22,14 +22,16 @@ registerElement('Fab', () => Fab);
     templateUrl: './plaintext.component.html',
     styleUrls: ['./plaintext.component.css'],
 })
-export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PlainTextComponent implements OnInit, OnDestroy {
 
     fileTitle: string;
     fileText: string;
-    fileSubscription: Subscription;
+    private fileSubscription: Subscription;
 
     @ViewChild('fileTextView', {static: false})
     fileTextView: ElementRef;
+
+    private scrollOnLoad: string;
 
     constructor(
         private ngZone: NgZone,
@@ -72,26 +74,27 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
             // https://github.com/NativeScript/nativescript-angular/issues/1049
             this.fileUnsubscribe();
         });
-    }
-
-    ngAfterViewInit() {
-        // Scroll to bottom after init when 'scroll' route parameter is present
         this.pageRoute.activatedRoute
             .pipe(
                 switchMap(activatedRoute => activatedRoute.params),
-                filter(params => params.scroll === 'bottom'),
             )
-            .forEach(() => {
-                // Wait until text view is loaded
-                // https://github.com/NativeScript/nativescript-angular/issues/1221#issuecomment-422813111
-                this.fileTextView.nativeElement.on('loaded', (event) => {
-                    // Use timeout to make it run on the next angular cycle
-                    // Otherwise scrollableHeight will be 0
-                    setTimeout(() => {
-                        this.scrollToBottom();
-                    }, 0);
-                });
+            .forEach((params) => {
+                // Scroll to bottom after init when 'scroll' route parameter is present
+                if ('scroll' in params) {
+                    this.scrollOnLoad = params.scroll;
+                }
             });
+    }
+
+    onFileTextChanged(args) {
+        if (this.scrollOnLoad === 'bottom') {
+            delete this.scrollOnLoad;
+            // Use timeout to make it run on the next angular cycle
+            // Otherwise scrollableHeight will be 0
+            setTimeout(() => {
+                this.scrollToBottom();
+            }, 0);
+        }
     }
 
     onAddButtonLoaded(args) {
