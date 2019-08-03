@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, NgZone } from '@angular/core';
 import { RouterExtensions, PageRoute } from 'nativescript-angular/router';
 import { registerElement } from 'nativescript-angular/element-registry';
 
@@ -32,6 +32,7 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
     fileTextView: ElementRef;
 
     constructor(
+        private ngZone: NgZone,
         private routerExtensions: RouterExtensions,
         private page: Page,
         private pageRoute: PageRoute,
@@ -39,7 +40,7 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
         private sideDrawer: SideDrawerService,
     ) { }
 
-    ngOnInit() {
+    private fileSubscribe() {
         this.fileSubscription = this.beancountFile.contentStream.subscribe((fileContent: BeancountFileContent) => {
             if (this.fileText) {
                 const toast = makeToast('File reloaded', 'long');
@@ -48,15 +49,33 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
             this.fileText = fileContent.text;
             this.fileTitle = fileContent.getTitle();
         });
-        this.beancountFile.load();
+    }
+
+    private fileUnsubscribe() {
+        this.fileSubscription.unsubscribe();
+    }
+
+    ngOnInit() {
+        this.page.on('navigatedTo', () => {
+            // Re-subscribe each time because
+            // ngOnInit is not called after back-navigation
+            this.fileSubscribe();
+            // Load file only on first run
+            if (this.fileText === undefined) {
+                this.ngZone.run(() => {
+                    this.beancountFile.load();
+                });
+            }
+        });
         this.page.on('navigatingFrom', () => {
             // ngOnDestroy is not called by default when leaving page
             // https://github.com/NativeScript/nativescript-angular/issues/1049
-            this.ngOnDestroy();
+            this.fileUnsubscribe();
         });
     }
 
     ngAfterViewInit() {
+        // Scroll to bottom after init when 'scroll' route parameter is present
         this.pageRoute.activatedRoute
             .pipe(
                 switchMap(activatedRoute => activatedRoute.params),
@@ -114,7 +133,7 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnDestroy() {
-        this.fileSubscription.unsubscribe();
+        this.fileUnsubscribe();
     }
 
 }
