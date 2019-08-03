@@ -75,14 +75,19 @@ export class TransactionFormComponent implements OnInit {
         configureSaveButton(actionBar, this.form.statusChanges);
     }
 
-    showAccountPicker(field: string): void {
+    onAmountFieldLoaded(args) {
+        const amountField = <TextField>args.object;
+        amountField.focus();
+    }
+
+    showAccountPicker(fieldName: string): void {
         const options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
             context: this.accounts,
         };
         this.modalService.showModal(AccountModalComponent, options).then((account: string) => {
             if (account) {
-                this.form.controls[field].setValue(account);
+                this.form.controls[fieldName].setValue(account);
             }
         });
     }

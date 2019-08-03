@@ -5,6 +5,7 @@
 - Upgraded project to NativeScript 6.0.
 - Enabled auto-scrolling to bottom after adding transaction or account.
 - Fixed bug in file reloading mechanism.
+- Focus on amount field when opening transaction form.
 
 ## 0.5.1
 

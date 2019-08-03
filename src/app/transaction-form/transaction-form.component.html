@@ -28,7 +28,11 @@
   ></TextField>
 
   <Label text="Amount"></Label>
-  <TextField formControlName="amount" keyboardType="number"></TextField>
+  <TextField
+    formControlName="amount"
+    keyboardType="number"
+    (loaded)="onAmountFieldLoaded($event)"
+  ></TextField>
 
   <Label text="Currency"></Label>
   <TextField
