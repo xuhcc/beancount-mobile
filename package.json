@@ -27,7 +27,7 @@
         "nativescript-unit-test-runner": "0.7.0",
         "reflect-metadata": "~0.1.12",
         "rxjs": "~6.5.0",
-        "tns-core-modules": "6.0.1",
+        "tns-core-modules": "6.0.4",
         "zone.js": "~0.9.1"
     },
     "devDependencies": {
