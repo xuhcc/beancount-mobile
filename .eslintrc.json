@@ -36,5 +36,8 @@
         ],
         "padded-blocks": "off",
         "object-curly-spacing": "off"
+    },
+    "globals": {
+        "android": true
     }
 }

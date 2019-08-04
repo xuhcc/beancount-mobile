@@ -18,7 +18,7 @@ class CustomSideDrawerClass extends TnsSideDrawerClass {
 
     drawer: any;
 
-    build(opts: TnsSideDrawerOptions) {
+    build(opts: any) {
         const activity: android.app.Activity = androidApplication.foregroundActivity;
 
         let profile = new com.mikepenz.materialdrawer.model.ProfileDrawerItem();
@@ -85,7 +85,7 @@ export class SideDrawerService {
     ) {
         this.drawer = new CustomSideDrawerClass();
 
-        const config: TnsSideDrawerOptions = {
+        const config = {
             templates: this.navigationMenu,
             title: `${APP_NAME} v${getAppVersion()}`,
             logoImage: imageFromResource('icon'),
