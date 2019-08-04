@@ -10,7 +10,7 @@ import { BeancountFileService } from '../shared/beancount-file.service';
 import { AccountModalComponent } from './account-modal/account-modal.component';
 import { CommodityModalComponent } from './commodity-modal/commodity-modal.component';
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
-import { getTodayStr, configureSaveButton } from '../shared/misc';
+import { getTodayStr, showKeyboard, configureSaveButton } from '../shared/misc';
 
 @Component({
     selector: 'bc-transaction-form',
@@ -77,7 +77,7 @@ export class TransactionFormComponent implements OnInit {
 
     onAmountFieldLoaded(args) {
         const amountField = <TextField>args.object;
-        amountField.focus();
+        showKeyboard(amountField);
     }
 
     showAccountPicker(fieldName: string): void {

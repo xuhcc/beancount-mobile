@@ -29,7 +29,7 @@ export class AccountModalComponent implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        showKeyboard(this.accountField);
+        showKeyboard(this.accountField.nativeElement);
     }
 
     filterAccounts(): void {

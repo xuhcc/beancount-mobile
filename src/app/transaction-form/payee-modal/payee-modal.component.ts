@@ -26,7 +26,7 @@ export class PayeeModalComponent implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        showKeyboard(this.payeeField);
+        showKeyboard(this.payeeField.nativeElement);
     }
 
     filterPayees(): void {
