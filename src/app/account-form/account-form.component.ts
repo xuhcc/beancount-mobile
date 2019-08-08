@@ -5,7 +5,8 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { ACCOUNT_NAME_REGEXP } from '../shared/beancount-file-content';
-import { getTodayStr, configureSaveButton } from '../shared/misc';
+import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
+import { getTodayStr, setIconColor, configureSaveButton } from '../shared/misc';
 import { UniqueValidator } from '../shared/validators';
 
 @Component({
@@ -43,9 +44,15 @@ export class AccountFormComponent implements OnInit {
         });
     }
 
-    onSaveButtonLoaded(args) {
-        const actionBar = args.object.actionBar;
-        configureSaveButton(actionBar, this.form.statusChanges);
+    onActionBarLoaded(args) {
+        const actionBar = args.object;
+        // Set color of the 'back' button
+        const closeIcon = actionBar.nativeView.getNavigationIcon();
+        setIconColor(closeIcon, ACTION_BAR_BUTTON_COLOR);
+        // Set initial color of the 'save' button
+        // and use workaround to change its color on form updates
+        // because CSS styling of action bar is very limited
+        configureSaveButton(actionBar, this.form.statusChanges)
     }
 
     goBack() {

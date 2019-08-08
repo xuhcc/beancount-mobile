@@ -12,6 +12,7 @@ import { makeText as makeToast } from 'nativescript-toast';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { BeancountFileContent } from '../shared/beancount-file-content';
 import { SideDrawerService } from '../shared/sidedrawer.service';
+import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
 import { setIconColor } from '../shared/misc';
 
 registerElement('PullToRefresh', () => PullToRefresh);
@@ -84,6 +85,16 @@ export class PlainTextComponent implements OnInit, OnDestroy {
                     this.scrollOnLoad = params.scroll;
                 }
             });
+    }
+
+    onActionBarLoaded(args) {
+        const actionBar = args.object;
+        // Set color of the 'menu' button
+        const menuIcon = actionBar.nativeView.getNavigationIcon();
+        setIconColor(menuIcon, ACTION_BAR_BUTTON_COLOR);
+        // Set color of the 'overflow' button
+        const overflowIcon = actionBar.nativeView.getOverflowIcon();
+        setIconColor(overflowIcon, ACTION_BAR_BUTTON_COLOR);
     }
 
     onFileTextChanged(args) {

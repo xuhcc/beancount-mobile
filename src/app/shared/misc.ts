@@ -8,6 +8,8 @@ import { TextField } from 'tns-core-modules/ui/text-field';
 import { Color } from 'tns-core-modules/color';
 import { ad } from 'tns-core-modules/utils/utils';
 
+import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
+
 export function getTodayStr(): string {
     return new Date().toISOString().split('T')[0];
 }
@@ -41,6 +43,7 @@ export function setIconColor(
     icon: any,
     color: string | null,
 ) {
+    // https://github.com/NativeScript/NativeScript/issues/5536#issuecomment-373284855
     if (color === null) {
         icon.setColorFilter(null);
     } else {
@@ -56,17 +59,15 @@ export function configureSaveButton(
     statusChanges: Observable<string>,
 ) {
     // Simulate enabled/disabled behaviour for action bar icon
-    // https://github.com/NativeScript/NativeScript/issues/5536#issuecomment-373284855
-    const getSaveButton = () => actionBar.nativeView.getChildAt(1).getChildAt(0);
-    const icon = getSaveButton().getItemData().getIcon();
-    const disabledIconColor = '#E5E5E5';
-    setIconColor(icon, disabledIconColor); // Initial state is 'disabled'
+    const saveButton = actionBar.actionItems.getItemAt(0);
+    saveButton.style.color = new Color(ACTION_BAR_BUTTON_DISABLED_COLOR);
     statusChanges.subscribe((status: string) => {
+        const saveIcon = actionBar.nativeView
+            .getChildAt(1).getChildAt(0).getItemData().getIcon();
         if (status === 'VALID') {
-            setIconColor(icon, null); // Button enabled
-            getSaveButton().invalidate();
+            setIconColor(saveIcon, ACTION_BAR_BUTTON_COLOR);
         } else {
-            setIconColor(icon, disabledIconColor); // Button disabled
+            setIconColor(saveIcon, ACTION_BAR_BUTTON_DISABLED_COLOR);
         }
     });
 }

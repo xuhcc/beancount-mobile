@@ -30,8 +30,17 @@ refer to http://docs.nativescript.org/ui/theme.
     margin: 5 5 0;
 }
 
+.action-bar {
+    background-color: #255c8c;
+    color: #E2E9F0;
+}
+
 .action-bar-title {
     horizontal-align: left;
+}
+
+.action-bar .icon {
+    font-size: 11;
 }
 
 .modal-header {

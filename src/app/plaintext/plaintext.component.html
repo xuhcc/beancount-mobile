@@ -1,13 +1,22 @@
-<ActionBar class="action-bar">
-  <NavigationButton icon="res://baseline_menu_black_24" (tap)="openDrawer()"></NavigationButton>
+<ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
+  <!--
+  It is not yet possible to use icon font with NavigationButton
+  https://github.com/NativeScript/NativeScript/issues/7520
+  -->
+  <NavigationButton
+    icon="res://baseline_menu_black_24"
+    (tap)="openDrawer()"
+  ></NavigationButton>
   <Label class="action-bar-title" [text]="fileTitle"></Label>
   <ActionItem
-    android.systemIcon="ic_find_previous_holo_light"
+    icon="font://&#xe5ce;"
+    class="icon"
     text="Scroll to top"
     (tap)="scrollToTop()"
   ></ActionItem>
   <ActionItem
-    android.systemIcon="ic_find_next_holo_light"
+    icon="font://&#xe5cf;"
+    class="icon"
     text="Scroll to bottom"
     (tap)="scrollToBottom()"
   ></ActionItem>

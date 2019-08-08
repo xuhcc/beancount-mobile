@@ -1,11 +1,19 @@
-<ActionBar class="action-bar">
-  <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
+<ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
+  <!--
+  It is not yet possible to use icon font with NavigationButton
+  https://github.com/NativeScript/NativeScript/issues/7520
+  -->
+  <NavigationButton
+    icon="res://baseline_close_white_24"
+    text="Back"
+    (tap)="goBack()"
+  ></NavigationButton>
   <Label class="action-bar-title" text="New account"></Label>
   <ActionItem
-    android.systemIcon="ic_menu_save"
+    icon="font://&#xe161;"
+    class="icon"
     text="Save"
     (tap)="save()"
-    (loaded)="onSaveButtonLoaded($event)"
   ></ActionItem>
 </ActionBar>
 
