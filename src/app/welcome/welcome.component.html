@@ -1,41 +1,43 @@
-<DockLayout class="page" stretchLastChild="false">
-  <StackLayout dock="bottom">
+<ScrollView>
+  <DockLayout class="page" stretchLastChild="false">
+    <StackLayout dock="bottom">
 
-    <Label
-      id="welcome-title"
-      text="Welcome to Beancount Mobile!"
-      textWrap="true"
-    ></Label>
-    <!--
-    Use HtmlView instead of FormattedString as a workaround for
-    https://github.com/NativeScript/NativeScript/issues/3671
-    -->
-    <HtmlView
-      class="welcome-label"
-      id="welcome-text"
-      #welcomeTextView
-      [html]="welcomeText"
-      (loaded)="onWelcomeTextLoaded()"
-    ></HtmlView>
+      <Label
+        id="welcome-title"
+        text="Welcome to Beancount Mobile!"
+        textWrap="true"
+      ></Label>
+      <!--
+      Use HtmlView instead of FormattedString as a workaround for
+      https://github.com/NativeScript/NativeScript/issues/3671
+      -->
+      <HtmlView
+        class="welcome-label"
+        id="welcome-text"
+        #welcomeTextView
+        [html]="welcomeText"
+        (loaded)="onWelcomeTextLoaded()"
+      ></HtmlView>
 
-    <Label
-      class="welcome-label"
-      text="Please select a Beancount file in order to proceed:"
-      textWrap="true"
-    ></Label>
-    <TextField
-      id="file-path-input"
-      [(ngModel)]="filePath"
-    ></TextField>
+      <Label
+        class="welcome-label"
+        text="Please select a Beancount file in order to proceed:"
+        textWrap="true"
+      ></Label>
+      <TextField
+        id="file-path-input"
+        [(ngModel)]="filePath"
+      ></TextField>
 
-    <Button class="btn btn-highlighted" text="Browse" (tap)="openFilePicker()"></Button>
-    <Button
-      class="btn"
-      [className]="isValidPath() ? 'btn' : 'btn btn-disabled'"
-      text="continue"
-      (tap)="onContinueTap()"
-      [isEnabled]="isValidPath()"
-    ></Button>
+      <Button class="btn btn-highlighted" text="Browse" (tap)="openFilePicker()"></Button>
+      <Button
+        class="btn"
+        [className]="isValidPath() ? 'btn' : 'btn btn-disabled'"
+        text="continue"
+        (tap)="onContinueTap()"
+        [isEnabled]="isValidPath()"
+      ></Button>
 
-  </StackLayout>
-</DockLayout>
+    </StackLayout>
+  </DockLayout>
+</ScrollView>

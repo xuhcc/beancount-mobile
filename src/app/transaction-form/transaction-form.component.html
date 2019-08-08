@@ -1,67 +1,69 @@
-<ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
-  <!--
-  It is not yet possible to use icon font with NavigationButton
-  https://github.com/NativeScript/NativeScript/issues/7520
-  -->
-  <NavigationButton
-    icon="res://baseline_close_white_24"
-    text="Back"
-    (tap)="goBack()"
-  ></NavigationButton>
-  <Label class="action-bar-title" text="New transaction"></Label>
-  <ActionItem
-    icon="font://&#xe161;"
-    class="icon"
-    text="Save"
-    (tap)="save()"
-  ></ActionItem>
-</ActionBar>
+<ScrollView>
+  <ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
+    <!--
+    It is not yet possible to use icon font with NavigationButton
+    https://github.com/NativeScript/NativeScript/issues/7520
+    -->
+    <NavigationButton
+      icon="res://baseline_close_white_24"
+      text="Back"
+      (tap)="goBack()"
+    ></NavigationButton>
+    <Label class="action-bar-title" text="New transaction"></Label>
+    <ActionItem
+      icon="font://&#xe161;"
+      class="icon"
+      text="Save"
+      (tap)="save()"
+    ></ActionItem>
+  </ActionBar>
 
-<StackLayout [formGroup]="form" class="form">
+  <StackLayout [formGroup]="form" class="form">
 
-  <Label text="Account 1 (from)"></Label>
-  <TextField
-    hint="Tap to select an account"
-    editable="false"
-    formControlName="accountFrom"
-    (tap)="showAccountPicker('accountFrom')"
-  ></TextField>
+    <Label text="Account 1 (from)"></Label>
+    <TextField
+      hint="Tap to select an account"
+      editable="false"
+      formControlName="accountFrom"
+      (tap)="showAccountPicker('accountFrom')"
+    ></TextField>
 
-  <Label text="Account 2 (to)"></Label>
-  <TextField
-    hint="Tap to select an account"
-    editable="false"
-    formControlName="accountTo"
-    (tap)="showAccountPicker('accountTo')"
-  ></TextField>
+    <Label text="Account 2 (to)"></Label>
+    <TextField
+      hint="Tap to select an account"
+      editable="false"
+      formControlName="accountTo"
+      (tap)="showAccountPicker('accountTo')"
+    ></TextField>
 
-  <Label text="Amount"></Label>
-  <TextField
-    formControlName="amount"
-    keyboardType="number"
-    (loaded)="onAmountFieldLoaded($event)"
-  ></TextField>
+    <Label text="Amount"></Label>
+    <TextField
+      formControlName="amount"
+      keyboardType="number"
+      (loaded)="onAmountFieldLoaded($event)"
+    ></TextField>
 
-  <Label text="Currency"></Label>
-  <TextField
-    hint="Tap to select a currency"
-    editable="false"
-    formControlName="commodity"
-    (tap)="showCommodityPicker()"
-  ></TextField>
+    <Label text="Currency"></Label>
+    <TextField
+      hint="Tap to select a currency"
+      editable="false"
+      formControlName="commodity"
+      (tap)="showCommodityPicker()"
+    ></TextField>
 
-  <Label text="Date"></Label>
-  <TextField formControlName="date" keyboardType="datetime"></TextField>
+    <Label text="Date"></Label>
+    <TextField formControlName="date" keyboardType="datetime"></TextField>
 
-  <Label text="Payee"></Label>
-  <TextField
-    hint="Tap to select a payee"
-    editable="false"
-    formControlName="payee"
-    (tap)="showPayeeModal()"
-  ></TextField>
+    <Label text="Payee"></Label>
+    <TextField
+      hint="Tap to select a payee"
+      editable="false"
+      formControlName="payee"
+      (tap)="showPayeeModal()"
+    ></TextField>
 
-  <Label text="Description"></Label>
-  <TextField formControlName="narration"></TextField>
+    <Label text="Description"></Label>
+    <TextField formControlName="narration"></TextField>
 
-</StackLayout>
+  </StackLayout>
+</ScrollView>

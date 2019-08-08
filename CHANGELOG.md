@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+
+- Enabled content scrolling for Welcome screen and transaction form.
+
 ## 0.6.0
 
 - Upgraded project to NativeScript 6.0.
