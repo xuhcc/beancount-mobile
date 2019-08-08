@@ -1,3 +1,55 @@
-.calendar-btn {
+@import '../../app-variables';
+
+$label-color: #808080;
+$placeholder-color: #cccccc;
+$addon-color: #7C9DBA;
+$underline-color: #C3CED9;
+
+.form {
+    padding: 20;
+}
+
+.label {
+    color: $label-color;
+    font-size: 14;
+    margin: 0 0 5;
+    padding: 0;
+}
+
+.field-wrapper {
+    margin-bottom: 20;
+}
+
+.field {
+    border-bottom-width: 1;
+    border-bottom-color: $underline-color;
+    color: $main-color;
+    font-size: 16;
+    margin: 0;
+    padding: 0;
+    placeholder-color: $placeholder-color;
+}
+
+.field-addon {
+    border-bottom-width: 1;
+    border-bottom-color: $underline-color;
+    color: $addon-color;
     font-size: 20;
+    margin: 0;
+    padding: 3 0 0;
+    text-align: right;
+    width: 30;
+}
+
+#calendar-btn {
+    android-elevation: 0;
+    android-dynamic-elevation-offset: 0;
+    font-size: 21;
+    height: 1;
+    padding-top: 0;
+    width: 100;
+}
+
+#amount-field {
+    font-size: 28;
 }

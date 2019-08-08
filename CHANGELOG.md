@@ -6,6 +6,7 @@
 - Added datepickers to transaction and account forms.
 - Changed field order on transaction and account forms.
 - Enabled autofocus on name field on account form opening.
+- Updated form styles.
 
 ## 0.6.0
 

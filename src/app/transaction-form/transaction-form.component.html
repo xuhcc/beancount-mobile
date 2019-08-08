@@ -20,61 +20,106 @@
 
   <StackLayout [formGroup]="form" class="form">
 
-    <Label text="Date"></Label>
-    <FlexboxLayout flexDirection="row">
+    <Label class="label" text="Date"></Label>
+    <FlexboxLayout flexDirection="row" class="field-wrapper">
       <TextField
         flexGrow="1"
+        class="field"
         formControlName="date"
         keyboardType="datetime"
       ></TextField>
       <Button
-        class="calendar-btn icon"
+        id="calendar-btn"
+        class="field-addon icon"
         text="&#xe878;"
         (tap)="showDatePicker()"
       ></Button>
     </FlexboxLayout>
 
-    <Label text="Amount"></Label>
-    <TextField
-      formControlName="amount"
-      keyboardType="number"
-      (loaded)="onAmountFieldLoaded($event)"
-    ></TextField>
+    <Label class="label" text="Amount"></Label>
+    <StackLayout class="field-wrapper">
+      <TextField
+        id="amount-field"
+        class="field"
+        formControlName="amount"
+        keyboardType="number"
+        (loaded)="onAmountFieldLoaded($event)"
+      ></TextField>
+    </StackLayout>
 
-    <Label text="Currency"></Label>
-    <TextField
-      hint="Tap to select a currency"
-      editable="false"
-      formControlName="commodity"
-      (tap)="showCommodityPicker()"
-    ></TextField>
+    <Label class="label" text="Currency"></Label>
+    <FlexboxLayout flexDirection="row" class="field-wrapper">
+      <TextField
+        flexGrow="1"
+        class="field"
+        hint="Tap to select"
+        editable="false"
+        formControlName="commodity"
+        (tap)="showCommodityPicker()"
+      ></TextField>
+      <Label
+        class="field-addon icon"
+        text="&#xe241;"
+      ></Label>
+    </FlexboxLayout>
 
-    <Label text="From account"></Label>
-    <TextField
-      hint="Tap to select an account"
-      editable="false"
-      formControlName="accountFrom"
-      (tap)="showAccountPicker('accountFrom')"
-    ></TextField>
+    <Label class="label" text="From account"></Label>
+    <FlexboxLayout flexDirection="row" class="field-wrapper">
+      <TextField
+        flexGrow="1"
+        class="field"
+        hint="Tap to select"
+        editable="false"
+        formControlName="accountFrom"
+        (tap)="showAccountPicker('accountFrom')"
+      ></TextField>
+      <Label
+        class="field-addon icon"
+        text="&#xe241;"
+      ></Label>
+    </FlexboxLayout>
 
-    <Label text="To account"></Label>
-    <TextField
-      hint="Tap to select an account"
-      editable="false"
-      formControlName="accountTo"
-      (tap)="showAccountPicker('accountTo')"
-    ></TextField>
+    <Label class="label" text="To account"></Label>
+    <FlexboxLayout flexDirection="row" class="field-wrapper">
+      <TextField
+        flexGrow="1"
+        class="field"
+        hint="Tap to select"
+        editable="false"
+        formControlName="accountTo"
+        (tap)="showAccountPicker('accountTo')"
+      ></TextField>
+      <Label
+        class="field-addon icon"
+        text="&#xe241;"
+      ></Label>
+    </FlexboxLayout>
 
-    <Label text="Payee"></Label>
-    <TextField
-      hint="Tap to select a payee"
-      editable="false"
-      formControlName="payee"
-      (tap)="showPayeeModal()"
-    ></TextField>
+    <Label class="label" text="Payee"></Label>
+    <FlexboxLayout flexDirection="row" class="field-wrapper">
+      <TextField
+        flexGrow="1"
+        class="field"
+        hint="Tap to select"
+        editable="false"
+        formControlName="payee"
+        (tap)="showPayeeModal()"
+      ></TextField>
+      <Label
+        class="field-addon icon"
+        text="&#xe241;"
+      ></Label>
+    </FlexboxLayout>
 
-    <Label text="Description"></Label>
-    <TextField formControlName="narration"></TextField>
+    <Label class="label" text="Description"></Label>
+    <FlexboxLayout flexDirection="row" class="field-wrapper">
+      <TextField
+        flexGrow="1"
+        class="field"
+        hint="Enter description"
+        formControlName="narration"
+      ></TextField>
+    </FlexboxLayout>
 
   </StackLayout>
 </ScrollView>
