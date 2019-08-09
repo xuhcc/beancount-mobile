@@ -13,7 +13,7 @@ import { BeancountFileService } from '../shared/beancount-file.service';
 import { BeancountFileContent } from '../shared/beancount-file-content';
 import { SideDrawerService } from '../shared/sidedrawer.service';
 import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
-import { setIconColor } from '../shared/misc';
+import { setIconColor, textToBitmap } from '../shared/misc';
 
 registerElement('PullToRefresh', () => PullToRefresh);
 registerElement('Fab', () => Fab);
@@ -109,9 +109,10 @@ export class PlainTextComponent implements OnInit, OnDestroy {
     }
 
     onAddButtonLoaded(args) {
-        // Change color of FAB icon
-        const fab = args.object.android;
-        setIconColor(fab, '#FFFFFF');
+        // Set FAB icon
+        const fab = args.object;
+        const bitmap = textToBitmap('+', 80, fab.style.color.hex, 'normal');
+        fab.android.setImageBitmap(bitmap);
     }
 
     reloadFile(args) {

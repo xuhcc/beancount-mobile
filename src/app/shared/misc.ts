@@ -7,6 +7,7 @@ import { ActionBar } from 'tns-core-modules/ui/action-bar';
 import { TextField } from 'tns-core-modules/ui/text-field';
 import { Color } from 'tns-core-modules/color';
 import { ad } from 'tns-core-modules/utils/utils';
+import { Font, FontStyle, FontWeight } from 'tns-core-modules/ui/styling/font';
 
 import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
 
@@ -70,4 +71,30 @@ export function configureSaveButton(
             setIconColor(saveIcon, ACTION_BAR_BUTTON_DISABLED_COLOR);
         }
     });
+}
+
+export function textToBitmap(
+    text: string,
+    fontSize: number,
+    fontColor: string,
+    fontFamily: string,
+) {
+    const nsFont = new Font(fontFamily, 0, FontStyle.NORMAL, FontWeight.NORMAL);
+    // Adapted from https://stackoverflow.com/a/39965170/1868395
+    const paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+    paint.setTextSize(fontSize);
+    paint.setColor(android.graphics.Color.parseColor(fontColor));
+    paint.setTextAlign(android.graphics.Paint.Align.LEFT);
+    paint.setTypeface(nsFont.getAndroidTypeface());
+    const baseline = -paint.ascent();
+    const width = paint.measureText(text);
+    const height = baseline + paint.descent();
+    const image = android.graphics.Bitmap.createBitmap(
+        width,
+        height,
+        android.graphics.Bitmap.Config.ARGB_8888,
+    );
+    const canvas = new android.graphics.Canvas(image);
+    canvas.drawText(text, 0, baseline, paint);
+    return image;
 }
