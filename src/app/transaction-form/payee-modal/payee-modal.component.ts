@@ -9,7 +9,7 @@ import { showKeyboard } from '../../shared/misc';
 @Component({
     selector: 'bc-payee-modal',
     templateUrl: './payee-modal.component.html',
-    styleUrls: ['./payee-modal.component.css'],
+    styleUrls: ['./payee-modal.component.scss'],
 })
 export class PayeeModalComponent implements AfterViewInit {
 

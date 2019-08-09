@@ -16,7 +16,7 @@ import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../sh
 @Component({
     selector: 'bc-transaction-form',
     templateUrl: './transaction-form.component.html',
-    styleUrls: ['./transaction-form.component.css'],
+    styleUrls: ['./transaction-form.component.scss'],
 })
 export class TransactionFormComponent implements OnInit {
 

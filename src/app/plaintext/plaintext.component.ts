@@ -21,7 +21,7 @@ registerElement('Fab', () => Fab);
 @Component({
     selector: 'bc-plaintext',
     templateUrl: './plaintext.component.html',
-    styleUrls: ['./plaintext.component.css'],
+    styleUrls: ['./plaintext.component.scss'],
 })
 export class PlainTextComponent implements OnInit, OnDestroy {
 

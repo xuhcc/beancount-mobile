@@ -10,7 +10,7 @@ import { ListValidator } from '../../shared/validators';
 @Component({
     selector: 'bc-account-modal',
     templateUrl: './account-modal.component.html',
-    styleUrls: ['./account-modal.component.css'],
+    styleUrls: ['./account-modal.component.scss'],
 })
 export class AccountModalComponent implements AfterViewInit {
 

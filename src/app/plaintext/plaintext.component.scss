@@ -1,3 +1,5 @@
+@import '../../app-variables';
+
 #file-content {
     color: #707070;
     font-family: monospace;
@@ -6,11 +8,11 @@
 }
 
 .fab-button {
-    background-color: #255c8c;
-    color: #E2E9F0;
+    background-color: $main-color;
+    color: $main-text-color;
     height: 70;
     horizontal-align: right;
-    ripple-color: #E2E9F0;
+    ripple-color: $main-text-color;
     vertical-align: bottom;
     width: 70;
 }

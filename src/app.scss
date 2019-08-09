@@ -10,6 +10,7 @@ of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
 @import '~nativescript-theme-core/css/core.light.css';
+@import 'app-variables';
 
 .icon {
     font-family: "Material Icons", "MaterialIcons-Regular";
@@ -31,8 +32,8 @@ refer to http://docs.nativescript.org/ui/theme.
 }
 
 .action-bar {
-    background-color: #255c8c;
-    color: #E2E9F0;
+    background-color: $main-color;
+    color: $main-text-color;
 }
 
 .action-bar-title {

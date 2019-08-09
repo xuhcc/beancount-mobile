@@ -18,7 +18,7 @@ const BEANCOUNT_WEBSITE = 'http://furius.ca/beancount/';
 @Component({
     selector: 'bc-welcome',
     templateUrl: './welcome.component.html',
-    styleUrls: ['./welcome.component.css'],
+    styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
 

@@ -12,7 +12,7 @@ import { UniqueValidator } from '../shared/validators';
 @Component({
     selector: 'bc-account-form',
     templateUrl: './account-form.component.html',
-    styleUrls: ['./account-form.component.css'],
+    styleUrls: ['./account-form.component.scss'],
 })
 export class AccountFormComponent implements OnInit {
 

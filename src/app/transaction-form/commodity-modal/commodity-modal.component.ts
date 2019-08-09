@@ -5,7 +5,7 @@ import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
 @Component({
     selector: 'bc-commodity-modal',
     templateUrl: './commodity-modal.component.html',
-    styleUrls: ['./commodity-modal.component.css'],
+    styleUrls: ['./commodity-modal.component.scss'],
 })
 export class CommodityModalComponent implements OnInit {
 
