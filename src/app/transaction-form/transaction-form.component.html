@@ -52,7 +52,18 @@
     ></TextField>
 
     <Label text="Date"></Label>
-    <TextField formControlName="date" keyboardType="datetime"></TextField>
+    <FlexboxLayout flexDirection="row">
+      <TextField
+        flexGrow="1"
+        formControlName="date"
+        keyboardType="datetime"
+      ></TextField>
+      <Button
+        class="calendar-btn icon"
+        text="&#xe878;"
+        (tap)="showDatePicker()"
+      ></Button>
+    </FlexboxLayout>
 
     <Label text="Payee"></Label>
     <TextField

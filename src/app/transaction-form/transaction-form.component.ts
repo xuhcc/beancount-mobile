@@ -4,13 +4,14 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { ModalDialogOptions, ModalDialogService } from 'nativescript-angular/modal-dialog';
 
 import { TextField } from 'tns-core-modules/ui/text-field';
+import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 
 import { Transaction } from '../shared/transaction.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { AccountModalComponent } from './account-modal/account-modal.component';
 import { CommodityModalComponent } from './commodity-modal/commodity-modal.component';
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
-import { getTodayStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
+import { getDateStr, getTodayStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
 import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
 
 @Component({
@@ -108,6 +109,18 @@ export class TransactionFormComponent implements OnInit {
             if (commodity) {
                 this.form.controls.commodity.setValue(commodity);
             }
+        });
+    }
+
+    showDatePicker(): void {
+        const picker = new ModalDatetimepicker();
+        picker.pickDate({
+            title: 'Select date',
+            theme: 'light',
+            maxDate: new Date(),
+        }).then((result) => {
+            const date = new Date(Date.UTC(result.year, result.month - 1, result.day));
+            this.form.controls.date.setValue(getDateStr(date));
         });
     }
 

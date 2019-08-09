@@ -11,8 +11,12 @@ import { Font, FontStyle, FontWeight } from 'tns-core-modules/ui/styling/font';
 
 import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
 
+export function getDateStr(date: Date): string {
+    return date.toISOString().split('T')[0];
+}
+
 export function getTodayStr(): string {
-    return new Date().toISOString().split('T')[0];
+    return getDateStr(new Date());
 }
 
 export function showKeyboard(textField: TextField): void {

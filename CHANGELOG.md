@@ -3,6 +3,7 @@
 ## 0.7.0
 
 - Enabled content scrolling for Welcome screen and transaction form.
+- Added datepicker to transaction form.
 
 ## 0.6.0
 
