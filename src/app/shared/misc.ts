@@ -79,7 +79,7 @@ export function textToBitmap(
     fontColor: string,
     fontFamily: string,
 ) {
-    const nsFont = new Font(fontFamily, 0, FontStyle.NORMAL, FontWeight.NORMAL);
+    const nsFont = new Font(fontFamily, 0, FontStyle.NORMAL, FontWeight.LIGHT);
     // Adapted from https://stackoverflow.com/a/39965170/1868395
     const paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
     paint.setTextSize(fontSize);

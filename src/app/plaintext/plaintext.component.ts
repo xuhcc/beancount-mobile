@@ -111,7 +111,7 @@ export class PlainTextComponent implements OnInit, OnDestroy {
     onAddButtonLoaded(args) {
         // Set FAB icon
         const fab = args.object;
-        const bitmap = textToBitmap('+', 80, fab.style.color.hex, 'normal');
+        const bitmap = textToBitmap('+', 100, fab.style.color.hex, 'normal');
         fab.android.setImageBitmap(bitmap);
     }
 

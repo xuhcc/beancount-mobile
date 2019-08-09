@@ -1,14 +1,16 @@
 #file-content {
+    color: #707070;
     font-family: monospace;
     font-size: 12;
+    padding: 10;
 }
 
 .fab-button {
-    background-color: #205081;
-    color: white;
+    background-color: #255c8c;
+    color: #E2E9F0;
     height: 70;
     horizontal-align: right;
-    ripple-color: white;
+    ripple-color: #E2E9F0;
     vertical-align: bottom;
     width: 70;
 }
