@@ -20,21 +20,19 @@
 
   <StackLayout [formGroup]="form" class="form">
 
-    <Label text="Account 1 (from)"></Label>
-    <TextField
-      hint="Tap to select an account"
-      editable="false"
-      formControlName="accountFrom"
-      (tap)="showAccountPicker('accountFrom')"
-    ></TextField>
-
-    <Label text="Account 2 (to)"></Label>
-    <TextField
-      hint="Tap to select an account"
-      editable="false"
-      formControlName="accountTo"
-      (tap)="showAccountPicker('accountTo')"
-    ></TextField>
+    <Label text="Date"></Label>
+    <FlexboxLayout flexDirection="row">
+      <TextField
+        flexGrow="1"
+        formControlName="date"
+        keyboardType="datetime"
+      ></TextField>
+      <Button
+        class="calendar-btn icon"
+        text="&#xe878;"
+        (tap)="showDatePicker()"
+      ></Button>
+    </FlexboxLayout>
 
     <Label text="Amount"></Label>
     <TextField
@@ -51,19 +49,21 @@
       (tap)="showCommodityPicker()"
     ></TextField>
 
-    <Label text="Date"></Label>
-    <FlexboxLayout flexDirection="row">
-      <TextField
-        flexGrow="1"
-        formControlName="date"
-        keyboardType="datetime"
-      ></TextField>
-      <Button
-        class="calendar-btn icon"
-        text="&#xe878;"
-        (tap)="showDatePicker()"
-      ></Button>
-    </FlexboxLayout>
+    <Label text="From account"></Label>
+    <TextField
+      hint="Tap to select an account"
+      editable="false"
+      formControlName="accountFrom"
+      (tap)="showAccountPicker('accountFrom')"
+    ></TextField>
+
+    <Label text="To account"></Label>
+    <TextField
+      hint="Tap to select an account"
+      editable="false"
+      formControlName="accountTo"
+      (tap)="showAccountPicker('accountTo')"
+    ></TextField>
 
     <Label text="Payee"></Label>
     <TextField

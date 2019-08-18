@@ -41,12 +41,8 @@ export class TransactionFormComponent implements OnInit {
     ngOnInit() {
         const defaultCurrency = this.beancountFile.content.getOperatingCurrency();
         this.form = this.formBuilder.group({
-            accountFrom: [
-                '',
-                Validators.required,
-            ],
-            accountTo: [
-                '',
+            date: [
+                getTodayStr(),
                 Validators.required,
             ],
             amount: [
@@ -57,8 +53,12 @@ export class TransactionFormComponent implements OnInit {
                 defaultCurrency,
                 Validators.required,
             ],
-            date: [
-                getTodayStr(),
+            accountFrom: [
+                '',
+                Validators.required,
+            ],
+            accountTo: [
+                '',
                 Validators.required,
             ],
             payee: [

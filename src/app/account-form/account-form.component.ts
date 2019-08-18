@@ -29,6 +29,10 @@ export class AccountFormComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.formBuilder.group({
+            date: [
+                getTodayStr(),
+                Validators.required,
+            ],
             name: [
                 '',
                 [
@@ -36,10 +40,6 @@ export class AccountFormComponent implements OnInit {
                     Validators.pattern(ACCOUNT_NAME_REGEXP),
                     UniqueValidator(this.accounts),
                 ],
-            ],
-            date: [
-                getTodayStr(),
-                Validators.required,
             ],
         });
     }
