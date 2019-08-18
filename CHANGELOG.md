@@ -3,7 +3,7 @@
 ## 0.7.0
 
 - Enabled content scrolling for Welcome screen and transaction form.
-- Added datepicker to transaction form.
+- Added datepickers to transaction and account forms.
 - Changed field order on transaction and account forms.
 - Enabled autofocus on name field on account form opening.
 
