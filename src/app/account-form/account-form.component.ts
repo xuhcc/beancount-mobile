@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { RouterExtensions } from 'nativescript-angular/router';
 
+import { TextField } from 'tns-core-modules/ui/text-field';
+
 import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { ACCOUNT_NAME_REGEXP } from '../shared/beancount-file-content';
 import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
-import { getTodayStr, setIconColor, configureSaveButton } from '../shared/misc';
+import { getTodayStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
 import { UniqueValidator } from '../shared/validators';
 
 @Component({
@@ -53,6 +55,11 @@ export class AccountFormComponent implements OnInit {
         // and use workaround to change its color on form updates
         // because CSS styling of action bar is very limited
         configureSaveButton(actionBar, this.form.statusChanges)
+    }
+
+    onNameFieldLoaded(args) {
+        const nameField = <TextField>args.object;
+        showKeyboard(nameField);
     }
 
     goBack() {

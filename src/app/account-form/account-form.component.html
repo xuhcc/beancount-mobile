@@ -23,6 +23,9 @@
   <TextField formControlName="date" keyboardType="datetime"></TextField>
 
   <Label text="Name"></Label>
-  <TextField formControlName="name"></TextField>
+  <TextField
+    formControlName="name"
+    (loaded)="onNameFieldLoaded($event)"
+  ></TextField>
 
 </StackLayout>
