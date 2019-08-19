@@ -1,3 +1,5 @@
+@import '../../app-variables';
+
 .page {
     background: linear-gradient(to bottom, #205081, #236E8C);
     padding: 20;
@@ -39,7 +41,7 @@
 }
 
 .btn-highlighted {
-    background-color: #F49D96;
+    background-color: $secondary-color;
 }
 
 .btn-disabled {
