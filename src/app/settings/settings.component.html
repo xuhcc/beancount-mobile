@@ -4,12 +4,18 @@
 </ActionBar>
 
 <StackLayout [formGroup]="form" class="form">
-  <Label text="Path to beancount file"></Label>
-  <TextField formControlName="filePath"></TextField>
+  <Label
+    class="label"
+    text="Path to beancount file"
+  ></Label>
+  <TextField class="field" formControlName="filePath"></TextField>
   <Button class="btn" text="browse" (tap)="openFilePicker()"></Button>
   <Button class="btn" text="save" (tap)="save()" [isEnabled]="canSave()"></Button>
 
   <StackLayout class="hr-light"></StackLayout>
-  <Label text="Reset app settings and go back to Welcome screen"></Label>
+  <Label
+    class="label"
+    text="Reset app settings and go back to Welcome screen"
+  ></Label>
   <Button class="btn" text="reset" (tap)="reset()"></Button>
 </StackLayout>

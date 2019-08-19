@@ -19,22 +19,25 @@
 
 <StackLayout class="form" [formGroup]="form">
 
-  <Label text="Date"></Label>
-  <FlexboxLayout flexDirection="row">
+  <Label class="label" text="Date"></Label>
+  <FlexboxLayout flexDirection="row" class="field-wrapper">
     <TextField
       flexGrow="1"
+      class="field"
       formControlName="date"
       keyboardType="datetime"
     ></TextField>
     <Button
-      class="calendar-btn icon"
+      id="calendar-btn"
+      class="field-addon icon"
       text="&#xe878;"
       (tap)="showDatePicker()"
     ></Button>
   </FlexboxLayout>
 
-  <Label text="Name"></Label>
+  <Label class="label" text="Name"></Label>
   <TextField
+    class="field"
     formControlName="name"
     (loaded)="onNameFieldLoaded($event)"
   ></TextField>

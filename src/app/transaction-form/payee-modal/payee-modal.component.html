@@ -1,7 +1,7 @@
 <GridLayout
   columns="*,*"
   rows="auto,auto,*,auto"
-  width="300"
+  class="modal"
 >
   <Label
     row="0" colSpan="2"
@@ -10,6 +10,7 @@
   <TextField
     #payeeField
     row="1" colSpan="2"
+    class="field"
     hint="Enter name or choose from a list"
     [formControl]="payee"
     (ngModelChange)="filterPayees()"

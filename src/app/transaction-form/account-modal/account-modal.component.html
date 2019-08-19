@@ -1,7 +1,7 @@
 <GridLayout
   columns="*,*"
   rows="auto,auto,*,auto"
-  width="300"
+  class="modal"
 >
   <Label
     row="0" colSpan="2"
@@ -11,6 +11,7 @@
   <TextField
     #accountField
     row="1" colSpan="2"
+    class="field"
     hint="Start typing..."
     [formControl]="account"
     (ngModelChange)="filterAccounts()"
