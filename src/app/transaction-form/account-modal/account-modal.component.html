@@ -1,8 +1,32 @@
-<GridLayout columns="*,*" rows="auto,auto,*,auto" width="300">
-  <Label row="0" colSpan="2" text="Select account" class="modal-header"></Label>
-  <TextField #accountField row="1" colSpan="2" hint="Start typing..." [formControl]="account" (ngModelChange)="filterAccounts()"></TextField>
-  <ListPicker *ngIf="accounts.length > 0" row="2" colSpan="2" [items]="accounts" (tap)="onAccountTap($event)"></ListPicker>
-  <Label *ngIf="accounts.length == 0" text="No accounts found" row="2" colSpan="2" class="empty-picker"></Label>
+<GridLayout
+  columns="*,*"
+  rows="auto,auto,*,auto"
+  width="300"
+>
+  <Label
+    row="0" colSpan="2"
+    class="modal-header"
+    text="Select account"
+  ></Label>
+  <TextField
+    #accountField
+    row="1" colSpan="2"
+    hint="Start typing..."
+    [formControl]="account"
+    (ngModelChange)="filterAccounts()"
+  ></TextField>
+  <ListPicker
+    *ngIf="accounts.length > 0"
+    row="2" colSpan="2"
+    [items]="accounts"
+    (tap)="onAccountTap($event)"
+  ></ListPicker>
+  <Label
+    *ngIf="accounts.length == 0"
+    row="2" colSpan="2"
+    class="empty-picker"
+    text="No accounts found"
+  ></Label>
   <Button
     col="0" row="3"
     class="btn"

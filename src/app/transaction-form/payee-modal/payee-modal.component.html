@@ -1,8 +1,31 @@
-<GridLayout columns="*,*" rows="auto,auto,*,auto" width="300">
-  <Label row="0" colSpan="2" text="Select payee" class="modal-header"></Label>
-  <TextField #payeeField row="1" colSpan="2" hint="Enter name or choose from a list" [formControl]="payee" (ngModelChange)="filterPayees()"></TextField>
-  <ListPicker *ngIf="payees.length > 0" row="2" colSpan="2" [items]="payees" (tap)="onPayeeTap($event)"></ListPicker>
-  <Label *ngIf="payees.length == 0" text="No payees found" row="2" colSpan="2" class="empty-picker"></Label>
+<GridLayout
+  columns="*,*"
+  rows="auto,auto,*,auto"
+  width="300"
+>
+  <Label
+    row="0" colSpan="2"
+    class="modal-header"
+    text="Select payee"></Label>
+  <TextField
+    #payeeField
+    row="1" colSpan="2"
+    hint="Enter name or choose from a list"
+    [formControl]="payee"
+    (ngModelChange)="filterPayees()"
+  ></TextField>
+  <ListPicker
+    *ngIf="payees.length > 0"
+    row="2" colSpan="2"
+    [items]="payees"
+    (tap)="onPayeeTap($event)"
+  ></ListPicker>
+  <Label
+    *ngIf="payees.length == 0"
+    row="2" colSpan="2"
+    class="empty-picker"
+    text="No payees found"
+  ></Label>
   <Button
     col="0" row="3"
     class="btn"
