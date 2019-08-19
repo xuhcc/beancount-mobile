@@ -60,6 +60,7 @@
       <Label
         class="field-addon icon"
         text="&#xe241;"
+        (tap)="showCommodityPicker()"
       ></Label>
     </FlexboxLayout>
 
@@ -76,6 +77,7 @@
       <Label
         class="field-addon icon"
         text="&#xe241;"
+        (tap)="showAccountPicker('accountFrom')"
       ></Label>
     </FlexboxLayout>
 
@@ -92,6 +94,7 @@
       <Label
         class="field-addon icon"
         text="&#xe241;"
+        (tap)="showAccountPicker('accountTo')"
       ></Label>
     </FlexboxLayout>
 
@@ -103,11 +106,12 @@
         hint="Tap to select"
         editable="false"
         formControlName="payee"
-        (tap)="showPayeeModal()"
+        (tap)="showPayeePicker()"
       ></TextField>
       <Label
         class="field-addon icon"
         text="&#xe241;"
+        (tap)="showPayeePicker()"
       ></Label>
     </FlexboxLayout>
 

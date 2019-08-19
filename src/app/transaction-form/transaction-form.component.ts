@@ -88,6 +88,18 @@ export class TransactionFormComponent implements OnInit {
         showKeyboard(amountField);
     }
 
+    showDatePicker(): void {
+        const picker = new ModalDatetimepicker();
+        picker.pickDate({
+            title: 'Select date',
+            theme: 'light',
+            maxDate: new Date(),
+        }).then((result) => {
+            const date = new Date(Date.UTC(result.year, result.month - 1, result.day));
+            this.form.controls.date.setValue(getDateStr(date));
+        });
+    }
+
     showAccountPicker(fieldName: string): void {
         const options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
@@ -112,19 +124,7 @@ export class TransactionFormComponent implements OnInit {
         });
     }
 
-    showDatePicker(): void {
-        const picker = new ModalDatetimepicker();
-        picker.pickDate({
-            title: 'Select date',
-            theme: 'light',
-            maxDate: new Date(),
-        }).then((result) => {
-            const date = new Date(Date.UTC(result.year, result.month - 1, result.day));
-            this.form.controls.date.setValue(getDateStr(date));
-        });
-    }
-
-    showPayeeModal(): void {
+    showPayeePicker(): void {
         const options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
             context: this.payees,
