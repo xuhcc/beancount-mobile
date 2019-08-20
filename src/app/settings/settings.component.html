@@ -3,19 +3,37 @@
   <Label class="action-bar-title" text="Settings"></Label>
 </ActionBar>
 
-<StackLayout [formGroup]="form" class="form">
-  <Label
-    class="label"
-    text="Path to beancount file"
-  ></Label>
-  <TextField class="field" formControlName="filePath"></TextField>
-  <Button class="btn" text="browse" (tap)="openFilePicker()"></Button>
-  <Button class="btn" text="save" (tap)="save()" [isEnabled]="canSave()"></Button>
+<DockLayout stretchLastChild="false" class="page">
+  <StackLayout
+    dock="top"
+    class="form"
+    [formGroup]="form"
+  >
+    <Label
+      class="label"
+      text="Path to beancount file"
+    ></Label>
+    <TextField class="field" formControlName="filePath"></TextField>
+    <Button class="btn" text="browse" (tap)="openFilePicker()"></Button>
+    <Button
+      [className]="canSave() ? 'btn' : 'btn btn-disabled'"
+      text="save"
+      (tap)="save()"
+      [isEnabled]="canSave()"
+    ></Button>
+  </StackLayout>
 
-  <StackLayout class="hr-light"></StackLayout>
-  <Label
-    class="label"
-    text="Reset app settings and go back to Welcome screen"
-  ></Label>
-  <Button class="btn" text="reset" (tap)="reset()"></Button>
-</StackLayout>
+  <StackLayout dock="bottom">
+    <Label
+      id="reset-text"
+      text="Reset app settings and go back to Welcome screen"
+      textWrap="true"
+    ></Label>
+    <Button
+      id="reset-btn"
+      class="btn"
+      text="reset"
+      (tap)="reset()"
+    ></Button>
+  </StackLayout>
+</DockLayout>

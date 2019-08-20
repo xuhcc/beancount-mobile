@@ -2,7 +2,6 @@
 
 .page {
     background: linear-gradient(to bottom, #205081, #236E8C);
-    padding: 20;
 }
 
 .welcome-label {
@@ -35,7 +34,7 @@
 .btn {
     border-radius: 15;
     background-color: #F7F4D3;
-    color: #507CA3;
+    color: $button-color;
     height: 48;
     margin: 8 0;
 }

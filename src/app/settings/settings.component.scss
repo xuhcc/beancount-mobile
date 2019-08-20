@@ -1,7 +1,32 @@
+@import '../../app-variables';
+
 .btn {
-    margin: 5 0;
+    color: $button-text-color;
+    margin: 20 0 0;
 }
 
-.hr-light {
-    margin: 5 0 20;
+.btn-disabled {
+    background-color: #E3E3E3;
+    color: #B5B5B5;
+}
+
+#reset-text {
+    color: #ADADAD;
+    font-size: 14;
+    margin: 0;
+    padding: 0;
+}
+
+#reset-btn {
+    android-elevation: 0;
+    android-dynamic-elevation-offset: 0;
+    background-color: transparent;
+    border-width: 1;
+    border-color: $button-color;
+    color: $button-color;
+}
+
+#reset-btn:highlighted {
+    background-color: $button-color;
+    color: $button-text-color;
 }

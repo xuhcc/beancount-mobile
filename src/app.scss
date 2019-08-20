@@ -12,19 +12,23 @@ refer to http://docs.nativescript.org/ui/theme.
 @import '~nativescript-theme-core/css/core.light.css';
 @import 'app-variables';
 
-.icon {
-    font-family: "Material Icons", "MaterialIcons-Regular";
+.page {
+    padding: 20;
 }
 
 .btn {
     android-elevation: 3;
     border-radius: 10;
-    background-color: #507CA3;
+    background-color: $button-color;
     color: white;
     font-size: 14;
     font-weight: 500;
     letter-spacing: 0.1;
     margin: 5;
+}
+
+.icon {
+    font-family: "Material Icons", "MaterialIcons-Regular";
 }
 
 /* Action bar */
@@ -43,10 +47,6 @@ refer to http://docs.nativescript.org/ui/theme.
 }
 
 /* Forms */
-
-.form {
-    padding: 20;
-}
 
 .label {
     color: $form-label-color;
