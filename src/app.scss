@@ -20,11 +20,16 @@ refer to http://docs.nativescript.org/ui/theme.
     android-elevation: 3;
     border-radius: 10;
     background-color: $button-color;
-    color: white;
+    color: $button-text-color;
     font-size: 14;
     font-weight: 500;
     letter-spacing: 0.1;
     margin: 5;
+}
+
+.btn-disabled {
+    background-color: #E3E3E3;
+    color: #B5B5B5;
 }
 
 .icon {
@@ -83,17 +88,39 @@ refer to http://docs.nativescript.org/ui/theme.
 /* Misc */
 
 .modal {
-    padding: 10;
-    width: 300;
+    margin: 20;
+    padding: 0;
+    width: 250;
 }
 
 .modal-header {
-    margin: 5 0;
+    color: $main-color;
     font-size: 18;
+    font-weight: 500;
+    margin: 0 0 20;
+    padding: 0;
     text-align: center;
 }
 
-.empty-picker {
-    margin: 10;
+.modal .btn {
+    margin: 0;
+}
+
+/* Lists */
+
+.list {
+    margin: 0;
+    padding: 0;
+    separator-color: transparent;
+}
+
+.list-item {
+    color: $form-field-color;
+    font-size: 16;
+    padding: 10 0;
+}
+
+.list-empty {
+    margin: 20;
     text-align: center;
 }

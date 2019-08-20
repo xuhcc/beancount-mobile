@@ -2,8 +2,6 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
 
-import { ListPicker } from 'tns-core-modules/ui/list-picker';
-
 import { showKeyboard } from '../../shared/misc';
 import { ListValidator } from '../../shared/validators';
 
@@ -19,7 +17,6 @@ export class AccountModalComponent implements AfterViewInit {
 
     account: FormControl;
     accounts: string[];
-    selectedIndex: number;
 
     constructor(private modalParams: ModalDialogParams) {
         this.accounts = modalParams.context;
@@ -39,23 +36,13 @@ export class AccountModalComponent implements AfterViewInit {
         });
     }
 
-    onAccountTap(args): void {
-        const picker = <ListPicker>args.object;
-        if (picker.selectedIndex === -1) {
-            // Empty list
-            return;
-        }
-        const selectedValue = this.accounts[picker.selectedIndex];
-        if (selectedValue === this.account.value) {
+    onAccountTap(account: string): void {
+        if (account === this.account.value) {
             // Item already selected, close modal on second tap
             this.select();
         } else {
-            this.account.setValue(selectedValue);
+            this.account.setValue(account);
         }
-    }
-
-    cancel(): void {
-        this.modalParams.closeCallback(null);
     }
 
     select(): void {

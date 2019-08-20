@@ -1,12 +1,12 @@
 # Changelog
 
-## 0.7.0
+## 1.0.0
 
+- New designs for forms and dialogs.
 - Enabled content scrolling for Welcome screen and transaction form.
 - Added datepickers to transaction and account forms.
 - Changed field order on transaction and account forms.
 - Enabled autofocus on name field on account form opening.
-- Updated form styles.
 
 ## 0.6.0
 

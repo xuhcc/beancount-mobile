@@ -1,44 +1,40 @@
-<GridLayout
-  columns="*,*"
-  rows="auto,auto,*,auto"
-  class="modal"
->
+<StackLayout class="modal">
   <Label
-    row="0" colSpan="2"
     class="modal-header"
     text="Select account"
   ></Label>
   <TextField
     #accountField
-    row="1" colSpan="2"
     class="field"
     hint="Start typing..."
     [formControl]="account"
     (ngModelChange)="filterAccounts()"
   ></TextField>
-  <ListPicker
+
+  <ListView
     *ngIf="accounts.length > 0"
-    row="2" colSpan="2"
+    class="list"
     [items]="accounts"
-    (tap)="onAccountTap($event)"
-  ></ListPicker>
+  >
+    <ng-template let-account="item">
+      <Label
+        class="list-item"
+        [text]="account"
+        (tap)="onAccountTap(account)"
+      ></Label>
+    </ng-template>
+  </ListView>
+
   <Label
     *ngIf="accounts.length == 0"
-    row="2" colSpan="2"
-    class="empty-picker"
+    class="list-empty"
     text="No accounts found"
   ></Label>
+
   <Button
-    col="0" row="3"
-    class="btn"
-    text="Cancel"
-    (tap)="cancel()"
-  ></Button>
-  <Button
-    col="1" row="3"
-    class="btn"
+    [className]="account.valid ? 'btn' : 'btn btn-disabled'"
     text="Select"
     (tap)="select()"
     [isEnabled]="account.valid"
   ></Button>
-</GridLayout>
+</StackLayout>

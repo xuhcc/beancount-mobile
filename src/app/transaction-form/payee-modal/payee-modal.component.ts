@@ -2,8 +2,6 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
 
-import { ListPicker } from 'tns-core-modules/ui/list-picker';
-
 import { showKeyboard } from '../../shared/misc';
 
 @Component({
@@ -18,7 +16,6 @@ export class PayeeModalComponent implements AfterViewInit {
 
     payee: FormControl;
     payees: string[];
-    selectedIndex: number;
 
     constructor(private modalParams: ModalDialogParams) {
         this.payee = new FormControl('', Validators.required);
@@ -37,23 +34,13 @@ export class PayeeModalComponent implements AfterViewInit {
         this.payees = filtered;
     }
 
-    onPayeeTap(args): void {
-        const picker = <ListPicker>args.object;
-        if (picker.selectedIndex === -1) {
-            // Empty list
-            return;
-        }
-        const selectedValue = this.payees[picker.selectedIndex];
-        if (selectedValue === this.payee.value) {
+    onPayeeTap(payee: string): void {
+        if (payee === this.payee.value) {
             // Item already selected, close modal on second tap
             this.select();
         } else {
-            this.payee.setValue(selectedValue);
+            this.payee.setValue(payee);
         }
-    }
-
-    cancel(): void {
-        this.modalParams.closeCallback();
     }
 
     select(): void {

@@ -9,8 +9,7 @@ import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
 })
 export class CommodityModalComponent implements OnInit {
 
-    commodities: string[];
-    selectedIndex: number;
+    commodities: string[]; selectedIndex: number;
 
     constructor(private modalParams: ModalDialogParams) {
         this.commodities = modalParams.context;
@@ -19,12 +18,7 @@ export class CommodityModalComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    cancel(): void {
-        this.modalParams.closeCallback(null);
-    }
-
-    select(): void {
-        const commodity = this.commodities[this.selectedIndex];
+    select(commodity: string): void {
         this.modalParams.closeCallback(commodity);
     }
 
