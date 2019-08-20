@@ -16,8 +16,8 @@ This is a companion mobile application for [Beancount](http://furius.ca/beancoun
 * View beancount file as plain text
 * Switch between files
 
-![File content page](metadata/en-US/images/phoneScreenshots/screenshot_text.png)
-![Transaction form](metadata/en-US/images/phoneScreenshots/screenshot_txn.png)
+<img src="metadata/en-US/images/phoneScreenshots/screenshot_text.png" width="360">
+<img src="metadata/en-US/images/phoneScreenshots/screenshot_new_txn.png" width="360">
 
 ## Change log
 
