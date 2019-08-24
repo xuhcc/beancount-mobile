@@ -36,5 +36,14 @@ describe('beancount file content tests', () => {
             'option "title" "BeanTest"\n' +
             'option "operating_currency" "USD"\n');
         expect(content.getTitle()).toBe('BeanTest');
+        expect(content.getOperatingCurrency()).toBe('USD');
+        expect(content.getTransactionFlags()).toEqual(['*', '!']);
+    });
+
+    it('should parse transaction flags option', () => {
+        const content = new BeancountFileContent(
+            '2019-01-01 custom "bcm_option" "transaction_flags" "[\'!\', \'?\']"\n' +
+            '2019-01-02 commodity USD\n');
+        expect(content.getTransactionFlags()).toEqual(['!', '?']);
     });
 });

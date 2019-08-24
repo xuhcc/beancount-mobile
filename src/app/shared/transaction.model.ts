@@ -1,3 +1,5 @@
+import { getDateStr } from './misc';
+
 export class Transaction {
 
     date: Date;
@@ -27,7 +29,7 @@ export class Transaction {
     }
 
     toBeancount(): string {
-        const dateStr = this.date.toISOString().split('T')[0];
+        const dateStr = getDateStr(this.date);
         let result = `${dateStr} ${this.flag}`;
         if (this.payee) {
             result += ` "${this.payee}"`;

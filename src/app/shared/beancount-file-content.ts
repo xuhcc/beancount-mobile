@@ -2,11 +2,28 @@
 // https://github.com/microsoft/TypeScript/issues/32214
 export const ACCOUNT_NAME_REGEXP = /^[^\s:]+:[^\s]+$/;
 
-const TITLE_REGEXP = /^option "title" "(.+)"/um;
-const OPERATING_CURRENCY_REGEXP = /^option "operating_currency" "([^\s]+)"/um;
 const ACCOUNT_REGEXP = /^[\d-]{10} open ([^\s]+)/umg;
 const COMMODITY_REGEXP = /^[\d-]{10} commodity ([A-Z]+)$/umg;
 const PAYEE_REGEXP = /^[\d-]{10} (txn|\*) "([^"]+)" ".*/umg;
+
+function getOptionRegexp(name: string): RegExp {
+    return new RegExp(`^option "${name}"\\s+"(.+)"`, 'um');
+}
+
+function getCustomOptionRegexp(name: string): RegExp {
+    return new RegExp(
+        `^[\\d-]{10} custom "bcm_option" "${name}" "(.+)"`,
+        'um',
+    );
+}
+
+function parseOptionArrayValue(value: string): any[] {
+    const result = JSON.parse(value.replace(/'/g, '"'));
+    if (!Array.isArray(result)) {
+        throw new Error('Invalid option value.');
+    }
+    return result;
+}
 
 export class BeancountFileContent {
 
@@ -17,21 +34,27 @@ export class BeancountFileContent {
     }
 
     getTitle(): string {
-        const match = this.text.match(TITLE_REGEXP);
-        if (match) {
-            return match[1];
-        } else {
-            return 'Untitled';
-        }
+        const regexp = getOptionRegexp('title');
+        const match = this.text.match(regexp);
+        return match ? match[1] : 'Untitled';
     }
 
     getOperatingCurrency(): string {
-        const match = this.text.match(OPERATING_CURRENCY_REGEXP);
+        const regexp = getOptionRegexp('operating_currency');
+        const match = this.text.match(regexp);
+        return match ? match[1] : '';
+    }
+
+    getTransactionFlags(): string[] {
+        const regexp = getCustomOptionRegexp('transaction_flags');
+        const match = this.text.match(regexp);
         if (match) {
-            return match[1];
-        } else {
-            return '';
+            try {
+                return parseOptionArrayValue(match[1]);
+            } catch {
+            }
         }
+        return ['*', '!'];
     }
 
     getAccounts(): string[] {

@@ -36,7 +36,7 @@ export class TransactionFormComponent implements OnInit {
         private routerExtensions: RouterExtensions,
         private beancountFile: BeancountFileService,
     ) {
-        this.flags = ['*', '!'];
+        this.flags = this.beancountFile.content.getTransactionFlags();
         this.accounts = this.beancountFile.content.getAccounts();
         this.commodities = this.beancountFile.content.getCommodities();
         this.payees = this.beancountFile.content.getPayees();
@@ -50,8 +50,8 @@ export class TransactionFormComponent implements OnInit {
                 Validators.required,
             ],
             flag: [
-                '',
-                ListValidator(['', ...this.flags]),
+                this.flags[0],
+                ListValidator(this.flags),
             ],
             amount: [
                 '',
