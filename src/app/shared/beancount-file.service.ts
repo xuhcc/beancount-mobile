@@ -54,7 +54,6 @@ export class BeancountFileService implements OnDestroy {
     private async checkPermission(): Promise<boolean> {
         let hasPermission = true;
         if (isAndroid) {
-            // TODO: remove <uses-permission android:name="android.permission.INTERNET"/>
             const permissionName = 'android.permission.WRITE_EXTERNAL_STORAGE';
             hasPermission = permissions.hasPermission(permissionName);
             if (!hasPermission) {
