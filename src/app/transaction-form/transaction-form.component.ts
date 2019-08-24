@@ -14,6 +14,7 @@ import { CommodityModalComponent } from './commodity-modal/commodity-modal.compo
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
 import { getDateStr, getTodayStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
 import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
+import { ListValidator } from '../shared/validators';
 
 @Component({
     selector: 'bc-transaction-form',
@@ -23,6 +24,7 @@ import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../sh
 export class TransactionFormComponent implements OnInit {
 
     form: FormGroup;
+    flags: string[] = [];
     accounts: string[] = [];
     commodities: string[] = [];
     payees: string[] = [];
@@ -34,6 +36,7 @@ export class TransactionFormComponent implements OnInit {
         private routerExtensions: RouterExtensions,
         private beancountFile: BeancountFileService,
     ) {
+        this.flags = ['*', '!'];
         this.accounts = this.beancountFile.content.getAccounts();
         this.commodities = this.beancountFile.content.getCommodities();
         this.payees = this.beancountFile.content.getPayees();
@@ -45,6 +48,10 @@ export class TransactionFormComponent implements OnInit {
             date: [
                 getTodayStr(),
                 Validators.required,
+            ],
+            flag: [
+                '',
+                ListValidator(['', ...this.flags]),
             ],
             amount: [
                 '',
@@ -91,6 +98,13 @@ export class TransactionFormComponent implements OnInit {
 
     hideKeyboard() {
         androidUtils.dismissSoftInput();
+    }
+
+    changeTransactionFlag() {
+        const index = this.flags.indexOf(this.form.controls.flag.value);
+        const nextIndex = index < this.flags.length - 1 ? index + 1 : 0;
+        const nextFlag = this.flags[nextIndex];
+        this.form.controls.flag.setValue(nextFlag);
     }
 
     showDatePicker(): void {

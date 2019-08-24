@@ -1,6 +1,7 @@
 export class Transaction {
 
     date: Date;
+    flag: string;
     payee: string;
     narration: string;
     postings: {
@@ -11,6 +12,7 @@ export class Transaction {
 
     constructor(options: any) {
         this.date = new Date(options.date);
+        this.flag = options.flag || 'txn';
         this.payee = options.payee;
         this.narration = options.narration;
         this.postings = [{
@@ -26,7 +28,7 @@ export class Transaction {
 
     toBeancount(): string {
         const dateStr = this.date.toISOString().split('T')[0];
-        let result = `${dateStr} txn`;
+        let result = `${dateStr} ${this.flag}`;
         if (this.payee) {
             result += ` "${this.payee}"`;
         }

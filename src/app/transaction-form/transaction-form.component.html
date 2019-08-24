@@ -37,8 +37,9 @@
     </FlexboxLayout>
 
     <Label class="label" text="Amount"></Label>
-    <StackLayout class="field-wrapper">
+    <FlexboxLayout flexDirection="row" class="field-wrapper">
       <TextField
+        flexGrow="1"
         id="amount-field"
         class="field"
         formControlName="amount"
@@ -46,7 +47,15 @@
         (loaded)="onAmountFieldLoaded($event)"
         (returnPress)="hideKeyboard()"
       ></TextField>
-    </StackLayout>
+      <TextField
+        id="flag-field"
+        class="field-addon"
+        formControlName="flag"
+        editable="false"
+        (tap)="changeTransactionFlag()"
+        (focus)="hideKeyboard()"
+      ></TextField>
+    </FlexboxLayout>
 
     <Label class="label" text="Currency"></Label>
     <FlexboxLayout flexDirection="row" class="field-wrapper">

@@ -3,6 +3,7 @@
 ## 1.1.0
 
 - Don't focus on currency field after entering amount in transaction form.
+- Added transaction flag switch to transaction form.
 
 ## 1.0.0
 
