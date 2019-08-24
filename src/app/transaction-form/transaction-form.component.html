@@ -44,6 +44,7 @@
         formControlName="amount"
         keyboardType="number"
         (loaded)="onAmountFieldLoaded($event)"
+        (returnPress)="hideKeyboard()"
       ></TextField>
     </StackLayout>
 
@@ -53,8 +54,8 @@
         flexGrow="1"
         class="field"
         hint="Tap to select"
-        editable="false"
         formControlName="commodity"
+        editable="false"
         (tap)="showCommodityPicker()"
       ></TextField>
       <Label

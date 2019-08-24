@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+- Don't focus on currency field after entering amount in transaction form.
+
 ## 1.0.0
 
 - New designs for forms and dialogs.

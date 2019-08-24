@@ -4,6 +4,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { ModalDialogOptions, ModalDialogService } from 'nativescript-angular/modal-dialog';
 
 import { TextField } from 'tns-core-modules/ui/text-field';
+import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 
 import { Transaction } from '../shared/transaction.model';
@@ -86,6 +87,10 @@ export class TransactionFormComponent implements OnInit {
     onAmountFieldLoaded(args) {
         const amountField = <TextField>args.object;
         showKeyboard(amountField);
+    }
+
+    hideKeyboard() {
+        androidUtils.dismissSoftInput();
     }
 
     showDatePicker(): void {
