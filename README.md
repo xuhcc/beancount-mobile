@@ -18,6 +18,14 @@ This is a companion mobile application for [Beancount](http://furius.ca/beancoun
 
 <img src="metadata/en-US/images/phoneScreenshots/screenshot_text.png" width="360"> <img src="metadata/en-US/images/phoneScreenshots/screenshot_new_txn.png" width="360">
 
+## Configuration
+
+Beancount Mobile makes use of these configuration options:
+
+* `option "title" "..."` - the title of ledger file.
+* `option "operating_currency" "..."` - default currency for transactions.
+* `1970-01-01 custom "bcm_option" "transaction_flags" "['*', '!']"` - allowed transaction flags.
+
 ## Change log
 
 See [CHANGELOG](CHANGELOG.md).
