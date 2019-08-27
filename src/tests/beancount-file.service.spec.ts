@@ -1,5 +1,3 @@
-import { fakeAsync } from '@angular/core/testing';
-
 import * as appSettings from 'tns-core-modules/application-settings';
 import { File } from 'tns-core-modules/file-system';
 
@@ -14,7 +12,7 @@ describe('beancount file service', () => {
     let service;
 
     beforeEach(() => {
-        spyOn(appSettings, 'getString').and.callFake((key) => {
+        spyOn(appSettings, 'getString').and.callFake(() => {
             return filePath;
         });
         spyOn(File, 'fromPath').and.returnValue(fileMock);

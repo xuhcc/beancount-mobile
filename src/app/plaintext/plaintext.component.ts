@@ -3,7 +3,7 @@ import { RouterExtensions, PageRoute } from 'nativescript-angular/router';
 import { registerElement } from 'nativescript-angular/element-registry';
 
 import { Subscription } from 'rxjs';
-import { switchMap, filter } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { Page } from 'tns-core-modules/ui/page';
 import { Fab } from '@nstudio/nativescript-floatingactionbutton';
 import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh';
@@ -97,7 +97,7 @@ export class PlainTextComponent implements OnInit, OnDestroy {
         setIconColor(overflowIcon, ACTION_BAR_BUTTON_COLOR);
     }
 
-    onFileTextChanged(args) {
+    onFileTextChanged() {
         if (this.scrollOnLoad === 'bottom') {
             delete this.scrollOnLoad;
             // Use timeout to make it run on the next angular cycle

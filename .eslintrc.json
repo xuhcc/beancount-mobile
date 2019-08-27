@@ -10,7 +10,8 @@
         "jasmine": true
     },
     "extends": [
-        "standard"
+        "standard",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": 2018,
@@ -26,7 +27,6 @@
             "always-multiline"
         ],
         "semi": "off",
-        "no-unused-vars": "off",
         "no-useless-constructor": "off",
         "space-before-function-paren": [
             "error",
@@ -35,7 +35,10 @@
             }
         ],
         "padded-blocks": "off",
-        "object-curly-spacing": "off"
+        "object-curly-spacing": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     },
     "globals": {
         "android": true

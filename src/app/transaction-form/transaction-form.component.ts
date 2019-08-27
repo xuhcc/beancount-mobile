@@ -13,7 +13,7 @@ import { AccountModalComponent } from './account-modal/account-modal.component';
 import { CommodityModalComponent } from './commodity-modal/commodity-modal.component';
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
 import { getDateStr, getTodayStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
-import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
+import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
 import { ListValidator } from '../shared/validators';
 
 @Component({

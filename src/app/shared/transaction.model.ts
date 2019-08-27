@@ -7,9 +7,9 @@ export class Transaction {
     payee: string;
     narration: string;
     postings: {
-        account: string,
-        amount: number,
-        commodity: string,
+        account: string;
+        amount: number;
+        commodity: string;
     }[];
 
     constructor(options: any) {
@@ -35,7 +35,7 @@ export class Transaction {
             result += ` "${this.payee}"`;
         }
         result += ` "${this.narration}"\n`;
-        for (let posting of this.postings) {
+        for (const posting of this.postings) {
             result += `    ${posting.account}  ${posting.amount} ${posting.commodity}\n`;
         }
         return result;

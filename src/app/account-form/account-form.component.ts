@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterExtensions } from 'nativescript-angular/router';
 
 import { TextField } from 'tns-core-modules/ui/text-field';
@@ -8,7 +8,7 @@ import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { ACCOUNT_NAME_REGEXP } from '../shared/beancount-file-content';
-import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
+import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
 import { getTodayStr, getDateStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
 import { UniqueValidator } from '../shared/validators';
 

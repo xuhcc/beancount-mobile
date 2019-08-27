@@ -3,12 +3,8 @@ import { RouterExtensions } from 'nativescript-angular/router';
 
 import { openUrl } from 'tns-core-modules/utils/utils';
 import { Page } from 'tns-core-modules/ui/page';
-import { TextField } from 'tns-core-modules/ui/text-field';
-import * as appSettings from 'tns-core-modules/application-settings';
 import { Color } from 'tns-core-modules/color';
-import { File, Folder } from 'tns-core-modules/file-system';
 
-import { BEANCOUNT_PATH_SETTING } from '../shared/constants';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { openFilePicker } from '../shared/beancount-file-picker';
 import { SideDrawerService } from '../shared/sidedrawer.service';

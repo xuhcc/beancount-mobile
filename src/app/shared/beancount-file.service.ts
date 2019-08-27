@@ -78,7 +78,7 @@ export class BeancountFileService implements OnDestroy {
 
     private async read(): Promise<string> {
         let fileText;
-        let hasPermission = await this.checkPermission();
+        const hasPermission = await this.checkPermission();
         if (hasPermission) {
             const file = File.fromPath(this.path);
             fileText = await file.readText();
@@ -94,7 +94,7 @@ export class BeancountFileService implements OnDestroy {
         return fileText;
     }
 
-    async load(force: boolean = false): Promise<BeancountFileContent> {
+    async load(force = false): Promise<BeancountFileContent> {
         if (force || this.content === undefined) {
             const fileText = await this.read();
             this.content = new BeancountFileContent(fileText);
@@ -119,8 +119,8 @@ export class BeancountFileService implements OnDestroy {
 
     save() {
         const file = File.fromPath(this.path);
-        file.writeText(this.content.text).catch((error) => { // eslint-disable-line handle-callback-err
-            console.warn('file not saved');
+        file.writeText(this.content.text).catch((error) => {
+            console.warn('file not saved:', error);
         });
     }
 

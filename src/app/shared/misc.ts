@@ -1,6 +1,3 @@
-import { ElementRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-
 import { Observable } from 'rxjs';
 import { getNativeApplication } from 'tns-core-modules/application';
 import { ActionBar } from 'tns-core-modules/ui/action-bar';
@@ -53,8 +50,8 @@ export function setIconColor(
         icon.setColorFilter(null);
     } else {
         icon.setColorFilter(
-            android.graphics.Color.parseColor(color), // eslint-disable-line no-undef
-            android.graphics.PorterDuff.Mode.SRC_ATOP, // eslint-disable-line no-undef
+            android.graphics.Color.parseColor(color),
+            android.graphics.PorterDuff.Mode.SRC_ATOP,
         );
     }
 }

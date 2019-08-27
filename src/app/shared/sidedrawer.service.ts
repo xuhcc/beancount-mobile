@@ -3,17 +3,16 @@ import { RouterExtensions } from 'nativescript-angular/router';
 
 import { android as androidApplication } from 'tns-core-modules/application';
 import { Color } from 'tns-core-modules/color';
-import { fromResource as imageFromResource } from 'tns-core-modules/image-source';
-import { TnsSideDrawerClass, TnsSideDrawerOptions } from 'nativescript-foss-sidedrawer';
+import { TnsSideDrawerClass } from 'nativescript-foss-sidedrawer';
 
 import { APP_NAME } from './constants';
-import { getColor, getAppVersion } from './misc';
+import { getAppVersion } from './misc';
 
 // https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html
 const LOCK_MODE_LOCKED_CLOSED = 1;
 const LOCK_MODE_UNDEFINED = 3;
 
-declare var com: any;
+declare let com: any;
 
 class CustomSideDrawerClass extends TnsSideDrawerClass {
 
@@ -22,14 +21,14 @@ class CustomSideDrawerClass extends TnsSideDrawerClass {
     build(opts: any) {
         const activity: android.app.Activity = androidApplication.foregroundActivity;
 
-        let profile = new com.mikepenz.materialdrawer.model.ProfileDrawerItem();
+        const profile = new com.mikepenz.materialdrawer.model.ProfileDrawerItem();
         profile.withName(opts.title);
         profile.withEmail(opts.subtitle);
 
-        let bg = android.graphics.Bitmap.createBitmap(8, 8, android.graphics.Bitmap.Config.ARGB_8888);
+        const bg = android.graphics.Bitmap.createBitmap(8, 8, android.graphics.Bitmap.Config.ARGB_8888);
         bg.eraseColor(opts.headerBackgroundColor.android);
 
-        let header = new com.mikepenz.materialdrawer.AccountHeaderBuilder();
+        const header = new com.mikepenz.materialdrawer.AccountHeaderBuilder();
         header.withActivity(activity);
         header.withHeaderBackground(new com.mikepenz.materialdrawer.holder.ImageHolder(bg));
         header.addProfiles([profile]);
@@ -39,7 +38,7 @@ class CustomSideDrawerClass extends TnsSideDrawerClass {
         header.withTextColor(opts.headerTextColor.android);
 
         const items = opts.templates.map((template, index) => {
-            let item = new com.mikepenz.materialdrawer.model.PrimaryDrawerItem();
+            const item = new com.mikepenz.materialdrawer.model.PrimaryDrawerItem();
             item.withIdentifier(index);
             item.withName(template.title);
             item.withTextColor(opts.textColor.android);
@@ -48,14 +47,14 @@ class CustomSideDrawerClass extends TnsSideDrawerClass {
             return item;
         });
 
-        let drawer = new com.mikepenz.materialdrawer.DrawerBuilder();
+        const drawer = new com.mikepenz.materialdrawer.DrawerBuilder();
         drawer.withActivity(activity);
         drawer.withAccountHeader(header.build());
         drawer.withSliderBackgroundColor(opts.backgroundColor.android);
         drawer.addDrawerItems(items);
         drawer.withSelectedItem(-1);
         drawer.withOnDrawerItemClickListener(new com.mikepenz.materialdrawer.Drawer.OnDrawerItemClickListener({
-            onItemClick: (view: android.view.View, index: number, item: any): boolean => {
+            onItemClick: (view: android.view.View, index: number): boolean => {
                 opts.listener(index - 1);
                 return false;
             },
@@ -105,7 +104,7 @@ export class SideDrawerService {
                 });
             },
         };
-        this.loaded = new Promise((resolve, reject) => {
+        this.loaded = new Promise((resolve) => {
             // https://gitlab.com/burke-software/nativescript-foss-sidedrawer/issues/2
             setTimeout(() => {
                 this.drawer.build(config);
