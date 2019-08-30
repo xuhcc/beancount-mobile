@@ -15,6 +15,23 @@ android {
     generatedDensities = []
   }
 
+  // Read signing config from gradle properties instead of CLI args
+  signingConfigs {
+    release {
+      if (project.hasProperty("release")) {
+        if (project.hasProperty("BEANCOUNT_RELEASE_STORE_FILE") &&
+            project.hasProperty("BEANCOUNT_RELEASE_STORE_PASSWORD") &&
+            project.hasProperty("BEANCOUNT_RELEASE_KEY_ALIAS") &&
+            project.hasProperty("BEANCOUNT_RELEASE_KEY_PASSWORD")) {
+
+          storeFile file(BEANCOUNT_RELEASE_STORE_FILE)
+          storePassword BEANCOUNT_RELEASE_STORE_PASSWORD
+          keyAlias BEANCOUNT_RELEASE_KEY_ALIAS
+          keyPassword BEANCOUNT_RELEASE_KEY_PASSWORD
+        }
+      }
+    }
+  }
   // Enable building of unsigned release APK
   // https://github.com/NativeScript/nativescript-cli/issues/3444
   buildTypes {
