@@ -3,6 +3,7 @@
 ## 1.2.0
 
 - Sort accounts and payees in selection dialogs by frequency of use.
+- Show all locations in file picker by default.
 
 ## 1.1.0
 
