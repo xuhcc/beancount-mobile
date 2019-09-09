@@ -48,13 +48,13 @@ npm install
 Run on emulator:
 
 ```
-tns run android
+npm run android
 ```
 
 Build APK:
 
 ```
-tns build android
+npm run android-debug
 ```
 
 ### Testing
