@@ -77,11 +77,22 @@ export class BeancountFileContent {
 
     getPayees(): string[] {
         const matches = this.text['matchAll'](PAYEE_REGEXP);
-        const payees = Array.from(matches)
-            .map((match) => match[2])
-            // Remove duplicates
-            .filter((payee, index, self) => self.indexOf(payee) === index)
-            .sort(); // TODO: Sort by frequency
+        const payeeCounts = Array
+            .from(matches, (match) => match[2])
+            // Count and remove duplicates
+            .reduce((result: {}, item: string) => {
+                if (!result[item]) {
+                    result[item] = 1;
+                } else {
+                    result[item] += 1;
+                }
+                return result;
+            }, {});
+        const payees = Object
+            .keys(payeeCounts)
+            .sort((v1: string, v2: string) => {
+                return -(payeeCounts[v1] - payeeCounts[v2]);
+            });
         return payees;
     }
 

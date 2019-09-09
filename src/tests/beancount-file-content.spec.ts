@@ -46,4 +46,19 @@ describe('beancount file content tests', () => {
             '2019-01-02 commodity USD\n');
         expect(content.getTransactionFlags()).toEqual(['!', '?']);
     });
+
+    it('should parse payees', () => {
+        const content = new BeancountFileContent(
+            '2019-09-07 txn "Payee1" "Tx1"\n' +
+            '2019-09-07 txn "Payee2" "Tx2"\n' +
+            '2019-09-07 txn "Payee2" "Tx3"\n' +
+            '2019-09-07 txn "Payee3" "Tx4"\n' +
+            '2019-09-07 txn "Payee3" "Tx5"\n' +
+            '2019-09-07 txn "Payee2" "Tx6"\n');
+        expect(content.getPayees()).toEqual([
+            'Payee2',
+            'Payee3',
+            'Payee1',
+        ]);
+    });
 });

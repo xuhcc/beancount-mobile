@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+- Sort payees in selection dialog by frequency of use.
+
 ## 1.1.0
 
 - Added transaction flag switch to transaction form.
