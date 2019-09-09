@@ -3,6 +3,7 @@ import { getNativeApplication } from 'tns-core-modules/application';
 import { ActionBar } from 'tns-core-modules/ui/action-bar';
 import { TextField } from 'tns-core-modules/ui/text-field';
 import { Color } from 'tns-core-modules/color';
+import { ImageSource } from 'tns-core-modules/image-source';
 import { ad } from 'tns-core-modules/utils/utils';
 import { Font, FontStyle, FontWeight } from 'tns-core-modules/ui/styling/font';
 
@@ -80,22 +81,9 @@ export function textToBitmap(
     fontColor: string,
     fontFamily: string,
 ) {
-    const nsFont = new Font(fontFamily, 0, FontStyle.NORMAL, FontWeight.LIGHT);
-    // Adapted from https://stackoverflow.com/a/39965170/1868395
-    const paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
-    paint.setTextSize(fontSize);
-    paint.setColor(android.graphics.Color.parseColor(fontColor));
-    paint.setTextAlign(android.graphics.Paint.Align.LEFT);
-    paint.setTypeface(nsFont.getAndroidTypeface());
-    const baseline = -paint.ascent();
-    const width = paint.measureText(text);
-    const height = baseline + paint.descent();
-    const image = android.graphics.Bitmap.createBitmap(
-        width,
-        height,
-        android.graphics.Bitmap.Config.ARGB_8888,
-    );
-    const canvas = new android.graphics.Canvas(image);
-    canvas.drawText(text, 0, baseline, paint);
-    return image;
+    const font = new Font(fontFamily, fontSize, FontStyle.NORMAL, FontWeight.LIGHT);
+    const color = new Color(fontColor);
+    const source = new ImageSource();
+    source.loadFromFontIconCode(text, font, color);
+    return source.android;
 }
