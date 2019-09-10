@@ -1,9 +1,10 @@
-// Currently there is no support for \p{L}, so we use [^\s]
-// https://github.com/microsoft/TypeScript/issues/32214
-export const ACCOUNT_NAME_REGEXP = /^[^\s:]+:[^\s]+$/;
-
-// const ACCOUNT_OPEN_REGEXP = /^[\d-]{10} open ([^\s]+)/umg;
-const ACCOUNT_REGEXP = /\s+([^\s]+:[^\s:]+)(\s|$)/umg;
+const DEFAULT_ROOT_ACCOUNTS = [
+    'Assets',
+    'Liabilities',
+    'Equity',
+    'Income',
+    'Expenses',
+];
 const COMMODITY_REGEXP = /^[\d-]{10} commodity ([A-Z]+)$/umg;
 const PAYEE_REGEXP = /^[\d-]{10} (txn|\*) "([^"]+)" ".*/umg;
 
@@ -51,6 +52,14 @@ export class BeancountFileContent {
         this.text = text;
     }
 
+    private getRootAccounts(): string[] {
+        return DEFAULT_ROOT_ACCOUNTS.map((name: string) => {
+            const regexp = getOptionRegexp(`name_${name.toLowerCase()}`);
+            const match = this.text.match(regexp);
+            return match ? match[1] : name;
+        });
+    }
+
     getTitle(): string {
         const regexp = getOptionRegexp('title');
         const match = this.text.match(regexp);
@@ -75,10 +84,22 @@ export class BeancountFileContent {
         return ['*', '!'];
     }
 
+    getAccountNameRegexp(): RegExp {
+        const roots = this.getRootAccounts().join('|');
+        // Currently there is no support for \p{L}, so we use [^\s]
+        // https://github.com/microsoft/TypeScript/issues/32214
+        return new RegExp(`^(${roots}):[^\\s]+[^\\s:]$`);
+    }
+
     getAccounts(): string[] {
+        const roots = this.getRootAccounts().join('|');
+        const accountRegexp = new RegExp(
+            `\\s+((${roots}):[^\\s]+[^\\s:])(\\s|$)`,
+            'umg',
+        );
         // No support for matchAll in TypeScript
         // https://stackoverflow.com/questions/55499555/
-        const matches = this.text['matchAll'](ACCOUNT_REGEXP);
+        const matches = this.text['matchAll'](accountRegexp);
         const accounts = Array.from(matches, (match) => match[1]);
         return uniqueAndSortedByCount(accounts);
     }

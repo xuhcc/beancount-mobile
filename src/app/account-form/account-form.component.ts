@@ -7,7 +7,6 @@ import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 
 import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
-import { ACCOUNT_NAME_REGEXP } from '../shared/beancount-file-content';
 import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
 import { getTodayStr, getDateStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
 import { UniqueValidator } from '../shared/validators';
@@ -31,6 +30,7 @@ export class AccountFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        const nameRegexp = this.beancountFile.content.getAccountNameRegexp();
         this.form = this.formBuilder.group({
             date: [
                 getTodayStr(),
@@ -40,7 +40,7 @@ export class AccountFormComponent implements OnInit {
                 '',
                 [
                     Validators.required,
-                    Validators.pattern(ACCOUNT_NAME_REGEXP),
+                    Validators.pattern(nameRegexp),
                     UniqueValidator(this.accounts),
                 ],
             ],
