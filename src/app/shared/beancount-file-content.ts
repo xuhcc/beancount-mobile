@@ -2,7 +2,8 @@
 // https://github.com/microsoft/TypeScript/issues/32214
 export const ACCOUNT_NAME_REGEXP = /^[^\s:]+:[^\s]+$/;
 
-const ACCOUNT_REGEXP = /^[\d-]{10} open ([^\s]+)/umg;
+// const ACCOUNT_OPEN_REGEXP = /^[\d-]{10} open ([^\s]+)/umg;
+const ACCOUNT_REGEXP = /\s+([^\s]+:[^\s:]+)(\s|$)/umg;
 const COMMODITY_REGEXP = /^[\d-]{10} commodity ([A-Z]+)$/umg;
 const PAYEE_REGEXP = /^[\d-]{10} (txn|\*) "([^"]+)" ".*/umg;
 
@@ -23,6 +24,23 @@ function parseOptionArrayValue(value: string): any[] {
         throw new Error('Invalid option value.');
     }
     return result;
+}
+
+function uniqueAndSortedByCount(items: string[]): string[] {
+    // Count and remove duplicates
+    const counts = items.reduce((result: {}, item: string) => {
+        if (!result[item]) {
+            result[item] = 1;
+        } else {
+            result[item] += 1;
+        }
+        return result;
+    }, {});
+    return Object
+        .keys(counts)
+        .sort((v1: string, v2: string) => {
+            return -(counts[v1] - counts[v2]);
+        });
 }
 
 export class BeancountFileContent {
@@ -61,39 +79,22 @@ export class BeancountFileContent {
         // No support for matchAll in TypeScript
         // https://stackoverflow.com/questions/55499555/
         const matches = this.text['matchAll'](ACCOUNT_REGEXP);
-        const accounts = Array.from(matches).map((match) => {
-            return match[1];
-        }).sort();
-        return accounts;
+        const accounts = Array.from(matches, (match) => match[1]);
+        return uniqueAndSortedByCount(accounts);
     }
 
     getCommodities(): string[] {
         const matches = this.text['matchAll'](COMMODITY_REGEXP);
-        const commodities = Array.from(matches).map((match) => {
-            return match[1];
-        }).sort();
+        const commodities = Array
+            .from(matches, (match) => match[1])
+            .sort();
         return commodities;
     }
 
     getPayees(): string[] {
         const matches = this.text['matchAll'](PAYEE_REGEXP);
-        const payeeCounts = Array
-            .from(matches, (match) => match[2])
-            // Count and remove duplicates
-            .reduce((result: {}, item: string) => {
-                if (!result[item]) {
-                    result[item] = 1;
-                } else {
-                    result[item] += 1;
-                }
-                return result;
-            }, {});
-        const payees = Object
-            .keys(payeeCounts)
-            .sort((v1: string, v2: string) => {
-                return -(payeeCounts[v1] - payeeCounts[v2]);
-            });
-        return payees;
+        const payees = Array.from(matches, (match) => match[2]);
+        return uniqueAndSortedByCount(payees);
     }
 
     append(text: string) {

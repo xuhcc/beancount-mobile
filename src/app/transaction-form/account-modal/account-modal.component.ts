@@ -33,7 +33,7 @@ export class AccountModalComponent implements AfterViewInit {
         const regexp = new RegExp(this.account.value, 'iu');
         this.accounts = this.modalParams.context.filter((account) => {
             return account.search(regexp) !== -1;
-        });
+        }).sort();
     }
 
     onAccountTap(account: string): void {

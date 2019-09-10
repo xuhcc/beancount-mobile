@@ -47,6 +47,25 @@ describe('beancount file content tests', () => {
         expect(content.getTransactionFlags()).toEqual(['!', '?']);
     });
 
+    it('should parse accounts', () => {
+        const content = new BeancountFileContent(
+            '2019-09-07 open Assets:Account1\n' +
+            '2019-09-07 open Assets:Account2\n' +
+            '2019-09-07 open Assets:Account3\n' +
+            '2019-09-07 txn "Tx1"\n' +
+            '  Assets:Account1 -100 USD\n' +
+            '  Assets:Account2 +100 USD\n' +
+            '2019-09-07 txn "Tx2"\n' +
+            '  Assets:Account1 -100 USD\n' +
+            '  Assets:Account2 +50 USD\n' +
+            '  Assets:Account2 +50 USD\n')
+        expect(content.getAccounts()).toEqual([
+            'Assets:Account2',
+            'Assets:Account1',
+            'Assets:Account3',
+        ]);
+    });
+
     it('should parse payees', () => {
         const content = new BeancountFileContent(
             '2019-09-07 txn "Payee1" "Tx1"\n' +

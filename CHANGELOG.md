@@ -2,7 +2,7 @@
 
 ## 1.2.0
 
-- Sort payees in selection dialog by frequency of use.
+- Sort accounts and payees in selection dialogs by frequency of use.
 
 ## 1.1.0
 

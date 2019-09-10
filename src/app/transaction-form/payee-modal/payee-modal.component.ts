@@ -30,7 +30,7 @@ export class PayeeModalComponent implements AfterViewInit {
         const regexp = new RegExp(this.payee.value, 'iu');
         const filtered = this.modalParams.context.filter((payee) => {
             return payee.search(regexp) !== -1;
-        });
+        }).sort();
         this.payees = filtered;
     }
 
