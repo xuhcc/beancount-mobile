@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs/operators';
 import { Page } from 'tns-core-modules/ui/page';
 import { Fab } from '@nstudio/nativescript-floatingactionbutton';
 import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh';
-import { makeText as makeToast } from 'nativescript-toast';
+import { Toasty, ToastPosition, ToastDuration } from 'nativescript-toasty';
 
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { BeancountFileContent } from '../shared/beancount-file-content';
@@ -46,7 +46,11 @@ export class PlainTextComponent implements OnInit, OnDestroy {
     private fileSubscribe() {
         this.fileSubscription = this.beancountFile.contentStream.subscribe((fileContent: BeancountFileContent) => {
             if (this.fileText) {
-                const toast = makeToast('File reloaded', 'long');
+                const toast = new Toasty({
+                    text: 'File reloaded',
+                    position: ToastPosition.BOTTOM,
+                    duration: ToastDuration.LONG,
+                });
                 toast.show();
             }
             this.fileText = fileContent.text;
