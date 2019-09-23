@@ -1,7 +1,8 @@
 # Changelog
 
-## 1.2.1
+## 1.3.0
 
+- Added currency form.
 - Show alert when choosing file from external storage.
 - Fixed incorrect current date on transaction form.
 

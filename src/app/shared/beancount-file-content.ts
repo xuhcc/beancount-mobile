@@ -5,6 +5,7 @@ const DEFAULT_ROOT_ACCOUNTS = [
     'Income',
     'Expenses',
 ];
+export const COMMODITY_NAME_REGEXP = /^[A-Z]+$/;
 const COMMODITY_REGEXP = /^[\d-]{10} commodity ([A-Z]+)$/umg;
 const PAYEE_REGEXP = /^[\d-]{10} (txn|\*) "([^"]+)" ".*/umg;
 

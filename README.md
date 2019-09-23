@@ -13,6 +13,7 @@ This is a companion mobile application for [Beancount](http://furius.ca/beancoun
 
 * Add transactions
 * Open accounts
+* Declare currencies
 * View beancount file as plain text
 * Switch between files
 

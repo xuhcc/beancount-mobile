@@ -1,0 +1,45 @@
+<ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
+  <!--
+  It is not yet possible to use icon font with NavigationButton
+  https://github.com/NativeScript/NativeScript/issues/7520
+  -->
+  <NavigationButton
+    icon="res://baseline_close_white_24"
+    text="Back"
+    (tap)="goBack()"
+  ></NavigationButton>
+  <Label class="action-bar-title" text="New currency"></Label>
+  <ActionItem
+    icon="font://&#xe161;"
+    class="icon"
+    text="Save"
+    (tap)="save()"
+  ></ActionItem>
+</ActionBar>
+
+<StackLayout class="page form" [formGroup]="form">
+
+  <Label class="label" text="Date"></Label>
+  <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <TextField
+      flexGrow="1"
+      class="field"
+      formControlName="date"
+      keyboardType="datetime"
+    ></TextField>
+    <Button
+      id="calendar-btn"
+      class="field-addon icon"
+      text="&#xe878;"
+      (tap)="showDatePicker()"
+    ></Button>
+  </FlexboxLayout>
+
+  <Label class="label" text="Name"></Label>
+  <TextField
+    class="field"
+    formControlName="name"
+    (loaded)="onNameFieldLoaded($event)"
+  ></TextField>
+
+</StackLayout>

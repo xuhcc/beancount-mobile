@@ -14,6 +14,7 @@ import { CommodityModalComponent } from './transaction-form/commodity-modal/comm
 import { PayeeModalComponent } from './transaction-form/payee-modal/payee-modal.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AccountFormComponent } from './account-form/account-form.component';
+import { CommodityFormComponent } from './commodity-form/commodity-form.component';
 
 @NgModule({
     bootstrap: [
@@ -35,6 +36,7 @@ import { AccountFormComponent } from './account-form/account-form.component';
         PayeeModalComponent,
         SettingsComponent,
         AccountFormComponent,
+        CommodityFormComponent,
     ],
     entryComponents: [
         AccountModalComponent,

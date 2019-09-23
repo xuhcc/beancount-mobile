@@ -1,6 +1,6 @@
 import { getDateStr } from './misc';
 
-export class Account {
+export class Commodity {
 
     date: Date;
     name: string;
@@ -12,6 +12,6 @@ export class Account {
 
     toBeancount(): string {
         const dateStr = getDateStr(this.date);
-        return `${dateStr} open ${this.name}\n`;
+        return `${dateStr} commodity ${this.name}\n`;
     }
 }

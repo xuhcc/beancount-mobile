@@ -8,6 +8,7 @@ import { PlainTextComponent } from './plaintext/plaintext.component';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AccountFormComponent } from './account-form/account-form.component';
+import { CommodityFormComponent } from './commodity-form/commodity-form.component';
 
 const routes: Routes = [
     {
@@ -31,6 +32,10 @@ const routes: Routes = [
     {
         path: 'add-account',
         component: AccountFormComponent,
+    },
+    {
+        path: 'add-commodity',
+        component: CommodityFormComponent,
     },
     {
         path: 'settings',

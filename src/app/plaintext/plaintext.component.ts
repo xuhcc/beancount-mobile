@@ -146,6 +146,10 @@ export class PlainTextComponent implements OnInit, OnDestroy {
         this.routerExtensions.navigate(['/add-account']);
     }
 
+    addCommodity() {
+        this.routerExtensions.navigate(['/add-commodity']);
+    }
+
     scrollToTop() {
         const element = this.fileTextView.nativeElement;
         element.scrollToVerticalOffset(0);
