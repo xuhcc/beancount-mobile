@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Show alert when choosing file from external storage.
+
 ## 1.2.0
 
 - Sort accounts and payees in selection dialogs by frequency of use.

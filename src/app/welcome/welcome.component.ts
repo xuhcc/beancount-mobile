@@ -57,8 +57,10 @@ export class WelcomeComponent implements OnInit {
     }
 
     openFilePicker() {
-        openFilePicker().then((filePath) => {
-            this.filePath = filePath;
+        openFilePicker().then((filePath: string) => {
+            if (filePath) {
+                this.filePath = filePath;
+            }
         });
     }
 
