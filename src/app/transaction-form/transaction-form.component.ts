@@ -6,8 +6,8 @@ import { ModalDialogOptions, ModalDialogService } from 'nativescript-angular/mod
 import { isAndroid } from 'tns-core-modules/platform';
 import { TextField } from 'tns-core-modules/ui/text-field';
 import { ad as androidUtils } from 'tns-core-modules/utils/utils';
-import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 
+import { showDatePicker } from '../shared/date-picker';
 import { Transaction } from '../shared/transaction.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { AccountModalComponent } from './account-modal/account-modal.component';
@@ -125,13 +125,7 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
     }
 
     showDatePicker(): void {
-        const picker = new ModalDatetimepicker();
-        picker.pickDate({
-            title: 'Select date',
-            theme: 'light',
-            maxDate: new Date(),
-        }).then((result) => {
-            const date = new Date(Date.UTC(result.year, result.month - 1, result.day));
+        showDatePicker().then((date: Date) => {
             this.form.controls.date.setValue(getDateStr(date));
         });
     }

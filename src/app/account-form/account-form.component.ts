@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterExtensions } from 'nativescript-angular/router';
 
 import { TextField } from 'tns-core-modules/ui/text-field';
-import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 
 import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
+import { showDatePicker } from '../shared/date-picker';
 import { getTodayStr, getDateStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
 import { UniqueValidator } from '../shared/validators';
 
@@ -64,13 +64,7 @@ export class AccountFormComponent implements OnInit {
     }
 
     showDatePicker(): void {
-        const picker = new ModalDatetimepicker();
-        picker.pickDate({
-            title: 'Select date',
-            theme: 'light',
-            maxDate: new Date(),
-        }).then((result) => {
-            const date = new Date(Date.UTC(result.year, result.month - 1, result.day));
+        showDatePicker().then((date: Date) => {
             this.form.controls.date.setValue(getDateStr(date));
         });
     }
