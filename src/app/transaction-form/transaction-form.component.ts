@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ModalDialogOptions, ModalDialogService } from 'nativescript-angular/modal-dialog';
 
+import { isAndroid } from 'tns-core-modules/platform';
 import { TextField } from 'tns-core-modules/ui/text-field';
 import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
@@ -13,7 +14,7 @@ import { AccountModalComponent } from './account-modal/account-modal.component';
 import { CommodityModalComponent } from './commodity-modal/commodity-modal.component';
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
 import { getDateStr, getTodayStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
-import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
+import { ACTION_BAR_BUTTON_COLOR, AFTERVIEWINIT_DELAY } from '../shared/constants';
 import { ListValidator } from '../shared/validators';
 
 @Component({
@@ -21,13 +22,16 @@ import { ListValidator } from '../shared/validators';
     templateUrl: './transaction-form.component.html',
     styleUrls: ['./transaction-form.component.scss'],
 })
-export class TransactionFormComponent implements OnInit {
+export class TransactionFormComponent implements OnInit, AfterViewInit {
 
     form: FormGroup;
     flags: string[] = [];
     accounts: string[] = [];
     commodities: string[] = [];
     payees: string[] = [];
+
+    @ViewChild('descriptionField', {static: false})
+    descriptionField: ElementRef;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -78,6 +82,19 @@ export class TransactionFormComponent implements OnInit {
                 Validators.maxLength(100),
             ],
         });
+    }
+
+    ngAfterViewInit(): void {
+        setTimeout(() => {
+            if (isAndroid) {
+                // Fix autosuggestion
+                const descriptionField = this.descriptionField.nativeElement.android;
+                const inputType = descriptionField.getInputType();
+                descriptionField.setInputType(
+                    inputType ^ android.text.InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE,
+                );
+            }
+        }, AFTERVIEWINIT_DELAY);
     }
 
     onActionBarLoaded(args) {

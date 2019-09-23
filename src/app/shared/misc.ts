@@ -7,7 +7,11 @@ import { ImageSource } from 'tns-core-modules/image-source';
 import { ad } from 'tns-core-modules/utils/utils';
 import { Font, FontStyle, FontWeight } from 'tns-core-modules/ui/styling/font';
 
-import { ACTION_BAR_BUTTON_COLOR, ACTION_BAR_BUTTON_DISABLED_COLOR } from '../shared/constants';
+import {
+    ACTION_BAR_BUTTON_COLOR,
+    ACTION_BAR_BUTTON_DISABLED_COLOR,
+    AFTERVIEWINIT_DELAY,
+} from '../shared/constants';
 
 export function getDateStr(date: Date): string {
     return date.toISOString().split('T')[0];
@@ -24,7 +28,7 @@ export function showKeyboard(textField: TextField): void {
     // https://stackoverflow.com/a/52008858/1868395
     setTimeout(() => {
         textField.focus();
-    }, 200);
+    }, AFTERVIEWINIT_DELAY);
 }
 
 export function getColor(name: string): Color {
