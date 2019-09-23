@@ -3,6 +3,7 @@
 ## 1.2.1
 
 - Show alert when choosing file from external storage.
+- Fixed incorrect current date on transaction form.
 
 ## 1.2.0
 
