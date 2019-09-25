@@ -68,3 +68,4 @@ npm run test
 ## Donate
 
 Bitcoin: 3GHkLq8jRgsfzaV8N6EjX7BaoMuLdEeu51
+Ethereum: 0xA76BDeb6837ecd3da017e1a495254dcA2a252Ef3
