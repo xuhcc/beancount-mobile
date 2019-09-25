@@ -22,6 +22,7 @@ export class BeancountFileService implements OnDestroy {
     content: BeancountFileContent; // Cached content
     contentStream: Subject<BeancountFileContent>;
     watcher: Subscription;
+    isLoading = false;
 
     constructor() {
         this.path = appSettings.getString(BEANCOUNT_PATH_SETTING);
@@ -77,6 +78,7 @@ export class BeancountFileService implements OnDestroy {
     }
 
     private async read(): Promise<string> {
+        this.isLoading = true;
         let fileText;
         const hasPermission = await this.checkPermission();
         if (hasPermission) {
@@ -91,6 +93,7 @@ export class BeancountFileService implements OnDestroy {
             // No permission; return empty string
             fileText = '';
         }
+        this.isLoading = false;
         return fileText;
     }
 
@@ -117,11 +120,13 @@ export class BeancountFileService implements OnDestroy {
         this.save();
     }
 
-    save() {
+    async save(): Promise<void> {
         const file = File.fromPath(this.path);
-        file.writeText(this.content.text).catch((error) => {
+        try {
+            await file.writeText(this.content.text);
+        } catch (error) {
             console.warn('file not saved:', error);
-        });
+        }
     }
 
     reset() {

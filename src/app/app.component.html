@@ -1,1 +1,8 @@
-<page-router-outlet></page-router-outlet>
+<GridLayout>
+  <page-router-outlet></page-router-outlet>
+  <GridLayout
+    *ngIf="isLoading"
+    class="loader"
+    (tap)="true"
+  ></GridLayout>
+</GridLayout>

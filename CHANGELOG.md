@@ -5,6 +5,7 @@
 - Added currency form.
 - Show alert when choosing file from external storage.
 - Fixed incorrect current date on transaction form.
+- Dim application screen when loading file.
 
 ## 1.2.0
 
