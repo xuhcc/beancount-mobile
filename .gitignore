@@ -2,7 +2,6 @@
 hooks/
 node_modules/
 platforms/
-App_Resources/iOS/
 src/fonts/
 
 # NativeScript Template
