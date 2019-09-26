@@ -43,8 +43,16 @@ export class PlainTextComponent implements OnInit, OnDestroy {
         private sideDrawer: SideDrawerService,
     ) { }
 
+    private show(content: BeancountFileContent) {
+        if (!content) {
+            return;
+        }
+        this.fileText = content.text;
+        this.fileTitle = content.getTitle();
+    }
+
     private fileSubscribe() {
-        this.fileSubscription = this.beancountFile.contentStream.subscribe((fileContent: BeancountFileContent) => {
+        this.fileSubscription = this.beancountFile.contentStream.subscribe((content: BeancountFileContent) => {
             if (this.fileText) {
                 const toast = new Toasty({
                     text: 'File reloaded',
@@ -53,8 +61,7 @@ export class PlainTextComponent implements OnInit, OnDestroy {
                 });
                 toast.show();
             }
-            this.fileText = fileContent.text;
-            this.fileTitle = fileContent.getTitle();
+            this.show(content);
         });
     }
 
@@ -63,11 +70,12 @@ export class PlainTextComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.show(this.beancountFile.content);
         this.page.on('navigatedTo', () => {
             // Re-subscribe each time because
             // ngOnInit is not called after back-navigation
             this.fileSubscribe();
-            // Load file only on first run
+            // Ask for content if initial show() call was too early
             if (this.fileText === undefined) {
                 this.ngZone.run(() => {
                     this.beancountFile.load();

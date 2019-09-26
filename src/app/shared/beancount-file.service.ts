@@ -27,6 +27,11 @@ export class BeancountFileService implements OnDestroy {
     constructor() {
         this.path = appSettings.getString(BEANCOUNT_PATH_SETTING);
         this.contentStream = new Subject();
+        // Initial load
+        if (this.path) {
+            this.load();
+        }
+        // Periodic reload
         this.watcher = interval(BEANCOUNT_FILE_WATCH_INTERVAL).subscribe(() => {
             if (!this.path) {
                 // No path to watch

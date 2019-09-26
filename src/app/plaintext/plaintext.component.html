@@ -37,12 +37,12 @@
   ></ActionItem>
 </ActionBar>
 
-<GridLayout rows="*" height="100%">
+<GridLayout>
   <PullToRefresh (refresh)="reloadFile($event)">
     <ScrollView #fileTextView>
       <Label
         id="file-content"
-        text="{{ fileText }}"
+        [text]="fileText"
         textWrap="true"
         (textChange)="onFileTextChanged()"
       ></Label>
