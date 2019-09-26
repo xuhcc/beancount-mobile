@@ -6,6 +6,7 @@
 - Show alert when choosing file from external storage.
 - Fixed incorrect current date on transaction form.
 - Dim application screen when loading file.
+- Circle shape for Android icon.
 
 ## 1.2.0
 
