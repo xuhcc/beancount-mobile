@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { RouterExtensions, PageRoute } from 'nativescript-angular/router';
 import { registerElement } from 'nativescript-angular/element-registry';
 
@@ -12,7 +12,7 @@ import { Toasty, ToastPosition, ToastDuration } from 'nativescript-toasty';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { BeancountFileContent } from '../shared/beancount-file-content';
 import { SideDrawerService } from '../shared/sidedrawer.service';
-import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
+import { ACTION_BAR_BUTTON_COLOR, AFTERVIEWINIT_DELAY } from '../shared/constants';
 import { setIconColor, textToBitmap } from '../shared/misc';
 
 registerElement('PullToRefresh', () => PullToRefresh);
@@ -23,7 +23,7 @@ registerElement('Fab', () => Fab);
     templateUrl: './plaintext.component.html',
     styleUrls: ['./plaintext.component.scss'],
 })
-export class PlainTextComponent implements OnInit, OnDestroy {
+export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
 
     fileTitle: string;
     fileText: string;
@@ -70,6 +70,16 @@ export class PlainTextComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.pageRoute.activatedRoute
+            .pipe(
+                switchMap(activatedRoute => activatedRoute.params),
+            )
+            .forEach((params) => {
+                // Scroll to bottom after init when 'scroll' route parameter is present
+                if ('scroll' in params) {
+                    this.scrollOnLoad = params.scroll;
+                }
+            });
         this.show(this.beancountFile.content);
         this.page.on('navigatedTo', () => {
             // Re-subscribe each time because
@@ -87,16 +97,17 @@ export class PlainTextComponent implements OnInit, OnDestroy {
             // https://github.com/NativeScript/nativescript-angular/issues/1049
             this.fileUnsubscribe();
         });
-        this.pageRoute.activatedRoute
-            .pipe(
-                switchMap(activatedRoute => activatedRoute.params),
-            )
-            .forEach((params) => {
-                // Scroll to bottom after init when 'scroll' route parameter is present
-                if ('scroll' in params) {
-                    this.scrollOnLoad = params.scroll;
-                }
-            });
+    }
+
+    ngAfterViewInit(): void {
+        if (this.scrollOnLoad === 'bottom') {
+            delete this.scrollOnLoad;
+            // Use timeout to make it run on the next angular cycle
+            // Otherwise scrollableHeight will be 0
+            setTimeout(() => {
+                this.scrollToBottom();
+            }, AFTERVIEWINIT_DELAY);
+        }
     }
 
     onActionBarLoaded(args) {
@@ -107,17 +118,6 @@ export class PlainTextComponent implements OnInit, OnDestroy {
         // Set color of the 'overflow' button
         const overflowIcon = actionBar.nativeView.getOverflowIcon();
         setIconColor(overflowIcon, ACTION_BAR_BUTTON_COLOR);
-    }
-
-    onFileTextChanged() {
-        if (this.scrollOnLoad === 'bottom') {
-            delete this.scrollOnLoad;
-            // Use timeout to make it run on the next angular cycle
-            // Otherwise scrollableHeight will be 0
-            setTimeout(() => {
-                this.scrollToBottom();
-            }, 0);
-        }
     }
 
     onAddButtonLoaded(args) {
