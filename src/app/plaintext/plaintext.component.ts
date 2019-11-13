@@ -14,7 +14,7 @@ import { BeancountFileService } from '../shared/beancount-file.service';
 import { BeancountFileContent } from '../shared/beancount-file-content';
 import { SideDrawerService } from '../shared/sidedrawer.service';
 import { ACTION_BAR_BUTTON_COLOR, AFTERVIEWINIT_DELAY } from '../shared/constants';
-import { setIconColor, textToBitmap } from '../shared/misc';
+import { setIconColor } from '../shared/misc';
 
 registerElement('PullToRefresh', () => PullToRefresh);
 registerElement('Fab', () => Fab);
@@ -118,18 +118,6 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
             const overflowIcon = actionBar.nativeView.getOverflowIcon();
             setIconColor(overflowIcon, ACTION_BAR_BUTTON_COLOR);
         }
-    }
-
-    onAddButtonLoaded(args) {
-        // Set FAB icon
-        const fab = args.object;
-        const bitmap = textToBitmap(
-            '+',
-            fab.style.fontSize,
-            fab.style.color.hex,
-            fab.style.fontFamily,
-        );
-        fab.android.setImageBitmap(bitmap);
     }
 
     reloadFile(args) {

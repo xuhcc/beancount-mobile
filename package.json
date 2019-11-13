@@ -15,7 +15,7 @@
         "@angular/platform-browser-dynamic": "~8.2.4",
         "@angular/router": "~8.2.4",
         "@nativescript/schematics": "^0.6.0",
-        "@nstudio/nativescript-floatingactionbutton": "^1.0.0",
+        "@nstudio/nativescript-floatingactionbutton": "~1.1.0",
         "@nstudio/nativescript-pulltorefresh": "^1.0.1",
         "material-design-icons-iconfont": "^5.0.1",
         "nativescript-angular": "8.2.0",
