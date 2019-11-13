@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, NgZ
 import { RouterExtensions, PageRoute } from 'nativescript-angular/router';
 import { registerElement } from 'nativescript-angular/element-registry';
 
+import { isAndroid } from 'tns-core-modules/platform';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Page } from 'tns-core-modules/ui/page';
@@ -112,12 +113,11 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onActionBarLoaded(args) {
         const actionBar = args.object;
-        // Set color of the 'menu' button
-        const menuIcon = actionBar.nativeView.getNavigationIcon();
-        setIconColor(menuIcon, ACTION_BAR_BUTTON_COLOR);
-        // Set color of the 'overflow' button
-        const overflowIcon = actionBar.nativeView.getOverflowIcon();
-        setIconColor(overflowIcon, ACTION_BAR_BUTTON_COLOR);
+        if (isAndroid) {
+            // Set color of the 'overflow' button
+            const overflowIcon = actionBar.nativeView.getOverflowIcon();
+            setIconColor(overflowIcon, ACTION_BAR_BUTTON_COLOR);
+        }
     }
 
     onAddButtonLoaded(args) {

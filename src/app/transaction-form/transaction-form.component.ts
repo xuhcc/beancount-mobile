@@ -13,8 +13,8 @@ import { BeancountFileService } from '../shared/beancount-file.service';
 import { AccountModalComponent } from './account-modal/account-modal.component';
 import { CommodityModalComponent } from './commodity-modal/commodity-modal.component';
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
-import { getDateStr, getTodayStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
-import { ACTION_BAR_BUTTON_COLOR, AFTERVIEWINIT_DELAY } from '../shared/constants';
+import { getDateStr, getTodayStr, showKeyboard, configureSaveButton } from '../shared/misc';
+import { AFTERVIEWINIT_DELAY } from '../shared/constants';
 import { ListValidator } from '../shared/validators';
 
 @Component({
@@ -99,9 +99,6 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
 
     onActionBarLoaded(args) {
         const actionBar = args.object;
-        // Set color of the 'back' button
-        const closeIcon = actionBar.nativeView.getNavigationIcon();
-        setIconColor(closeIcon, ACTION_BAR_BUTTON_COLOR);
         // Set initial color of the 'save' button
         // and use workaround to change its color on form updates
         // because CSS styling of action bar is very limited

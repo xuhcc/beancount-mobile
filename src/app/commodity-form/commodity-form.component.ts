@@ -7,9 +7,8 @@ import { TextField } from 'tns-core-modules/ui/text-field';
 import { Commodity } from '../shared/commodity.model';
 import { COMMODITY_NAME_REGEXP } from '../shared/beancount-file-content';
 import { BeancountFileService } from '../shared/beancount-file.service';
-import { ACTION_BAR_BUTTON_COLOR } from '../shared/constants';
 import { showDatePicker } from '../shared/date-picker';
-import { getTodayStr, getDateStr, showKeyboard, setIconColor, configureSaveButton } from '../shared/misc';
+import { getTodayStr, getDateStr, showKeyboard, configureSaveButton } from '../shared/misc';
 import { UniqueValidator } from '../shared/validators';
 
 @Component({
@@ -49,9 +48,6 @@ export class CommodityFormComponent implements OnInit {
 
     onActionBarLoaded(args) {
         const actionBar = args.object;
-        // Set color of the 'back' button
-        const closeIcon = actionBar.nativeView.getNavigationIcon();
-        setIconColor(closeIcon, ACTION_BAR_BUTTON_COLOR);
         // Set initial color of the 'save' button
         // and use workaround to change its color on form updates
         // because CSS styling of action bar is very limited
