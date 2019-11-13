@@ -23,12 +23,11 @@
         "nativescript-imagepicker": "~7.1.0",
         "nativescript-modal-datetimepicker": "^1.2.0",
         "nativescript-permissions": "^1.3.6",
-        "nativescript-theme-core": "~1.0.4",
         "nativescript-toasty": "~2.0.1",
         "nativescript-unit-test-runner": "0.7.0",
         "reflect-metadata": "~0.1.12",
         "rxjs": "~6.5.0",
-        "tns-core-modules": "6.1.0",
+        "tns-core-modules": "~6.2.0",
         "zone.js": "~0.9.1"
     },
     "devDependencies": {
@@ -48,7 +47,7 @@
         "karma-jasmine": "~2.0.1",
         "karma-nativescript-launcher": "0.4.0",
         "karma-webpack": "4.0.2",
-        "nativescript-dev-webpack": "~1.2.0",
+        "nativescript-dev-webpack": "~1.3.0",
         "node-sass": "^4.12.0",
         "tns-platform-declarations": "~6.1.0",
         "typescript": "3.5.3"
@@ -69,10 +68,10 @@
     "nativescript": {
         "id": "link.beancount.mobile",
         "tns-android": {
-            "version": "6.1.2"
+            "version": "6.2.0"
         },
         "tns-ios": {
-            "version": "6.1.0"
+            "version": "6.2.0"
         }
     }
 }
