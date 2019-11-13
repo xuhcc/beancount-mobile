@@ -1,10 +1,7 @@
 <ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
-  <!--
-  It is not yet possible to use icon font with NavigationButton
-  https://github.com/NativeScript/NativeScript/issues/7520
-  -->
   <NavigationButton
-    icon="res://baseline_close_white_24"
+    icon="font://&#xe5cd;"
+    class="icon nav-icon"
     text="Back"
     (tap)="goBack()"
   ></NavigationButton>

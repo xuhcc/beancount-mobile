@@ -1,10 +1,7 @@
 <ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
-  <!--
-  It is not yet possible to use icon font with NavigationButton
-  https://github.com/NativeScript/NativeScript/issues/7542
-  -->
   <NavigationButton
-    icon="res://baseline_menu_black_24"
+    icon="font://&#xe5d2;"
+    class="icon nav-icon"
     (tap)="openDrawer()"
   ></NavigationButton>
   <Label class="action-bar-title" [text]="fileTitle"></Label>

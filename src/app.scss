@@ -39,16 +39,20 @@ selectors and properties you can use to style UI components.
 .action-bar {
     background-color: $main-color;
     color: $main-text-color;
+
+    .icon {
+        font-size: 11;
+
+        &.nav-icon {
+            font-size: 9;
+        }
+    }
 }
 
 .action-bar-title {
     font-weight: 500;
     font-size: 20;
     horizontal-align: left;
-}
-
-.action-bar .icon {
-    font-size: 11;
 }
 
 /* Forms */
