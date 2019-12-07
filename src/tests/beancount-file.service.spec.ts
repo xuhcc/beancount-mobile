@@ -39,7 +39,7 @@ describe('beancount file service', () => {
         service.append('2019-01-02 txn "test2"');
         expect(service.content.text).toBe(
             '2019-01-01 txn "test1"\n\n' +
-            '2019-01-02 txn "test2"')
+            '2019-01-02 txn "test2"\n')
         expect(service.save).toHaveBeenCalled();
     });
 
@@ -48,6 +48,6 @@ describe('beancount file service', () => {
         service.append('2019-01-02 txn "test2"');
         expect(service.content.text).toBe(
             '2019-01-01 txn "test1"\n\n' +
-            '2019-01-02 txn "test2"')
+            '2019-01-02 txn "test2"\n')
     });
 });

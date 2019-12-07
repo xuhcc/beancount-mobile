@@ -119,8 +119,15 @@ export class BeancountFileContent {
         return uniqueAndSortedByCount(payees);
     }
 
-    append(text: string) {
-        const numLineBreaks = this.text.endsWith('\n') ? 1 : 2;
-        this.text += `${'\n'.repeat(numLineBreaks)}${text}`;
+    append(text: string): void {
+        let prefix;
+        if (this.text.endsWith('\n\n')) {
+            prefix = '';
+        } else if (this.text.endsWith('\n')) {
+            prefix = '\n';
+        } else {
+            prefix = '\n\n';
+        }
+        this.text += `${prefix}${text}\n`;
     }
 }

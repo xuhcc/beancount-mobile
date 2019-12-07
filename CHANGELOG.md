@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.2
+
+- Add newline at the end when appending an entry to beancount file.
+
 ## 1.3.1
 
 - Removed internet permission from release manifest file.
