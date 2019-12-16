@@ -7,6 +7,9 @@ export function showDatePicker(): Promise<Date> {
         theme: 'light',
         maxDate: new Date(),
     }).then((result) => {
+        if (!result) {
+            throw new Error('Picker cancelled');
+        }
         const date = new Date(Date.UTC(result.year, result.month - 1, result.day));
         return date;
     });

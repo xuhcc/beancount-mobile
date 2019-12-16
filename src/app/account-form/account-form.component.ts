@@ -62,6 +62,8 @@ export class AccountFormComponent implements OnInit {
     showDatePicker(): void {
         showDatePicker().then((date: Date) => {
             this.form.controls.date.setValue(getDateStr(date));
+        }).catch((error) => {
+            console.warn(error);
         });
     }
 

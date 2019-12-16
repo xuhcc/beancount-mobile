@@ -143,6 +143,8 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
     showDatePicker(): void {
         showDatePicker().then((date: Date) => {
             this.form.controls.date.setValue(getDateStr(date));
+        }).catch((error) => {
+            console.warn(error);
         });
     }
 
