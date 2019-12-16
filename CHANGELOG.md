@@ -2,6 +2,7 @@
 
 ## 1.4.0
 
+- Allowed arithmetic expressions in amount field.
 - Added 'About' page.
 
 ## 1.3.3

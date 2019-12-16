@@ -40,9 +40,10 @@
         id="amount-field"
         class="field"
         formControlName="amount"
-        keyboardType="number"
+        [keyboardType]="amountFieldKeyboardType"
         (loaded)="onAmountFieldLoaded($event)"
         (returnPress)="hideKeyboard()"
+        (doubleTap)="enableArithmeticExpressions()"
       ></TextField>
       <TextField
         id="flag-field"

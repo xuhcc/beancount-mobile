@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ModalDialogOptions, ModalDialogService } from 'nativescript-angular/modal-dialog';
 
@@ -8,7 +8,7 @@ import { TextField } from 'tns-core-modules/ui/text-field';
 import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 
 import { showDatePicker } from '../shared/date-picker';
-import { Transaction } from '../shared/transaction.model';
+import { Transaction, evaluateArithmeticExpression } from '../shared/transaction.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { AccountModalComponent } from './account-modal/account-modal.component';
 import { CommodityModalComponent } from './commodity-modal/commodity-modal.component';
@@ -16,6 +16,19 @@ import { PayeeModalComponent } from './payee-modal/payee-modal.component';
 import { getDateStr, getTodayStr, showKeyboard, configureSaveButton } from '../shared/misc';
 import { AFTERVIEWINIT_DELAY } from '../shared/constants';
 import { ListValidator } from '../shared/validators';
+
+function validateAmount(control: AbstractControl): {[key: string]: any} | null {
+    const error = {invalidExpression: {value: control.value}};
+    let amount;
+    try {
+        amount = evaluateArithmeticExpression(control.value);
+    } catch {
+        return error;
+    }
+    if (isNaN(amount) || amount <= 0) {
+        return error;
+    }
+}
 
 @Component({
     selector: 'bc-transaction-form',
@@ -29,6 +42,8 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
     accounts: string[] = [];
     commodities: string[] = [];
     payees: string[] = [];
+
+    amountFieldKeyboardType = 'number';
 
     @ViewChild('descriptionField', {static: false})
     descriptionField: ElementRef;
@@ -59,7 +74,7 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
             ],
             amount: [
                 '',
-                [Validators.required, Validators.min(0)],
+                [Validators.required, validateAmount],
             ],
             commodity: [
                 defaultCurrency,
@@ -108,6 +123,10 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
     onAmountFieldLoaded(args) {
         const amountField = <TextField>args.object;
         showKeyboard(amountField);
+    }
+
+    enableArithmeticExpressions() {
+        this.amountFieldKeyboardType = 'phone';
     }
 
     hideKeyboard() {

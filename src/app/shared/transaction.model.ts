@@ -1,5 +1,9 @@
 import { getDateStr } from './misc';
 
+export function evaluateArithmeticExpression(expression: string): number {
+    return Number(eval(expression)); // eslint-disable-line no-eval
+}
+
 export class Transaction {
 
     date: Date;
@@ -17,13 +21,14 @@ export class Transaction {
         this.flag = options.flag || 'txn';
         this.payee = options.payee;
         this.narration = options.narration;
+        const amount = evaluateArithmeticExpression(options.amount);
         this.postings = [{
             account: options.accountFrom,
-            amount: -Number(options.amount),
+            amount: -amount,
             commodity: options.commodity,
         }, {
             account: options.accountTo,
-            amount: Number(options.amount),
+            amount: amount,
             commodity: options.commodity,
         }];
     }
