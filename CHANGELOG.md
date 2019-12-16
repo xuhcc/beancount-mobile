@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.0
+
+- Added 'About' page.
+
 ## 1.3.3
 
 - Fixed file loading on Android 10.

@@ -1,0 +1,26 @@
+<ActionBar class="action-bar">
+  <NavigationButton
+    icon="font://&#xe5d2;"
+    class="icon nav-icon"
+    (tap)="openDrawer()"
+  ></NavigationButton>
+  <Label class="action-bar-title" text="About"></Label>
+</ActionBar>
+
+<StackLayout class="page">
+  <Label
+    id="app-name"
+    [text]="appName"
+  ></Label>
+  <Label
+    id="app-description"
+    text="Data entry app for Beancount plain-text accounting system."
+    textWrap="true"
+  ></Label>
+
+  <Button
+    class="btn secondary-btn"
+    text="report bug"
+    (tap)="openBugTracker()"
+  ></Button>
+</StackLayout>

@@ -22,12 +22,26 @@ selectors and properties you can use to style UI components.
     font-size: 14;
     font-weight: 500;
     letter-spacing: 0.1;
-    margin: 5;
+    margin: 5 0;
 }
 
 .btn-disabled {
     background-color: #E3E3E3;
     color: #B5B5B5;
+}
+
+.secondary-btn {
+    android-elevation: 0;
+    android-dynamic-elevation-offset: 0;
+    background-color: transparent;
+    border-width: 1;
+    border-color: $button-color;
+    color: $button-color;
+
+    &:highlighted {
+        background-color: $button-color;
+        color: $button-text-color;
+    }
 }
 
 .icon {

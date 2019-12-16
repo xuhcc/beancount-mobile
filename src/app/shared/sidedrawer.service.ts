@@ -75,6 +75,9 @@ export class SideDrawerService {
         }, {
             title: 'Settings',
             url: '/settings',
+        }, {
+            title: 'About',
+            url: '/about',
         },
     ];
     private drawer: CustomSideDrawerClass;

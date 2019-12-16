@@ -1,7 +1,7 @@
 @import '../../app-variables';
 
 .btn {
-    margin: 20 0 0;
+    margin-top: 20;
 }
 
 #reset-text {
@@ -9,18 +9,4 @@
     font-size: 14;
     margin: 0;
     padding: 0;
-}
-
-#reset-btn {
-    android-elevation: 0;
-    android-dynamic-elevation-offset: 0;
-    background-color: transparent;
-    border-width: 1;
-    border-color: $button-color;
-    color: $button-color;
-}
-
-#reset-btn:highlighted {
-    background-color: $button-color;
-    color: $button-text-color;
 }
