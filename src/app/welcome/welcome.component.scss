@@ -4,8 +4,10 @@
     background: linear-gradient(to bottom, #205081, #236E8C);
 }
 
+$welcome-text-color: #A6C0CF;
+
 .welcome-label {
-    color: rgba(255, 255, 255, 0.6);
+    color: $welcome-text-color;
     font-size: 16;
     letter-spacing: 0.04;
     margin-bottom: 0;
@@ -24,8 +26,8 @@
 
 #file-path-input {
     border-bottom-width: 1;
-    border-color: rgba(255, 255, 255, 0.6);
-    color: rgba(255, 255, 255, 0.6);
+    border-color: $welcome-text-color;
+    color: $welcome-text-color;
     font-size: 16;
     margin-bottom: 8;
     padding-bottom: 1;
