@@ -16,8 +16,8 @@ selectors and properties you can use to style UI components.
 
 .btn {
     android-elevation: 3;
-    border-radius: 10;
     background-color: $button-color;
+    border-radius: 10;
     color: $button-text-color;
     font-size: 14;
     font-weight: 500;
@@ -31,11 +31,11 @@ selectors and properties you can use to style UI components.
 }
 
 .secondary-btn {
-    android-elevation: 0;
     android-dynamic-elevation-offset: 0;
+    android-elevation: 0;
     background-color: transparent;
-    border-width: 1;
     border-color: $button-color;
+    border-width: 1;
     color: $button-color;
 
     &:highlighted {
@@ -45,7 +45,7 @@ selectors and properties you can use to style UI components.
 }
 
 .icon {
-    font-family: "Material Icons", "MaterialIcons-Regular";
+    font-family: 'Material Icons', 'MaterialIcons-Regular';
 }
 
 /* Action bar */
@@ -64,8 +64,8 @@ selectors and properties you can use to style UI components.
 }
 
 .action-bar-title {
-    font-weight: 500;
     font-size: 20;
+    font-weight: 500;
     horizontal-align: left;
 }
 
@@ -83,8 +83,8 @@ selectors and properties you can use to style UI components.
 }
 
 .field {
-    border-bottom-width: 1;
     border-bottom-color: $form-underline-color;
+    border-bottom-width: 1;
     color: $form-field-color;
     font-size: 16;
     margin: 0;
@@ -93,8 +93,8 @@ selectors and properties you can use to style UI components.
 }
 
 .field-addon {
-    border-bottom-width: 1;
     border-bottom-color: $form-underline-color;
+    border-bottom-width: 1;
     color: $form-field-color;
     font-size: 20;
     margin: 0;
