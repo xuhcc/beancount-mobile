@@ -6,12 +6,17 @@
         "defaultCollection": "@nativescript/schematics"
     },
     "projects": {
-        "blank": {
+        "beancount": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
-            "prefix": "bc"
+            "prefix": "bc",
+            "schematics": {
+                "@nativescript/schematics:component": {
+                    "styleext": "scss"
+                }
+            }
         }
     },
-    "defaultProject": "blank"
+    "defaultProject": "beancount"
 }
