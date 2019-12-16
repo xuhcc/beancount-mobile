@@ -103,7 +103,7 @@ selectors and properties you can use to style UI components.
     width: 30;
 }
 
-/* Misc */
+/* Modals */
 
 .modal {
     margin: 20;
@@ -141,4 +141,11 @@ selectors and properties you can use to style UI components.
 .list-empty {
     margin: 20;
     text-align: center;
+}
+
+/* Misc */
+
+.calendar-addon {
+    font-size: 21;
+    width: 100;
 }
