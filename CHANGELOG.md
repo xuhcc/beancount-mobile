@@ -4,6 +4,7 @@
 
 - Allowed arithmetic expressions in amount field.
 - Added 'About' page.
+- Move cursor to the end of line after tapping on item in account and payee lists.
 
 ## 1.3.3
 

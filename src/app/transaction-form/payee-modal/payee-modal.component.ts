@@ -40,6 +40,8 @@ export class PayeeModalComponent implements AfterViewInit {
             this.select();
         } else {
             this.payee.setValue(payee);
+            // Move cursor to the end of string
+            this.payeeField.nativeElement.android.setSelection(payee.length);
         }
     }
 

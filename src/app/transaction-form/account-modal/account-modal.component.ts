@@ -42,6 +42,8 @@ export class AccountModalComponent implements AfterViewInit {
             this.select();
         } else {
             this.account.setValue(account);
+            // Move cursor to the end of string
+            this.accountField.nativeElement.android.setSelection(account.length);
         }
     }
 
