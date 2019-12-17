@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.3
+
+- Fixed file loading on Android 10.
+
 ## 1.3.2
 
 - Add newline at the end when appending an entry to beancount file.
