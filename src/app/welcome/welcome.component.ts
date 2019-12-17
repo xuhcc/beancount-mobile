@@ -72,12 +72,17 @@ export class WelcomeComponent implements OnInit {
         this.beancountFile.setPath(this.filePath);
         // Can't use async/await with angular
         // https://github.com/angular/zone.js/issues/740
-        this.beancountFile.load().then(() => {
-            this.sideDrawer.unlock();
-            this.routerExtensions.navigate(['/plaintext'], {
-                clearHistory: true,
+        this.beancountFile.load()
+            .then(() => {
+                this.sideDrawer.unlock();
+                this.routerExtensions.navigate(['/plaintext'], {
+                    clearHistory: true,
+                });
+            })
+            .catch((error) => {
+                this.beancountFile.reset();
+                console.warn(error);
             });
-        });
     }
 
 }
