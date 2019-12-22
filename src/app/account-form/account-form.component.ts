@@ -48,9 +48,6 @@ export class AccountFormComponent implements OnInit {
 
     onActionBarLoaded(args) {
         const actionBar = args.object;
-        // Set initial color of the 'save' button
-        // and use workaround to change its color on form updates
-        // because CSS styling of action bar is very limited
         configureSaveButton(actionBar, this.form.statusChanges)
     }
 

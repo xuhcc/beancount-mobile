@@ -10,6 +10,7 @@
     <ActionItem
       icon="font://&#xe161;"
       class="icon"
+      [class.disabled]="!form.valid"
       text="Save"
       (tap)="save()"
     ></ActionItem>

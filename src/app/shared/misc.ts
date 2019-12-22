@@ -5,11 +5,7 @@ import { TextField } from 'tns-core-modules/ui/text-field';
 import { Color } from 'tns-core-modules/color';
 import { ad } from 'tns-core-modules/utils/utils';
 
-import {
-    ACTION_BAR_BUTTON_COLOR,
-    ACTION_BAR_BUTTON_DISABLED_COLOR,
-    AFTERVIEWINIT_DELAY,
-} from '../shared/constants';
+import { AFTERVIEWINIT_DELAY } from '../shared/constants';
 
 export function getDateStr(date: Date): string {
     const year = date.getFullYear();
@@ -66,16 +62,11 @@ export function configureSaveButton(
     actionBar: ActionBar,
     statusChanges: Observable<string>,
 ) {
-    // Simulate enabled/disabled behaviour for action bar icon
-    const saveButton = actionBar.actionItems.getItemAt(0);
-    saveButton.style.color = new Color(ACTION_BAR_BUTTON_DISABLED_COLOR);
-    statusChanges.subscribe((status: string) => {
-        const saveIcon = actionBar.nativeView
-            .getChildAt(1).getChildAt(0).getItemData().getIcon();
-        if (status === 'VALID') {
-            setIconColor(saveIcon, ACTION_BAR_BUTTON_COLOR);
-        } else {
-            setIconColor(saveIcon, ACTION_BAR_BUTTON_DISABLED_COLOR);
-        }
+    // Workaround for https://github.com/NativeScript/NativeScript/issues/8211
+    statusChanges.subscribe(() => {
+        // Delay update so it will be done after class toggle
+        setTimeout(() => {
+            actionBar.update();
+        }, 0);
     });
 }

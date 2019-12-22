@@ -60,6 +60,10 @@ selectors and properties you can use to style UI components.
         &.nav-icon {
             font-size: 9;
         }
+
+        &.disabled {
+            color: #4581B5;
+        }
     }
 }
 
