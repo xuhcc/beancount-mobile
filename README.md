@@ -5,7 +5,7 @@
 
 This is a companion mobile application for [Beancount](http://furius.ca/beancount/) plain-text accounting system.
 
-**Currently available only on Android.**
+**Currently available only on Android.** Version 6.0 (Marshmallow) or later is recommended.
 
 <a href="https://play.google.com/store/apps/details?id=link.beancount.mobile"><img width="200" alt="Get it on Google Play" src="https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png" /></a>
 
