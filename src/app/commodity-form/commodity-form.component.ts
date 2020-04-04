@@ -48,13 +48,13 @@ export class CommodityFormComponent implements OnInit {
         });
     }
 
-    onActionBarLoaded(args) {
-        const actionBar = args.object;
+    onActionBarLoaded(event) {
+        const actionBar = event.object;
         configureSaveButton(actionBar, this.form.statusChanges)
     }
 
-    onNameFieldLoaded(args) {
-        const nameField = <TextField>args.object;
+    onNameFieldLoaded(event) {
+        const nameField = event.object as TextField;
         showKeyboard(nameField);
     }
 

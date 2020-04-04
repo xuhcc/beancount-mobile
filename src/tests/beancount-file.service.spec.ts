@@ -5,9 +5,9 @@ import { BeancountFileService } from '../app/shared/beancount-file.service';
 import { BeancountFileContent } from '../app/shared/beancount-file-content';
 
 describe('beancount file service', () => {
-    const fileMock = <any>{
+    const fileMock = {
         writeText: () => Promise.resolve(),
-    };
+    } as any;
     const filePath = '/path/to/file';
     let service;
 

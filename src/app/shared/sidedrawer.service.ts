@@ -117,7 +117,7 @@ export class SideDrawerService {
     }
 
     private get nativeDrawer(): any {
-        return (<any>this.drawer).drawer; // eslint-disable-line keyword-spacing
+        return (this.drawer as any).drawer;
     }
 
     open() {

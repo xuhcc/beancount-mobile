@@ -37,7 +37,6 @@
         "padded-blocks": "off",
         "object-curly-spacing": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/consistent-type-assertions": "off",
         "@typescript-eslint/no-explicit-any": "off"
     },
     "globals": {

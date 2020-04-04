@@ -111,8 +111,8 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
         }
     }
 
-    onActionBarLoaded(args) {
-        const actionBar = args.object;
+    onActionBarLoaded(event) {
+        const actionBar = event.object;
         if (isAndroid) {
             // Set color of the 'overflow' button
             const overflowIcon = actionBar.nativeView.getOverflowIcon();
@@ -120,8 +120,8 @@ export class PlainTextComponent implements OnInit, OnDestroy, AfterViewInit {
         }
     }
 
-    reloadFile(args) {
-        const pullRefresh = <PullToRefresh>args.object;
+    reloadFile(event) {
+        const pullRefresh = event.object as PullToRefresh;
         setTimeout(() => {
             // Force reload
             this.beancountFile.load(true).then(() => {

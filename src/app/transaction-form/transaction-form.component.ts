@@ -114,13 +114,13 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
         }, AFTERVIEWINIT_DELAY);
     }
 
-    onActionBarLoaded(args) {
-        const actionBar = args.object;
+    onActionBarLoaded(event) {
+        const actionBar = event.object;
         configureSaveButton(actionBar, this.form.statusChanges);
     }
 
-    onAmountFieldLoaded(args) {
-        const amountField = <TextField>args.object;
+    onAmountFieldLoaded(event) {
+        const amountField = event.object as TextField;
         showKeyboard(amountField);
     }
 
