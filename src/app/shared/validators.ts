@@ -23,3 +23,13 @@ export function ListValidator(allowList: any[]): ValidatorFn {
         }
     };
 }
+
+export function validateDate(control: AbstractControl): {[key: string]: any} | null {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(control.value)) {
+        return {
+            invalid: {
+                value: control.value,
+            },
+        };
+    }
+}

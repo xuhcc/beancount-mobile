@@ -8,7 +8,7 @@ import { Account } from '../shared/account.model';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { showDatePicker } from '../shared/date-picker';
 import { getTodayStr, getDateStr, showKeyboard, configureSaveButton } from '../shared/misc';
-import { UniqueValidator } from '../shared/validators';
+import { UniqueValidator, validateDate } from '../shared/validators';
 
 @Component({
     selector: 'bc-account-form',
@@ -35,7 +35,7 @@ export class AccountFormComponent implements OnInit {
         this.form = this.formBuilder.group({
             date: [
                 getTodayStr(),
-                Validators.required,
+                [Validators.required, validateDate],
             ],
             name: [
                 '',

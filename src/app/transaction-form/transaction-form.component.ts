@@ -15,7 +15,7 @@ import { CommodityModalComponent } from './commodity-modal/commodity-modal.compo
 import { PayeeModalComponent } from './payee-modal/payee-modal.component';
 import { getDateStr, getTodayStr, showKeyboard, configureSaveButton } from '../shared/misc';
 import { AFTERVIEWINIT_DELAY } from '../shared/constants';
-import { ListValidator } from '../shared/validators';
+import { ListValidator, validateDate } from '../shared/validators';
 
 function validateAmount(control: AbstractControl): {[key: string]: any} | null {
     const error = {invalidExpression: {value: control.value}};
@@ -68,7 +68,7 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
         this.form = this.formBuilder.group({
             date: [
                 getTodayStr(),
-                Validators.required,
+                [Validators.required, validateDate],
             ],
             flag: [
                 this.flags[0],

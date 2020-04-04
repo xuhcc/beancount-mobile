@@ -9,7 +9,7 @@ import { COMMODITY_NAME_REGEXP } from '../shared/beancount-file-content';
 import { BeancountFileService } from '../shared/beancount-file.service';
 import { showDatePicker } from '../shared/date-picker';
 import { getTodayStr, getDateStr, showKeyboard, configureSaveButton } from '../shared/misc';
-import { UniqueValidator } from '../shared/validators';
+import { UniqueValidator, validateDate } from '../shared/validators';
 
 @Component({
     selector: 'bc-commodity-form',
@@ -35,7 +35,7 @@ export class CommodityFormComponent implements OnInit {
         this.form = this.formBuilder.group({
             date: [
                 getTodayStr(),
-                Validators.required,
+                [Validators.required, validateDate],
             ],
             name: [
                 '',

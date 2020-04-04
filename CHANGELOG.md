@@ -3,6 +3,7 @@
 ## 1.5.0
 
 - Enabled error indication in forms.
+- Enabled date validation in forms.
 
 ## 1.4.0
 
