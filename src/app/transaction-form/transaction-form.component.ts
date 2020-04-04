@@ -43,6 +43,8 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
     commodities: string[] = [];
     payees: string[] = [];
 
+    showValidationErrors = false;
+
     amountFieldKeyboardType = 'number';
 
     @ViewChild('descriptionField', {static: false})
@@ -122,6 +124,11 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
         showKeyboard(amountField);
     }
 
+    hasError(fieldName: string): boolean {
+        const field = this.form.get(fieldName);
+        return this.showValidationErrors && field.invalid;
+    }
+
     enableArithmeticExpressions() {
         this.amountFieldKeyboardType = 'phone';
     }
@@ -185,8 +192,9 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
         this.routerExtensions.backToPreviousPage();
     }
 
-    save() {
+    save(): void {
         if (!this.form.valid) {
+            this.showValidationErrors = true;
             return;
         }
         const transaction = new Transaction(this.form.value);

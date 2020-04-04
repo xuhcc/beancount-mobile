@@ -19,7 +19,11 @@
   <StackLayout class="page form" [formGroup]="form">
 
     <Label class="label" text="Date"></Label>
-    <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <FlexboxLayout
+      flexDirection="row"
+      class="field-wrapper"
+      [class.field-error]="hasError('date')"
+    >
       <TextField
         class="field"
         formControlName="date"
@@ -33,7 +37,11 @@
     </FlexboxLayout>
 
     <Label class="label" text="Amount"></Label>
-    <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <FlexboxLayout
+      flexDirection="row"
+      class="field-wrapper"
+      [class.field-error]="hasError('amount')"
+    >
       <TextField
         id="amount-field"
         class="field"
@@ -54,7 +62,11 @@
     </FlexboxLayout>
 
     <Label class="label" text="Currency"></Label>
-    <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <FlexboxLayout
+      flexDirection="row"
+      class="field-wrapper"
+      [class.field-error]="hasError('commodity')"
+    >
       <TextField
         class="field"
         hint="Tap to select"
@@ -70,7 +82,11 @@
     </FlexboxLayout>
 
     <Label class="label" text="From account"></Label>
-    <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <FlexboxLayout
+      flexDirection="row"
+      class="field-wrapper"
+      [class.field-error]="hasError('accountFrom')"
+    >
       <TextField
         class="field"
         hint="Tap to select"
@@ -86,7 +102,11 @@
     </FlexboxLayout>
 
     <Label class="label" text="To account"></Label>
-    <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <FlexboxLayout
+      flexDirection="row"
+      class="field-wrapper"
+      [class.field-error]="hasError('accountTo')"
+    >
       <TextField
         class="field"
         hint="Tap to select"
@@ -102,7 +122,11 @@
     </FlexboxLayout>
 
     <Label class="label" text="Payee"></Label>
-    <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <FlexboxLayout
+      flexDirection="row"
+      class="field-wrapper"
+      [class.field-error]="hasError('payee')"
+    >
       <TextField
         class="field"
         hint="Tap to select"
@@ -118,7 +142,11 @@
     </FlexboxLayout>
 
     <Label class="label" text="Description"></Label>
-    <FlexboxLayout flexDirection="row" class="field-wrapper">
+    <FlexboxLayout
+      flexDirection="row"
+      class="field-wrapper"
+      [class.field-error]="hasError('narration')"
+    >
       <TextField
         #descriptionField
         class="field"

@@ -20,6 +20,8 @@ export class AccountFormComponent implements OnInit {
     form: FormGroup;
     accounts: string[];
 
+    showValidationErrors = false;
+
     constructor(
         private formBuilder: FormBuilder,
         private routerExtensions: RouterExtensions,
@@ -56,6 +58,11 @@ export class AccountFormComponent implements OnInit {
         showKeyboard(nameField);
     }
 
+    hasError(fieldName: string): boolean {
+        const field = this.form.get(fieldName);
+        return this.showValidationErrors && field.invalid;
+    }
+
     showDatePicker(): void {
         showDatePicker().then((date: Date) => {
             this.form.controls.date.setValue(getDateStr(date));
@@ -68,8 +75,9 @@ export class AccountFormComponent implements OnInit {
         this.routerExtensions.backToPreviousPage();
     }
 
-    save() {
+    save(): void {
         if (!this.form.valid) {
+            this.showValidationErrors = true;
             return;
         }
         const account = new Account(this.form.value);

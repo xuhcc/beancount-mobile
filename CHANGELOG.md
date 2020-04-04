@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- Enabled error indication in forms.
+
 ## 1.4.0
 
 - Allowed arithmetic expressions in amount field.

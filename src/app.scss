@@ -108,6 +108,13 @@ selectors and properties you can use to style UI components.
     width: 30;
 }
 
+.field-error {
+    .field,
+    .field-addon {
+        border-bottom-color: $form-error-color;
+    }
+}
+
 /* Modals */
 
 .modal {

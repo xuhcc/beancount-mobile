@@ -21,6 +21,7 @@
   <FlexboxLayout
     flexDirection="row"
     class="field-wrapper"
+    [class.field-error]="hasError('date')"
   >
     <TextField
       class="field"
@@ -38,6 +39,7 @@
   <FlexboxLayout
     flexDirection="row"
     class="field-wrapper"
+    [class.field-error]="hasError('name')"
   >
     <TextField
       class="field"

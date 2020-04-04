@@ -21,6 +21,8 @@ export class CommodityFormComponent implements OnInit {
     form: FormGroup;
     commodities: string[];
 
+    showValidationErrors = false;
+
     constructor(
         private formBuilder: FormBuilder,
         private router: RouterExtensions,
@@ -56,6 +58,11 @@ export class CommodityFormComponent implements OnInit {
         showKeyboard(nameField);
     }
 
+    hasError(fieldName: string): boolean {
+        const field = this.form.get(fieldName);
+        return this.showValidationErrors && field.invalid;
+    }
+
     showDatePicker(): void {
         showDatePicker().then((date: Date) => {
             this.form.controls.date.setValue(getDateStr(date));
@@ -68,8 +75,9 @@ export class CommodityFormComponent implements OnInit {
         this.router.backToPreviousPage();
     }
 
-    save() {
+    save(): void {
         if (!this.form.valid) {
+            this.showValidationErrors = true;
             return;
         }
         const commodity = new Commodity(this.form.value);
