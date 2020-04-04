@@ -18,9 +18,11 @@
 <StackLayout class="page form" [formGroup]="form">
 
   <Label class="label" text="Date"></Label>
-  <FlexboxLayout flexDirection="row" class="field-wrapper">
+  <FlexboxLayout
+    flexDirection="row"
+    class="field-wrapper"
+  >
     <TextField
-      flexGrow="1"
       class="field"
       formControlName="date"
       keyboardType="datetime"
@@ -33,10 +35,15 @@
   </FlexboxLayout>
 
   <Label class="label" text="Name"></Label>
-  <TextField
-    class="field"
-    formControlName="name"
-    (loaded)="onNameFieldLoaded($event)"
-  ></TextField>
+  <FlexboxLayout
+    flexDirection="row"
+    class="field-wrapper"
+  >
+    <TextField
+      class="field"
+      formControlName="name"
+      (loaded)="onNameFieldLoaded($event)"
+    ></TextField>
+  </FlexboxLayout>
 
 </StackLayout>
