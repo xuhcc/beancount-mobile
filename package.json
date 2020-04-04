@@ -27,7 +27,7 @@
         "nativescript-unit-test-runner": "0.7.0",
         "reflect-metadata": "~0.1.12",
         "rxjs": "~6.5.0",
-        "tns-core-modules": "~6.3.2",
+        "tns-core-modules": "~6.5.0",
         "zone.js": "~0.9.1"
     },
     "devDependencies": {
@@ -47,7 +47,7 @@
         "karma-jasmine": "~2.0.1",
         "karma-nativescript-launcher": "0.4.0",
         "karma-webpack": "4.0.2",
-        "nativescript-dev-webpack": "~1.4.0",
+        "nativescript-dev-webpack": "~1.5.1",
         "node-sass": "^4.12.0",
         "stylelint": "~12.0.0",
         "stylelint-config-sass-guidelines": "~6.2.0",
@@ -70,10 +70,10 @@
     "nativescript": {
         "id": "link.beancount.mobile",
         "tns-android": {
-            "version": "6.3.0"
+            "version": "6.5.0"
         },
         "tns-ios": {
-            "version": "6.3.0"
+            "version": "6.5.0"
         }
     }
 }
