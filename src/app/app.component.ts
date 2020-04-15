@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import { BeancountFileService } from './shared/beancount-file.service';
+import { BeancountFileService } from './shared/beancount-file.service'
 
 @Component({
     moduleId: module.id,
@@ -14,7 +14,7 @@ export class AppComponent {
     ) { }
 
     get isLoading(): boolean {
-        return this.beancountFile.isLoading;
+        return this.beancountFile.isLoading
     }
 
 }

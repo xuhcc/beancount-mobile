@@ -1,16 +1,16 @@
-import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
+import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker'
 
 export function showDatePicker(): Promise<Date> {
-    const picker = new ModalDatetimepicker();
+    const picker = new ModalDatetimepicker()
     return picker.pickDate({
         title: 'Select date',
         theme: 'light',
         maxDate: new Date(),
     }).then((result) => {
         if (!result) {
-            throw new Error('Picker cancelled');
+            throw new Error('Picker cancelled')
         }
-        const date = new Date(Date.UTC(result.year, result.month - 1, result.day));
-        return date;
-    });
+        const date = new Date(Date.UTC(result.year, result.month - 1, result.day))
+        return date
+    })
 }

@@ -1,4 +1,4 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms'
 
 export function UniqueValidator(uniqueList: any[]): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
@@ -7,9 +7,9 @@ export function UniqueValidator(uniqueList: any[]): ValidatorFn {
                 nonUnique: {
                     value: control.value,
                 },
-            };
+            }
         }
-    };
+    }
 }
 
 export function ListValidator(allowList: any[]): ValidatorFn {
@@ -19,9 +19,9 @@ export function ListValidator(allowList: any[]): ValidatorFn {
                 notInList: {
                     value: control.value,
                 },
-            };
+            }
         }
-    };
+    }
 }
 
 export function validateDate(control: AbstractControl): {[key: string]: any} | null {
@@ -30,6 +30,6 @@ export function validateDate(control: AbstractControl): {[key: string]: any} | n
             invalid: {
                 value: control.value,
             },
-        };
+        }
     }
 }

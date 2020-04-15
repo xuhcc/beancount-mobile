@@ -1,13 +1,13 @@
-import { ImageAsset } from 'tns-core-modules/image-asset';
-import { alert } from 'tns-core-modules/ui/dialogs';
-import { ImagePicker, ImagePickerMediaType } from 'nativescript-imagepicker';
+import { ImageAsset } from 'tns-core-modules/image-asset'
+import { alert } from 'tns-core-modules/ui/dialogs'
+import { ImagePicker, ImagePickerMediaType } from 'nativescript-imagepicker'
 
 class FilePicker extends ImagePicker {
 
     get mimeTypes() {
-        const mimeTypes = Array.create(java.lang.String, 1); // eslint-disable-line no-undef
-        mimeTypes[0] = '*/*';
-        return mimeTypes;
+        const mimeTypes = Array.create(java.lang.String, 1) // eslint-disable-line no-undef
+        mimeTypes[0] = '*/*'
+        return mimeTypes
     }
 }
 
@@ -16,15 +16,15 @@ export function openFilePicker(): Promise<string> {
         mode: 'single',
         mediaType: ImagePickerMediaType.Any,
         showAdvanced: true,
-    });
+    })
     return filePicker.authorize()
         .then(() => filePicker.present())
         .then((selection: ImageAsset[]) => {
-            const filePath = selection[0].android;
+            const filePath = selection[0].android
             if (!filePath) {
-                alert('Failed to access the selected file.');
+                alert('Failed to access the selected file.')
             }
-            return filePath;
+            return filePath
         })
-        .catch((error) => console.warn(error));
+        .catch((error) => console.warn(error))
 }

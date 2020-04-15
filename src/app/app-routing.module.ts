@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
-import { NativeScriptRouterModule } from 'nativescript-angular/router';
+import { NgModule } from '@angular/core'
+import { Routes } from '@angular/router'
+import { NativeScriptRouterModule } from 'nativescript-angular/router'
 
-import { WelcomeComponent } from './welcome/welcome.component';
-import { WelcomeGuard } from './welcome/welcome.guard';
-import { PlainTextComponent } from './plaintext/plaintext.component';
-import { TransactionFormComponent } from './transaction-form/transaction-form.component';
-import { SettingsComponent } from './settings/settings.component';
-import { AccountFormComponent } from './account-form/account-form.component';
-import { CommodityFormComponent } from './commodity-form/commodity-form.component';
-import { AboutComponent } from './about/about.component';
+import { WelcomeComponent } from './welcome/welcome.component'
+import { WelcomeGuard } from './welcome/welcome.guard'
+import { PlainTextComponent } from './plaintext/plaintext.component'
+import { TransactionFormComponent } from './transaction-form/transaction-form.component'
+import { SettingsComponent } from './settings/settings.component'
+import { AccountFormComponent } from './account-form/account-form.component'
+import { CommodityFormComponent } from './commodity-form/commodity-form.component'
+import { AboutComponent } from './about/about.component'
 
 const routes: Routes = [
     {
@@ -46,7 +46,7 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent,
     },
-];
+]
 
 @NgModule({
     imports: [NativeScriptRouterModule.forRoot(routes)],

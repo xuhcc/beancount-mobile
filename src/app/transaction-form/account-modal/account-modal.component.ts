@@ -1,9 +1,9 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core'
+import { FormControl } from '@angular/forms'
+import { ModalDialogParams } from 'nativescript-angular/modal-dialog'
 
-import { showKeyboard } from '../../shared/misc';
-import { ListValidator } from '../../shared/validators';
+import { showKeyboard } from '../../shared/misc'
+import { ListValidator } from '../../shared/validators'
 
 @Component({
     selector: 'bc-account-modal',
@@ -19,36 +19,36 @@ export class AccountModalComponent implements AfterViewInit {
     accounts: string[];
 
     constructor(private modalParams: ModalDialogParams) {
-        this.accounts = modalParams.context;
+        this.accounts = modalParams.context
         this.account = new FormControl('', [
             ListValidator(this.accounts),
-        ]);
+        ])
     }
 
     ngAfterViewInit(): void {
-        showKeyboard(this.accountField.nativeElement);
+        showKeyboard(this.accountField.nativeElement)
     }
 
     filterAccounts(): void {
-        const regexp = new RegExp(this.account.value, 'iu');
+        const regexp = new RegExp(this.account.value, 'iu')
         this.accounts = this.modalParams.context.filter((account) => {
-            return account.search(regexp) !== -1;
-        }).sort();
+            return account.search(regexp) !== -1
+        }).sort()
     }
 
     onAccountTap(account: string): void {
         if (account === this.account.value) {
             // Item already selected, close modal on second tap
-            this.select();
+            this.select()
         } else {
-            this.account.setValue(account);
+            this.account.setValue(account)
             // Move cursor to the end of string
-            this.accountField.nativeElement.android.setSelection(account.length);
+            this.accountField.nativeElement.android.setSelection(account.length)
         }
     }
 
     select(): void {
-        this.modalParams.closeCallback(this.account.value);
+        this.modalParams.closeCallback(this.account.value)
     }
 
 }

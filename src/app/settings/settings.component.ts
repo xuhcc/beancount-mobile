@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterExtensions } from 'nativescript-angular/router';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { RouterExtensions } from 'nativescript-angular/router'
 
-import { BeancountFileService, BeancountFilePathValidator } from '../shared/beancount-file.service';
-import { openFilePicker } from '../shared/beancount-file-picker';
-import { SideDrawerService } from '../shared/sidedrawer.service';
+import { BeancountFileService, BeancountFilePathValidator } from '../shared/beancount-file.service'
+import { openFilePicker } from '../shared/beancount-file-picker'
+import { SideDrawerService } from '../shared/sidedrawer.service'
 
 @Component({
     selector: 'bc-settings',
@@ -28,34 +28,34 @@ export class SettingsComponent implements OnInit {
                 this.beancountFile.path,
                 [Validators.required, BeancountFilePathValidator()],
             ],
-        });
+        })
     }
 
     openDrawer() {
-        this.sideDrawer.open();
+        this.sideDrawer.open()
     }
 
     openFilePicker() {
         openFilePicker().then((filePath) => {
-            this.form.controls.filePath.setValue(filePath);
-        });
+            this.form.controls.filePath.setValue(filePath)
+        })
     }
 
     canSave(): boolean {
-        return this.form.valid && !this.form.pristine;
+        return this.form.valid && !this.form.pristine
     }
 
     save() {
-        const filePath = this.form.value.filePath;
-        this.beancountFile.setPath(filePath);
-        this.routerExtensions.navigate(['/plaintext']);
+        const filePath = this.form.value.filePath
+        this.beancountFile.setPath(filePath)
+        this.routerExtensions.navigate(['/plaintext'])
     }
 
     reset() {
-        this.beancountFile.reset();
+        this.beancountFile.reset()
         this.routerExtensions.navigate(['/welcome'], {
             clearHistory: true,
-        });
+        })
     }
 
 }

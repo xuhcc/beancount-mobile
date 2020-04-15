@@ -1,15 +1,15 @@
-import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
-import { RouterExtensions } from 'nativescript-angular/router';
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core'
+import { RouterExtensions } from 'nativescript-angular/router'
 
-import { openUrl } from 'tns-core-modules/utils/utils';
-import { Page } from 'tns-core-modules/ui/page';
-import { Color } from 'tns-core-modules/color';
+import { openUrl } from 'tns-core-modules/utils/utils'
+import { Page } from 'tns-core-modules/ui/page'
+import { Color } from 'tns-core-modules/color'
 
-import { BeancountFileService } from '../shared/beancount-file.service';
-import { openFilePicker } from '../shared/beancount-file-picker';
-import { SideDrawerService } from '../shared/sidedrawer.service';
+import { BeancountFileService } from '../shared/beancount-file.service'
+import { openFilePicker } from '../shared/beancount-file-picker'
+import { SideDrawerService } from '../shared/sidedrawer.service'
 
-const BEANCOUNT_WEBSITE = 'http://furius.ca/beancount/';
+const BEANCOUNT_WEBSITE = 'http://furius.ca/beancount/'
 
 @Component({
     selector: 'bc-welcome',
@@ -33,56 +33,56 @@ export class WelcomeComponent implements OnInit {
         private sideDrawer: SideDrawerService,
         private beancountFile: BeancountFileService,
     ) {
-        page.actionBarHidden = true;
+        page.actionBarHidden = true
     }
 
     ngOnInit() {
-        this.sideDrawer.lock();
-        this.filePath = this.beancountFile.path;
+        this.sideDrawer.lock()
+        this.filePath = this.beancountFile.path
     }
 
     onWelcomeTextLoaded() {
         // https://github.com/NativeScript/NativeScript/issues/4746#issuecomment-475841566
-        const element = this.welcomeTextView.nativeElement.android;
+        const element = this.welcomeTextView.nativeElement.android
         // See welcome-text class in component CSS
-        element.setTextSize(16);
-        element.setLetterSpacing(0.04);
-        const textColor = new Color(255 * 0.6, 255, 255, 255).android;
-        element.setTextColor(textColor);
-        element.setLinkTextColor(textColor);
+        element.setTextSize(16)
+        element.setLetterSpacing(0.04)
+        const textColor = new Color(255 * 0.6, 255, 255, 255).android
+        element.setTextColor(textColor)
+        element.setLinkTextColor(textColor)
     }
 
     openBeancountWebsite() {
-        openUrl(BEANCOUNT_WEBSITE);
+        openUrl(BEANCOUNT_WEBSITE)
     }
 
     openFilePicker() {
         openFilePicker().then((filePath: string) => {
             if (filePath) {
-                this.filePath = filePath;
+                this.filePath = filePath
             }
-        });
+        })
     }
 
     isValidPath(): boolean {
-        return BeancountFileService.isValidPath(this.filePath);
+        return BeancountFileService.isValidPath(this.filePath)
     }
 
     onContinueTap() {
-        this.beancountFile.setPath(this.filePath);
+        this.beancountFile.setPath(this.filePath)
         // Can't use async/await with angular
         // https://github.com/angular/zone.js/issues/740
         this.beancountFile.load()
             .then(() => {
-                this.sideDrawer.unlock();
+                this.sideDrawer.unlock()
                 this.routerExtensions.navigate(['/plaintext'], {
                     clearHistory: true,
-                });
+                })
             })
             .catch((error) => {
-                this.beancountFile.reset();
-                console.warn(error);
-            });
+                this.beancountFile.reset()
+                console.warn(error)
+            })
     }
 
 }

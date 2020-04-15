@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import { openUrl } from 'tns-core-modules/utils/utils';
+import { openUrl } from 'tns-core-modules/utils/utils'
 
-import { APP_NAME } from '../shared/constants';
-import { getAppVersion } from '../shared/misc';
-import { SideDrawerService } from '../shared/sidedrawer.service';
+import { APP_NAME } from '../shared/constants'
+import { getAppVersion } from '../shared/misc'
+import { SideDrawerService } from '../shared/sidedrawer.service'
 
-const APP_BUGTRACKER = 'https://github.com/xuhcc/beancount-mobile/issues';
+const APP_BUGTRACKER = 'https://github.com/xuhcc/beancount-mobile/issues'
 
 @Component({
     selector: 'bc-about',
@@ -18,15 +18,15 @@ export class AboutComponent {
     constructor(private sideDrawer: SideDrawerService) { }
 
     get appName(): string {
-        return `${APP_NAME} v${getAppVersion()}`;
+        return `${APP_NAME} v${getAppVersion()}`
     }
 
     openDrawer() {
-        this.sideDrawer.open();
+        this.sideDrawer.open()
     }
 
     openBugTracker() {
-        openUrl(APP_BUGTRACKER);
+        openUrl(APP_BUGTRACKER)
     }
 
 }

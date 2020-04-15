@@ -26,7 +26,6 @@
             "error",
             "always-multiline"
         ],
-        "semi": "off",
         "no-useless-constructor": "off",
         "space-before-function-paren": [
             "error",

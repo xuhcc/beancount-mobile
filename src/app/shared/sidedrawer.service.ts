@@ -1,65 +1,65 @@
-import { Injectable, NgZone } from '@angular/core';
-import { RouterExtensions } from 'nativescript-angular/router';
+import { Injectable, NgZone } from '@angular/core'
+import { RouterExtensions } from 'nativescript-angular/router'
 
-import { android as androidApplication } from 'tns-core-modules/application';
-import { Color } from 'tns-core-modules/color';
-import { TnsSideDrawerClass } from 'nativescript-foss-sidedrawer';
+import { android as androidApplication } from 'tns-core-modules/application'
+import { Color } from 'tns-core-modules/color'
+import { TnsSideDrawerClass } from 'nativescript-foss-sidedrawer'
 
-import { APP_NAME } from './constants';
-import { getAppVersion } from './misc';
+import { APP_NAME } from './constants'
+import { getAppVersion } from './misc'
 
 // https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html
-const LOCK_MODE_LOCKED_CLOSED = 1;
-const LOCK_MODE_UNDEFINED = 3;
+const LOCK_MODE_LOCKED_CLOSED = 1
+const LOCK_MODE_UNDEFINED = 3
 
-declare let com: any;
+declare let com: any
 
 class CustomSideDrawerClass extends TnsSideDrawerClass {
 
     drawer: any;
 
     build(opts: any) {
-        const activity: android.app.Activity = androidApplication.foregroundActivity;
+        const activity: android.app.Activity = androidApplication.foregroundActivity
 
-        const profile = new com.mikepenz.materialdrawer.model.ProfileDrawerItem();
-        profile.withName(opts.title);
-        profile.withEmail(opts.subtitle);
+        const profile = new com.mikepenz.materialdrawer.model.ProfileDrawerItem()
+        profile.withName(opts.title)
+        profile.withEmail(opts.subtitle)
 
-        const bg = android.graphics.Bitmap.createBitmap(8, 8, android.graphics.Bitmap.Config.ARGB_8888);
-        bg.eraseColor(opts.headerBackgroundColor.android);
+        const bg = android.graphics.Bitmap.createBitmap(8, 8, android.graphics.Bitmap.Config.ARGB_8888)
+        bg.eraseColor(opts.headerBackgroundColor.android)
 
-        const header = new com.mikepenz.materialdrawer.AccountHeaderBuilder();
-        header.withActivity(activity);
-        header.withHeaderBackground(new com.mikepenz.materialdrawer.holder.ImageHolder(bg));
-        header.addProfiles([profile]);
-        header.withProfileImagesVisible(false);
-        header.withSelectionListEnabledForSingleProfile(false);
-        header.withProfileImagesClickable(false);
-        header.withTextColor(opts.headerTextColor.android);
+        const header = new com.mikepenz.materialdrawer.AccountHeaderBuilder()
+        header.withActivity(activity)
+        header.withHeaderBackground(new com.mikepenz.materialdrawer.holder.ImageHolder(bg))
+        header.addProfiles([profile])
+        header.withProfileImagesVisible(false)
+        header.withSelectionListEnabledForSingleProfile(false)
+        header.withProfileImagesClickable(false)
+        header.withTextColor(opts.headerTextColor.android)
 
         const items = opts.templates.map((template, index) => {
-            const item = new com.mikepenz.materialdrawer.model.PrimaryDrawerItem();
-            item.withIdentifier(index);
-            item.withName(template.title);
-            item.withTextColor(opts.textColor.android);
-            item.withSelectedColor(opts.selectedColor.android);
-            item.withSelectedTextColor(opts.selectedTextColor.android);
-            return item;
-        });
+            const item = new com.mikepenz.materialdrawer.model.PrimaryDrawerItem()
+            item.withIdentifier(index)
+            item.withName(template.title)
+            item.withTextColor(opts.textColor.android)
+            item.withSelectedColor(opts.selectedColor.android)
+            item.withSelectedTextColor(opts.selectedTextColor.android)
+            return item
+        })
 
-        const drawer = new com.mikepenz.materialdrawer.DrawerBuilder();
-        drawer.withActivity(activity);
-        drawer.withAccountHeader(header.build());
-        drawer.withSliderBackgroundColor(opts.backgroundColor.android);
-        drawer.addDrawerItems(items);
-        drawer.withSelectedItem(-1);
+        const drawer = new com.mikepenz.materialdrawer.DrawerBuilder()
+        drawer.withActivity(activity)
+        drawer.withAccountHeader(header.build())
+        drawer.withSliderBackgroundColor(opts.backgroundColor.android)
+        drawer.addDrawerItems(items)
+        drawer.withSelectedItem(-1)
         drawer.withOnDrawerItemClickListener(new com.mikepenz.materialdrawer.Drawer.OnDrawerItemClickListener({
             onItemClick: (view: android.view.View, index: number): boolean => {
-                opts.listener(index - 1);
-                return false;
+                opts.listener(index - 1)
+                return false
             },
-        }));
-        this.drawer = drawer.build();
+        }))
+        this.drawer = drawer.build()
     }
 }
 
@@ -87,7 +87,7 @@ export class SideDrawerService {
         private ngZone: NgZone,
         private routerExtensions: RouterExtensions,
     ) {
-        this.drawer = new CustomSideDrawerClass();
+        this.drawer = new CustomSideDrawerClass()
 
         const config = {
             templates: this.navigationMenu,
@@ -100,40 +100,40 @@ export class SideDrawerService {
             selectedColor: new Color('#255C8C'), // $main-color
             selectedTextColor: new Color('#F49D96'), // $secondary-color
             listener: (index: number) => {
-                const url = this.navigationMenu[index].url;
+                const url = this.navigationMenu[index].url
                 // Use NgZone because this is a callback from external JS library
                 this.ngZone.run(() => {
-                    this.routerExtensions.navigateByUrl(url);
-                });
+                    this.routerExtensions.navigateByUrl(url)
+                })
             },
-        };
+        }
         this.loaded = new Promise((resolve) => {
             // https://gitlab.com/burke-software/nativescript-foss-sidedrawer/issues/2
             setTimeout(() => {
-                this.drawer.build(config);
-                resolve();
-            }, 0);
-        });
+                this.drawer.build(config)
+                resolve()
+            }, 0)
+        })
     }
 
     private get nativeDrawer(): any {
-        return (this.drawer as any).drawer;
+        return (this.drawer as any).drawer
     }
 
     open() {
-        this.drawer.open();
+        this.drawer.open()
     }
 
     async lock() {
-        await this.loaded;
-        const layout = this.nativeDrawer.getDrawerLayout();
-        layout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED);
+        await this.loaded
+        const layout = this.nativeDrawer.getDrawerLayout()
+        layout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
     }
 
     async unlock() {
-        await this.loaded;
-        const layout = this.nativeDrawer.getDrawerLayout();
-        layout.setDrawerLockMode(LOCK_MODE_UNDEFINED);
+        await this.loaded
+        const layout = this.nativeDrawer.getDrawerLayout()
+        layout.setDrawerLockMode(LOCK_MODE_UNDEFINED)
     }
 
 }

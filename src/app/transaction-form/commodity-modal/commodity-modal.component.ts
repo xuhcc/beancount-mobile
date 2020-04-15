@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
+import { ModalDialogParams } from 'nativescript-angular/modal-dialog'
 
 @Component({
     selector: 'bc-commodity-modal',
@@ -12,11 +12,11 @@ export class CommodityModalComponent {
     commodities: string[]; selectedIndex: number;
 
     constructor(private modalParams: ModalDialogParams) {
-        this.commodities = modalParams.context;
+        this.commodities = modalParams.context
     }
 
     select(commodity: string): void {
-        this.modalParams.closeCallback(commodity);
+        this.modalParams.closeCallback(commodity)
     }
 
 }
