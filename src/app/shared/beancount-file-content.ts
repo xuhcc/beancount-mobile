@@ -85,6 +85,12 @@ export class BeancountFileContent {
         return ['*', '!']
     }
 
+    getAccountOrder(): string {
+        const regexp = getCustomOptionRegexp('account_order')
+        const match = this.text.match(regexp)
+        return match ? match[1] : 'from_to'
+    }
+
     getAccountNameRegexp(): RegExp {
         const roots = this.getRootAccounts().join('|')
         // Currently there is no support for \p{L}, so we use [^\s]

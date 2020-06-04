@@ -4,6 +4,18 @@ export function evaluateArithmeticExpression(expression: string): number {
     return Number(eval(expression)) // eslint-disable-line no-eval
 }
 
+interface TransactionData {
+    date: string;
+    flag: string;
+    amount: string;
+    commodity: string;
+    accountFrom: string;
+    accountTo: string;
+    payee: string;
+    narration: string;
+    swapFromToAccounts: boolean;
+}
+
 export class Transaction {
 
     date: Date;
@@ -16,21 +28,24 @@ export class Transaction {
         commodity: string;
     }[];
 
-    constructor(options: any) {
-        this.date = new Date(options.date)
-        this.flag = options.flag || 'txn'
-        this.payee = options.payee
-        this.narration = options.narration
-        const amount = evaluateArithmeticExpression(options.amount)
+    constructor(data: TransactionData) {
+        this.date = new Date(data.date)
+        this.flag = data.flag || 'txn'
+        this.payee = data.payee
+        this.narration = data.narration
+        const amount = evaluateArithmeticExpression(data.amount)
         this.postings = [{
-            account: options.accountFrom,
+            account: data.accountFrom,
             amount: -amount,
-            commodity: options.commodity,
+            commodity: data.commodity,
         }, {
-            account: options.accountTo,
+            account: data.accountTo,
             amount: amount,
-            commodity: options.commodity,
+            commodity: data.commodity,
         }]
+        if (data.swapFromToAccounts) {
+            this.postings.reverse()
+        }
     }
 
     toBeancount(): string {

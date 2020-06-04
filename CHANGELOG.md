@@ -4,6 +4,7 @@
 
 - Enabled error indication in forms.
 - Enabled date validation in forms.
+- Allowed to swap "from" and "to" accounts in transaction form.
 
 ## 1.4.0
 

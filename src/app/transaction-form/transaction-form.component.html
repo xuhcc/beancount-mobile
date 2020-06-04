@@ -81,43 +81,49 @@
       ></Label>
     </FlexboxLayout>
 
-    <Label class="label" text="From account"></Label>
+    <Label
+      class="label"
+      [text]="account1Label"
+    ></Label>
     <FlexboxLayout
       flexDirection="row"
       class="field-wrapper"
-      [class.field-error]="hasError('accountFrom')"
+      [class.field-error]="hasError(account1Name)"
     >
       <TextField
         class="field"
         hint="Tap to select"
         editable="false"
-        formControlName="accountFrom"
-        (tap)="showAccountPicker('accountFrom')"
+        [formControlName]="account1Name"
+        (tap)="showAccountPicker(account1Name)"
       ></TextField>
       <Label
         class="field-addon icon"
         text="&#xe241;"
-        (tap)="showAccountPicker('accountFrom')"
+        (tap)="showAccountPicker(account1Name)"
       ></Label>
     </FlexboxLayout>
 
-    <Label class="label" text="To account"></Label>
+    <Label
+      class="label"
+      [text]="account2Label"
+    ></Label>
     <FlexboxLayout
       flexDirection="row"
       class="field-wrapper"
-      [class.field-error]="hasError('accountTo')"
+      [class.field-error]="hasError(account2Name)"
     >
       <TextField
         class="field"
         hint="Tap to select"
         editable="false"
-        formControlName="accountTo"
-        (tap)="showAccountPicker('accountTo')"
+        [formControlName]="account2Name"
+        (tap)="showAccountPicker(account2Name)"
       ></TextField>
       <Label
         class="field-addon icon"
         text="&#xe241;"
-        (tap)="showAccountPicker('accountTo')"
+        (tap)="showAccountPicker(account2Name)"
       ></Label>
     </FlexboxLayout>
 

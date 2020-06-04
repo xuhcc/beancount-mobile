@@ -43,6 +43,7 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
     commodities: string[] = [];
     payees: string[] = [];
 
+    swapFromToAccounts: boolean;
     showValidationErrors = false;
 
     amountFieldKeyboardType = 'number';
@@ -58,6 +59,8 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
         private beancountFile: BeancountFileService,
     ) {
         this.flags = this.beancountFile.content.getTransactionFlags()
+        this.swapFromToAccounts = this.beancountFile.content.getAccountOrder() === 'to_from'
+
         this.accounts = this.beancountFile.content.getAccounts()
         this.commodities = this.beancountFile.content.getCommodities()
         this.payees = this.beancountFile.content.getPayees()
@@ -152,6 +155,22 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
         })
     }
 
+    get account1Name(): string {
+        return this.swapFromToAccounts ? 'accountTo' : 'accountFrom'
+    }
+
+    get account2Name(): string {
+        return this.swapFromToAccounts ? 'accountFrom' : 'accountTo'
+    }
+
+    get account1Label(): string {
+        return this.swapFromToAccounts ? 'To account' : 'From account'
+    }
+
+    get account2Label(): string {
+        return this.swapFromToAccounts ? 'From account' : 'To account'
+    }
+
     showAccountPicker(fieldName: string): void {
         const options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
@@ -197,7 +216,10 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
             this.showValidationErrors = true
             return
         }
-        const transaction = new Transaction(this.form.value)
+        const transaction = new Transaction({
+            ...this.form.value,
+            swapFromToAccounts: this.swapFromToAccounts,
+        })
         const beancountTxn = transaction.toBeancount()
         this.beancountFile.append(beancountTxn)
         this.routerExtensions.navigate(['/plaintext', {scroll: 'bottom'}])
