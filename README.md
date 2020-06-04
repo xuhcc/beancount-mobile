@@ -19,6 +19,8 @@ This is a companion mobile application for [Beancount](http://furius.ca/beancoun
 
 <img src="metadata/en-US/images/phoneScreenshots/screenshot_text.png" width="360"> <img src="metadata/en-US/images/phoneScreenshots/screenshot_new_txn.png" width="360">
 
+Note: Beancount Mobile currently has no file synchronization functionality, but it's possible to use software like [Syncthing](https://syncthing.net/) to sync Beancount file across multiple devices.
+
 ## Configuration
 
 Beancount Mobile makes use of these configuration options:
