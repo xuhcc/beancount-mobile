@@ -56,11 +56,13 @@ export class WelcomeComponent implements OnInit {
         openUrl(BEANCOUNT_WEBSITE)
     }
 
-    openFilePicker() {
+    openFilePicker(): void {
         openFilePicker().then((filePath: string) => {
             if (filePath) {
                 this.filePath = filePath
             }
+        }).catch((error) => {
+            console.warn(error)
         })
     }
 

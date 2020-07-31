@@ -26,5 +26,12 @@ export function openFilePicker(): Promise<string> {
             }
             return filePath
         })
-        .catch((error) => console.warn(error))
+        .catch((error) => {
+            if (error.message === 'Image picker activity result code 0') {
+                // Picker has been cancelled
+                return null
+            } else {
+                throw error
+            }
+        })
 }
