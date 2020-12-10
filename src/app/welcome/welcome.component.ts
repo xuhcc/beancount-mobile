@@ -1,9 +1,9 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core'
-import { RouterExtensions } from 'nativescript-angular/router'
+import { RouterExtensions } from '@nativescript/angular'
 
-import { openUrl } from 'tns-core-modules/utils/utils'
-import { Page } from 'tns-core-modules/ui/page'
-import { Color } from 'tns-core-modules/color'
+import { openUrl } from '@nativescript/core/utils/utils'
+import { Page } from '@nativescript/core/ui/page'
+import { Color } from '@nativescript/core/color'
 
 import { BeancountFileService } from '../shared/beancount-file.service'
 import { openFilePicker } from '../shared/beancount-file-picker'

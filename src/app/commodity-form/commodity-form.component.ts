@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { RouterExtensions } from 'nativescript-angular/router'
+import { RouterExtensions } from '@nativescript/angular'
 
 import { TextField } from 'tns-core-modules/ui/text-field'
 

@@ -39,7 +39,7 @@ See [CHANGELOG](CHANGELOG.md).
 Prerequisites:
 
 * Node.js & NPM
-* [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli) 6.5
+* [NativeScript CLI](https://docs.nativescript.org/angular/start/quick-setup#step-2-install-the-nativescript-cli) 7.0
 
 Install required packages:
 

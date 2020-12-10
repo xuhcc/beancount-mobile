@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core'
 import { AbstractControl, ValidatorFn } from '@angular/forms'
 
-import * as appSettings from 'tns-core-modules/application-settings'
-import { File, Folder } from 'tns-core-modules/file-system'
-import { isAndroid } from 'tns-core-modules/platform'
+import * as appSettings from '@nativescript/core/application-settings'
+import { File, Folder } from '@nativescript/core/file-system'
+import { isAndroid } from '@nativescript/core/platform'
 
 import { Subject, Subscription, interval } from 'rxjs'
 import * as permissions from 'nativescript-permissions'

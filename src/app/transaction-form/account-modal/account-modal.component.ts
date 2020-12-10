@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core'
 import { FormControl } from '@angular/forms'
-import { ModalDialogParams } from 'nativescript-angular/modal-dialog'
+import { ModalDialogParams } from '@nativescript/angular'
 
 import { showKeyboard } from '../../shared/misc'
 import { ListValidator } from '../../shared/validators'

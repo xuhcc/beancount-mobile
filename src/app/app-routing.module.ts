@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { Routes } from '@angular/router'
-import { NativeScriptRouterModule } from 'nativescript-angular/router'
+import { NativeScriptRouterModule } from '@nativescript/angular'
 
 import { WelcomeComponent } from './welcome/welcome.component'
 import { WelcomeGuard } from './welcome/welcome.guard'

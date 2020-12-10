@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { RouterExtensions } from 'nativescript-angular/router'
+import { RouterExtensions } from '@nativescript/angular'
 
 import { BeancountFileService, BeancountFilePathValidator } from '../shared/beancount-file.service'
 import { openFilePicker } from '../shared/beancount-file-picker'

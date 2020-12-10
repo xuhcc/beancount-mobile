@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core'
-import { RouterExtensions, PageRoute } from 'nativescript-angular/router'
-import { registerElement } from 'nativescript-angular/element-registry'
+import { RouterExtensions, PageRoute, registerElement } from '@nativescript/angular'
 
-import { isAndroid } from 'tns-core-modules/platform'
+import { isAndroid } from '@nativescript/core/platform'
 import { Subscription } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { Page } from 'tns-core-modules/ui/page'
+import { Page } from '@nativescript/core/ui/page'
 import { Fab } from '@nstudio/nativescript-floatingactionbutton'
 import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh'
-import { Toasty, ToastPosition, ToastDuration } from 'nativescript-toasty'
+import { Toasty, ToastPosition, ToastDuration } from 'nativescript-toasty-ns-7'
 
 import { BeancountFileService } from '../shared/beancount-file.service'
 import { BeancountFileContent } from '../shared/beancount-file-content'

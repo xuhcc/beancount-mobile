@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 
-import { ModalDialogParams } from 'nativescript-angular/modal-dialog'
+import { ModalDialogParams } from '@nativescript/angular'
 
 @Component({
     selector: 'bc-commodity-modal',

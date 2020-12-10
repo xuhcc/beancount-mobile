@@ -1,6 +1,6 @@
-import { ImageAsset } from 'tns-core-modules/image-asset'
-import { alert } from 'tns-core-modules/ui/dialogs'
-import { ImagePicker, ImagePickerMediaType } from 'nativescript-imagepicker'
+import { ImageAsset } from '@nativescript/core/image-asset'
+import { alert } from '@nativescript/core/ui/dialogs'
+import { ImagePicker, ImagePickerMediaType } from '@nativescript/imagepicker'
 
 class FilePicker extends ImagePicker {
 

@@ -1,11 +1,10 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
-import { RouterExtensions } from 'nativescript-angular/router'
-import { ModalDialogOptions, ModalDialogService } from 'nativescript-angular/modal-dialog'
+import { ModalDialogOptions, ModalDialogService, RouterExtensions } from '@nativescript/angular'
 
-import { isAndroid } from 'tns-core-modules/platform'
-import { TextField } from 'tns-core-modules/ui/text-field'
-import { ad as androidUtils } from 'tns-core-modules/utils/utils'
+import { isAndroid } from '@nativescript/core/platform'
+import { TextField } from '@nativescript/core/ui/text-field'
+import { ad as androidUtils } from '@nativescript/core/utils/utils'
 
 import { showDatePicker } from '../shared/date-picker'
 import { Transaction, evaluateArithmeticExpression } from '../shared/transaction.model'

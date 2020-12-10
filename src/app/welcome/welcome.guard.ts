@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { CanActivate } from '@angular/router'
-import { RouterExtensions } from 'nativescript-angular/router'
+import { RouterExtensions } from '@nativescript/angular'
 
 import { BeancountFileService } from '../shared/beancount-file.service'
 

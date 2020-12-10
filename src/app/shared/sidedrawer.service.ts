@@ -1,8 +1,8 @@
 import { Injectable, NgZone } from '@angular/core'
-import { RouterExtensions } from 'nativescript-angular/router'
+import { RouterExtensions } from '@nativescript/angular'
 
-import { android as androidApplication } from 'tns-core-modules/application'
-import { Color } from 'tns-core-modules/color'
+import { android as androidApplication } from '@nativescript/core/application'
+import { Color } from '@nativescript/core/color'
 import { TnsSideDrawerClass } from 'nativescript-foss-sidedrawer'
 
 import { APP_NAME } from './constants'

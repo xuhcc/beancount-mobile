@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { RouterExtensions } from 'nativescript-angular/router'
+import { RouterExtensions } from '@nativescript/angular'
 
-import { TextField } from 'tns-core-modules/ui/text-field'
+import { TextField } from '@nativescript/core/ui/text-field'
 
 import { Account } from '../shared/account.model'
 import { BeancountFileService } from '../shared/beancount-file.service'

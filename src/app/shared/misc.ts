@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs'
-import { getNativeApplication } from 'tns-core-modules/application'
-import { ActionBar } from 'tns-core-modules/ui/action-bar'
-import { TextField } from 'tns-core-modules/ui/text-field'
-import { Color } from 'tns-core-modules/color'
-import { ad } from 'tns-core-modules/utils/utils'
+import { getNativeApplication } from '@nativescript/core/application'
+import { ActionBar } from '@nativescript/core/ui/action-bar'
+import { TextField } from '@nativescript/core/ui/text-field'
+import { Color } from '@nativescript/core/color'
+import { ad } from '@nativescript/core/utils/utils'
 
 import { AFTERVIEWINIT_DELAY } from '../shared/constants'
 
