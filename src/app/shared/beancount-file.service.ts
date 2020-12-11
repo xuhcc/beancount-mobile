@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core'
+import { Injectable, OnDestroy, NgZone } from '@angular/core'
 import { AbstractControl, ValidatorFn } from '@angular/forms'
 
 import * as appSettings from '@nativescript/core/application-settings'
@@ -24,7 +24,9 @@ export class BeancountFileService implements OnDestroy {
     watcher: Subscription;
     isLoading = false;
 
-    constructor() {
+    constructor(
+        private zone: NgZone,
+    ) {
         this.path = appSettings.getString(BEANCOUNT_PATH_SETTING)
         this.contentStream = new Subject()
         // Initial load
@@ -98,7 +100,9 @@ export class BeancountFileService implements OnDestroy {
             // No permission; return empty string
             fileText = ''
         }
-        this.isLoading = false
+        this.zone.run(() => {
+            this.isLoading = false
+        })
         return fileText
     }
 

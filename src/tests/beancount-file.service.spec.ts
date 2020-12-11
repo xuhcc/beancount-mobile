@@ -17,7 +17,7 @@ describe('beancount file service', () => {
         })
         spyOn(File, 'fromPath').and.returnValue(fileMock)
 
-        service = new BeancountFileService()
+        service = new BeancountFileService({} as any)
     })
 
     it('should be initialized with path', () => {
