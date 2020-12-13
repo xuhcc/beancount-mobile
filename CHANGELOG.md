@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0
+
+- Upgraded to NativeScript 7.0.
+
 ## 1.5.0
 
 - Enabled error indication in forms.
