@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs/operators'
 import { Page } from '@nativescript/core/ui/page'
 import { Fab } from '@nstudio/nativescript-floatingactionbutton'
 import { PullToRefresh } from '@nstudio/nativescript-pulltorefresh'
-import { Toasty, ToastPosition, ToastDuration } from 'nativescript-toasty-ns-7'
+import { Toasty, ToastPosition, ToastDuration } from '@triniwiz/nativescript-toasty'
 
 import { BeancountFileService } from '../shared/beancount-file.service'
 import { BeancountFileContent } from '../shared/beancount-file-content'
