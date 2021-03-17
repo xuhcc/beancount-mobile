@@ -51,8 +51,8 @@
         "karma-nativescript-launcher": "0.4.0",
         "karma-webpack": "3.0.5",
         "node-sass": "^4.12.0",
-        "stylelint": "~12.0.0",
-        "stylelint-config-sass-guidelines": "~6.2.0",
+        "stylelint": "~13.12.0",
+        "stylelint-config-sass-guidelines": "~8.0.0",
         "typescript": "3.9.7"
     },
     "scripts": {
