@@ -134,6 +134,6 @@ export class BeancountFileContent {
         } else {
             prefix = '\n\n'
         }
-        this.text += `${prefix}${text}\n`
+        this.text += `${prefix}${text}`
     }
 }

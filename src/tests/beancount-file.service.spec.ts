@@ -38,7 +38,7 @@ xdescribe('beancount file service', () => {
     it('should append to file', () => {
         spyOn(service, 'save')
         service.content = new BeancountFileContent('2019-01-01 txn "test1"\n')
-        service.append('2019-01-02 txn "test2"')
+        service.append('2019-01-02 txn "test2"\n')
         expect(service.content.text).toBe(
             '2019-01-01 txn "test1"\n\n' +
             '2019-01-02 txn "test2"\n')
@@ -47,7 +47,7 @@ xdescribe('beancount file service', () => {
 
     it('should append to file with no linebreak at the end', () => {
         service.content = new BeancountFileContent('2019-01-01 txn "test1"')
-        service.append('2019-01-02 txn "test2"')
+        service.append('2019-01-02 txn "test2"\n')
         expect(service.content.text).toBe(
             '2019-01-01 txn "test1"\n\n' +
             '2019-01-02 txn "test2"\n')

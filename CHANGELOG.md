@@ -3,6 +3,7 @@
 ## 1.6.0
 
 - Upgraded to NativeScript 7.0.
+- Do not add second linebreak at the end of file.
 
 ## 1.5.0
 
