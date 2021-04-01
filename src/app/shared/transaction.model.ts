@@ -48,7 +48,7 @@ export class Transaction {
         }
     }
 
-    toBeancount(): string {
+    toBeancount(indentation: number): string {
         const dateStr = getDateStr(this.date)
         let result = `${dateStr} ${this.flag}`
         if (this.payee) {
@@ -56,7 +56,7 @@ export class Transaction {
         }
         result += ` "${this.narration}"\n`
         for (const posting of this.postings) {
-            result += `    ${posting.account}  ${posting.amount} ${posting.commodity}\n`
+            result += `${' '.repeat(indentation)}${posting.account}  ${posting.amount} ${posting.commodity}\n`
         }
         return result
     }

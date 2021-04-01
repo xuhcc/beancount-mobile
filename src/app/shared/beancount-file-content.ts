@@ -15,7 +15,7 @@ function getOptionRegexp(name: string): RegExp {
 
 function getCustomOptionRegexp(name: string): RegExp {
     return new RegExp(
-        `^[\\d-]{10} custom "bcm_option" "${name}" "(.+)"`,
+        `^[\\d-]{10} custom "(?:bcm_option|fava-option)" "${name}" "(.+)"`,
         'um',
     )
 }
@@ -89,6 +89,18 @@ export class BeancountFileContent {
         const regexp = getCustomOptionRegexp('account_order')
         const match = this.text.match(regexp)
         return match ? match[1] : 'from_to'
+    }
+
+    getIndentation(): number {
+        const regexp = getCustomOptionRegexp('indent')
+        const match = this.text.match(regexp)
+        if (match) {
+            try {
+                return parseInt(match[1])
+            } catch {
+            }
+        }
+        return 4
     }
 
     getAccountNameRegexp(): RegExp {

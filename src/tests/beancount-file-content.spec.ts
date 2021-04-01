@@ -23,6 +23,13 @@ describe('beancount file content tests', () => {
         expect(content.getTransactionFlags()).toEqual(['!', '?'])
     })
 
+    it('should parse indentation size', () => {
+        const content = new BeancountFileContent(
+            '1970-01-01 custom "fava-option" "indent" "4"\n' +
+            '2019-01-02 commodity USD\n')
+        expect(content.getIndentation()).toEqual(4)
+    })
+
     describe('account name regexp tests', () => {
         let regexp
         beforeEach(() => {

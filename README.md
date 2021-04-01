@@ -27,6 +27,7 @@ Beancount Mobile makes use of these configuration options:
 
 * `option "title" "..."` - the title of ledger file.
 * `option "operating_currency" "..."` - default currency for transactions.
+* `1970-01-01 custom "fava-option" "indent" "4"` - number spaces for indentation.
 * `1970-01-01 custom "bcm_option" "transaction_flags" "['*', '!']"` - allowed transaction flags.
 * `1970-01-01 custom "bcm_option" "account_order" "to_from"` - show "to" account before "from" account in transaction form.
 

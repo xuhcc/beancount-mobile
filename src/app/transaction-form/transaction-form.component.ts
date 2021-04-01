@@ -219,7 +219,8 @@ export class TransactionFormComponent implements OnInit, AfterViewInit {
             ...this.form.value,
             swapFromToAccounts: this.swapFromToAccounts,
         })
-        const beancountTxn = transaction.toBeancount()
+        const indentation = this.beancountFile.content.getIndentation()
+        const beancountTxn = transaction.toBeancount(indentation)
         this.beancountFile.append(beancountTxn)
         this.routerExtensions.navigate(['/plaintext', {scroll: 'bottom'}])
     }
