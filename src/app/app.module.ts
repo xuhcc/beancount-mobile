@@ -14,6 +14,7 @@ import { PayeeModalComponent } from './transaction-form/payee-modal/payee-modal.
 import { SettingsComponent } from './settings/settings.component'
 import { AccountFormComponent } from './account-form/account-form.component'
 import { CommodityFormComponent } from './commodity-form/commodity-form.component'
+import { BalanceFormComponent } from './balance-form/balance-form.component'
 import { AboutComponent } from './about/about.component'
 
 @NgModule({
@@ -37,6 +38,7 @@ import { AboutComponent } from './about/about.component'
         SettingsComponent,
         AccountFormComponent,
         CommodityFormComponent,
+        BalanceFormComponent,
         AboutComponent,
     ],
     entryComponents: [
