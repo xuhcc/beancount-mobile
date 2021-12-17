@@ -1,7 +1,7 @@
 <StackLayout class="modal">
   <Label
     class="modal-header"
-    text="Select commodity"
+    text="Select currency"
   ></Label>
   <ListView
     *ngIf="commodities.length > 0"
@@ -20,6 +20,6 @@
     *ngIf="commodities.length == 0"
     row="1" colSpan="2"
     class="list-empty"
-    text="No commodities found"
+    text="No currencies found"
   ></Label>
 </StackLayout>

@@ -2,7 +2,6 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { ModalDialogOptions, ModalDialogService, RouterExtensions } from '@nativescript/angular'
 
-import { isAndroid } from '@nativescript/core/platform'
 import { TextField } from '@nativescript/core/ui/text-field'
 import { ad as androidUtils } from '@nativescript/core/utils/utils'
 
@@ -12,7 +11,6 @@ import { BeancountFileService } from '../shared/beancount-file.service'
 import { AccountModalComponent } from '../transaction-form/account-modal/account-modal.component'
 import { CommodityModalComponent } from '../transaction-form/commodity-modal/commodity-modal.component'
 import { getDateStr, getTodayStr, showKeyboard, configureSaveButton } from '../shared/misc'
-import { AFTERVIEWINIT_DELAY } from '../shared/constants'
 import { validateDate } from '../shared/validators'
 
 function validateAmount(control: AbstractControl): {[key: string]: any} | null {

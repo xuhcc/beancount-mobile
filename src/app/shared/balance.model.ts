@@ -22,20 +22,3 @@ export class Balance {
         return `${dateStr} balance ${this.account} ${this.amount} ${this.commodity}\n`
     }
 }
-
-// export class Pad {
-//     date: Date;
-//     account: string;
-//     accountPad: string;
-//
-//     constructor(options: any) {
-//         this.date = new Date(options.date)
-//         this.account = options.account
-//         this.accountPad = options.accountPad
-//     }
-//
-//     toBeancount(): string {
-//         const dateStr = getDateStr(this.date)
-//         return `${dateStr} pad ${this.account} ${this.accountPad}\n`
-//     }
-// }
