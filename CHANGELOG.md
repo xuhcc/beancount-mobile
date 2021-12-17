@@ -5,6 +5,7 @@
 - Upgraded to NativeScript 7.0.
 - Do not add second linebreak at the end of file.
 - Added support for `indent` fava option.
+- Added balance form (#15).
 
 ## 1.5.0
 
