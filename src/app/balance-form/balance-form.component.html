@@ -1,0 +1,96 @@
+<ActionBar class="action-bar" (loaded)="onActionBarLoaded($event)">
+  <NavigationButton
+    icon="font://&#xe5cd;"
+    class="icon nav-icon"
+    text="Back"
+    (tap)="goBack()"
+  ></NavigationButton>
+  <Label class="action-bar-title" text="New balance"></Label>
+  <ActionItem
+    icon="font://&#xe161;"
+    class="icon"
+    [class.disabled]="!form.valid"
+    text="Save"
+    (tap)="save()"
+  ></ActionItem>
+</ActionBar>
+
+<StackLayout class="page form" [formGroup]="form">
+
+  <Label class="label" text="Date"></Label>
+  <FlexboxLayout
+    flexDirection="row"
+    class="field-wrapper"
+    [class.field-error]="hasError('date')"
+  >
+    <TextField
+      class="field"
+      formControlName="date"
+      keyboardType="datetime"
+    ></TextField>
+    <Label
+      class="field-addon icon calendar-addon"
+      text="&#xe878;"
+      (tap)="showDatePicker()"
+    ></Label>
+  </FlexboxLayout>
+
+  <Label class="label" text="Account" ></Label>
+  <FlexboxLayout
+    flexDirection="row"
+    class="field-wrapper"
+    [class.field-error]="hasError('account')"
+  >
+    <TextField
+      class="field"
+      hint="Tap to select"
+      editable="false"
+      formControlName="account"
+      (tap)="showAccountPicker()"
+    ></TextField>
+    <Label
+      class="field-addon icon"
+      text="&#xe241;"
+      (tap)="showAccountPicker()"
+    ></Label>
+  </FlexboxLayout>
+
+  <Label class="label" text="Currency"></Label>
+  <FlexboxLayout
+    flexDirection="row"
+    class="field-wrapper"
+    [class.field-error]="hasError('commodity')"
+  >
+    <TextField
+      id="commodity-field"
+      class="field"
+      hint="Tap to select"
+      formControlName="commodity"
+      editable="false"
+      (tap)="showCommodityPicker()"
+    ></TextField>
+    <Label
+      class="field-addon icon"
+      text="&#xe241;"
+      (tap)="showCommodityPicker()"
+    ></Label>
+  </FlexboxLayout>
+
+  <Label class="label" text="Amount"></Label>
+  <FlexboxLayout
+    flexDirection="row"
+    class="field-wrapper"
+    [class.field-error]="hasError('amount')"
+  >
+    <TextField
+      id="amount-field"
+      class="field"
+      formControlName="amount"
+      [keyboardType]="amountFieldKeyboardType"
+      (loaded)="onAmountFieldLoaded($event)"
+      (returnPress)="hideKeyboard()"
+      (doubleTap)="enableArithmeticExpressions()"
+    ></TextField>
+  </FlexboxLayout>
+
+</StackLayout>

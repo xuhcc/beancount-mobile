@@ -9,6 +9,7 @@ import { TransactionFormComponent } from './transaction-form/transaction-form.co
 import { SettingsComponent } from './settings/settings.component'
 import { AccountFormComponent } from './account-form/account-form.component'
 import { CommodityFormComponent } from './commodity-form/commodity-form.component'
+import { BalanceFormComponent } from './balance-form/balance-form.component'
 import { AboutComponent } from './about/about.component'
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
     {
         path: 'add-commodity',
         component: CommodityFormComponent,
+    },
+    {
+        path: 'add-balance',
+        component: BalanceFormComponent,
     },
     {
         path: 'settings',
