@@ -9,7 +9,7 @@ import { BeancountFileService } from '../shared/beancount-file.service'
 import { openFilePicker } from '../shared/beancount-file-picker'
 import { SideDrawerService } from '../shared/sidedrawer.service'
 
-const BEANCOUNT_WEBSITE = 'http://furius.ca/beancount/'
+const BEANCOUNT_WEBSITE = 'https://beancount.github.io/'
 
 @Component({
     selector: 'bc-welcome',
